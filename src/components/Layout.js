@@ -23,18 +23,18 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const drawerWidth = 240;
 
-// let list = [
-//     {
-//         medicine_name : "Medicine",
-//         icon : MedicalServicesIcon,
-//         to : "/medi"
-//     },
-//     {
-//         Patient_name : "Patient",
-//         to : "/pati",
-//         icon : AccountCircleIcon 
-//     }
-// ]
+let list = [
+    {
+        label : "Medicine",
+        icon : MedicalServicesIcon,
+        to : "/medi"
+    },
+    {
+        label : "Patient",
+        to : "/pati",
+        icon : AccountCircleIcon 
+    }
+]
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -143,8 +143,8 @@ export default function Layout() {
         </DrawerHeader>
         <Divider />
         <List>
-          {["index","Home"].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
+          {list.map((text, index) => (
+            <ListItem key={text.label} to={text.to} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -159,7 +159,7 @@ export default function Layout() {
                     justifyContent: 'center',
                   }}
                 >
-                  {/* {text.icon} */}
+                  {text.icon}
                 </ListItemIcon>
                 <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
