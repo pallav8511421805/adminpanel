@@ -1,10 +1,11 @@
+import { Switch } from "@mui/material";
 import Layout from "./components/Layout";
 
 function App() {
   return (
-    <div>
+    <Switch>
       <Layout/>
-    </div>
+      </Switch>
   );
 }
 

@@ -16,10 +16,9 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { NavLink } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -144,7 +143,7 @@ export default function Layout() {
         <Divider />
         <List>
           {list.map((text, index) => (
-            <ListItem to={text.to} component={Navli} key={text.label} disablePadding sx={{ display: 'block' }}>
+            <ListItem to={text.to} component={NavLink} key={text.label} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
