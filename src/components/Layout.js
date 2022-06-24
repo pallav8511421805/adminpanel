@@ -142,7 +142,7 @@ export default function Layout() {
         </DrawerHeader>
         <Divider />
         <List>
-          {list.map((text, index) => (
+          {list.map((text) => (
             <ListItem to={text.to} component={NavLink} key={text.label} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
