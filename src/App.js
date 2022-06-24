@@ -4,7 +4,7 @@ import Layout from "./components/Layout";
 function App() {
   return (
     <Switch>
-      <Layout/>
+      <Layout path={"/medi"} exact/>
     </Switch>
     
   );
