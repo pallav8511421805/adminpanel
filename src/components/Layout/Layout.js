@@ -96,18 +96,17 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export default function Layout({Children}) {
+export default function Layout(props) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
   };
-
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
+ console.log(props.children);
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -139,7 +138,7 @@ export default function Layout({Children}) {
         <Divider />
         <List>
           {list.map((text) => (
-            <ListItem to={text.to} exact component={NavLink} key={text.label} disablePadding sx={{ display: 'block' }}>
+            <ListItem key={text.label} to={text.to} exact component={NavLink} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -156,16 +155,17 @@ export default function Layout({Children}) {
                 >
                   {text.icon}
                 </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary={text.label} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
+            
           ))}
         </List>
         <Divider />
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        {Children}
+        {props.children}
     </Box>
     </Box>
   );
