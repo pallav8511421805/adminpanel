@@ -9,6 +9,7 @@ function App() {
     <Switch>
       <Route>
         <Layout path={"/medi"} exact component={Medicine}/>
+        <Layout path={"/pati"} exact component={Patient}/>
       </Route>
     </Switch>
   );
