@@ -14,7 +14,6 @@ function App() {
       <Layout exact path="/pati" component={Patient} />
     </Route>
    </Switch>
-   {/* <Layout/> */}
   </>
   );
 }

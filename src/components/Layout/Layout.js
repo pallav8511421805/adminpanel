@@ -106,7 +106,7 @@ export default function Layout(props) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
- console.log(props.children);
+ console.log({children});
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -165,7 +165,7 @@ export default function Layout(props) {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        {props.children}
+        {children}
     </Box>
     </Box>
   );
