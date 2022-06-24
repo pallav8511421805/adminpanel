@@ -144,7 +144,7 @@ export default function Layout() {
         <Divider />
         <List>
           {list.map((text, index) => (
-            <ListItem key={text.label} disablePadding sx={{ display: 'block' }}>
+            <ListItem to={text.to} component={Navli} key={text.label} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
