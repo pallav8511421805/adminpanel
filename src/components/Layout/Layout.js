@@ -22,15 +22,14 @@ import { NavLink } from 'react-router-dom';
 
 const drawerWidth = 240;
 
-let list = [{
-        label : "Medicine",
-        icon : MedicalServicesIcon,
-        to : "/medi"},{
-        label : "Patient",
-        icon : AccountCircleIcon ,
-        to : "/pati"
-}]
-
+const list= [{
+  label : "Medicine",
+  icon : MedicalServicesIcon,
+  to : "/medi"},{
+  label : "Patient",
+  icon : AccountCircleIcon ,
+  to : "/pati"
+  }]
 const openedMixin = (theme) => ({
   width: drawerWidth,
   transition: theme.transitions.create('width', {
@@ -124,7 +123,7 @@ export default function Layout() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Mini variant drawer
+           Layout
           </Typography>
         </Toolbar>
       </AppBar>
@@ -136,8 +135,9 @@ export default function Layout() {
         </DrawerHeader>
         <Divider />
         <List>
+        {/* to={text.to} exact components={NavLink} */}
           {list.map((text) => (
-            <ListItem key={text.label} to={text.to} exact components={NavLink} disablePadding sx={{ display: 'block' }}>
+            <ListItem key={text.label}  disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
