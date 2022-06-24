@@ -22,18 +22,14 @@ import { NavLink } from 'react-router-dom';
 
 const drawerWidth = 240;
 
-let list = [
-    {
+let list = [{
         label : "Medicine",
         icon : MedicalServicesIcon,
-        to : "/medi"
-    },
-    {
+        to : "/medi"},{
         label : "Patient",
-        to : "/pati",
-        icon : AccountCircleIcon 
-    }
-]
+        icon : AccountCircleIcon ,
+        to : "/pati"
+}]
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
