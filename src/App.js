@@ -1,10 +1,10 @@
-import { Switch } from "@mui/material";
+import { Switch } from "react-router-dom";
 import Layout from "./components/Layout";
 
 function App() {
   return (
     <Switch>
-      <Layout/>
+      <Layout path={"/medi"}/>
       </Switch>
   );
 }
