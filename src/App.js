@@ -7,8 +7,9 @@ import Patient from "./containers/Patient";
 function App() {
 
   return (
-    // <Layout/>
-    <Medicine/>
+  <>
+  
+  </>
   );
 }
 export default App;
