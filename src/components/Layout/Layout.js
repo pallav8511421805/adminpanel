@@ -137,7 +137,7 @@ export default function Layout() {
         <List>
         {/* to={text.to} exact components={NavLink} */}
           {list.map((text) => (
-            <ListItem key={text.label}  disablePadding sx={{ display: 'block' }}>
+            <ListItem key={text.label} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
