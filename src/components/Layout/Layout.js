@@ -96,7 +96,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export default function Layout(props) {
+export default function Layout({children}) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -106,7 +106,7 @@ export default function Layout(props) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
- console.log({children});
+ console.log(children);
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
