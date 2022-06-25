@@ -8,7 +8,7 @@ function App() {
 
   return (
   <Switch>
-  <Route >
+  <Route>
   <Layout path={"/medicinepage"} exact component={Medicine}/>
   <Layout path={"/patientpage"} exact component={Patient}/>
   </Route>
