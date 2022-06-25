@@ -138,9 +138,9 @@ console.log("Child",children);
         </DrawerHeader>
         <Divider />
         <List>
-        {/* component={NavLink} to={text.to} exact */}
+        
           {itemicon.map((text,index) => (
-            <ListItem  key={text.name} disablePadding sx={{ display: 'block' }}>
+            <ListItem component={NavLink} to={text.to} exact key={text.name} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
