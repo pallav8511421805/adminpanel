@@ -16,20 +16,12 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import VaccinesIcon from '@mui/icons-material/Vaccines';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import { NavLink } from 'react-router-dom';
 
 const drawerWidth = 240;
 
-const list= [{
-  label : "Medicine",
-  icon : MedicalServicesIcon,
-  to : "/medi"},{
-  label : "Patient",
-  icon : AccountCircleIcon ,
-  to : "/pati"
-  }]
 const openedMixin = (theme) => ({
   width: drawerWidth,
   transition: theme.transitions.create('width', {
@@ -94,17 +86,28 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     }),
   }),
 );
-
-export default function Layout() {
+export default function Layout({ children }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-
+    
   const handleDrawerOpen = () => {
     setOpen(true);
   };
+
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const itemicon =[{
+    name:"Medicine",
+   to:"/medicinepage",
+    icon:VaccinesIcon
+  },{
+    name:"Patient",
+    to:"/patientpage",
+    icon:AccountCircleOutlinedIcon
+  }] 
+console.log("Child",children);
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -123,7 +126,7 @@ export default function Layout() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-           Layout
+            Layout
           </Typography>
         </Toolbar>
       </AppBar>
@@ -135,9 +138,9 @@ export default function Layout() {
         </DrawerHeader>
         <Divider />
         <List>
-        {/* to={text.to} exact components={NavLink} */}
-          {list.map((text) => (
-            <ListItem key={text.label} disablePadding sx={{ display: 'block' }}>
+        {/* component={NavLink} to={text.to} exact */}
+          {itemicon.map((text,index) => (
+            <ListItem  key={text.name} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -154,17 +157,29 @@ export default function Layout() {
                 >
                   {text.icon}
                 </ListItemIcon>
-                <ListItemText primary={text.label} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary={text.name} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
-            
           ))}
         </List>
-        <Divider />
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-    </Box>
+        {children}
+        <Typography paragraph>
+          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper
+          eget nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim
+          neque volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra
+          tellus. Purus sit amet volutpat consequat mauris. Elementum eu facilisis
+          sed odio morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi
+          tincidunt ornare massa eget egestas purus viverra accumsan in. In hendrerit
+          gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem
+          et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis
+          tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
+          eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
+          posuere sollicitudin aliquam ultrices sagittis orci a.
+        </Typography>
+      </Box>
     </Box>
   );
 }

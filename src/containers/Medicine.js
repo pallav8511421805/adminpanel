@@ -1,5 +1,5 @@
 import React from 'react'; 
-function Medicine(props) {
+function Medicine() {
     return (
         <div>
             <h1>Medicines</h1>

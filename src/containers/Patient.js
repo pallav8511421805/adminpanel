@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Patient(props) {
+function Patient() {
     return (
         <div>
             <h1>Patients</h1>
