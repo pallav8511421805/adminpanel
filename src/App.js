@@ -7,13 +7,14 @@ import Patient from "./containers/Patient";
 function App() {
 
   return (
-  // <Switch>
-  // <Route>
-  // <Layout path={"/medicinepage"} exact component={Medicine}/>
-  // <Layout path={"/patientpage"} exact component={Patient}/>
-  // </Route>
-  // </Switch>
-  <Medicine/>
+  <Switch>
+  <Route path={"/medicinepage"} exact>
+  <Layout component={Medicine}/>
+  </Route>
+  <Route path={"/patientpage"} exact>
+  <Layout component={Patient}/>
+  </Route>
+  </Switch>
   );
 }
 export default App;
