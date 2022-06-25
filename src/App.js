@@ -10,9 +10,7 @@ function App() {
   <Switch>
   <Route>
   <Layout path={"/medicinepage"} exact component={Medicine}/>
-  </Route>
-  <Route>
-  <Layout path={Children} exact component={Patient}/>
+  <Layout path={"/patientpage"} exact component={Patient}/>
   </Route>
   </Switch>
   );
