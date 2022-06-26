@@ -16,8 +16,8 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import VaccinesIcon from '@mui/icons-material/Vaccines';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { NavLink } from 'react-router-dom';
 
 const drawerWidth = 240;
@@ -86,10 +86,11 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     }),
   }),
 );
-export default function Layout({children}) {
+
+export default function Layout({ children }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-    
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -98,15 +99,19 @@ export default function Layout({children}) {
     setOpen(false);
   };
 
-  const itemicon =[{
-    name:"Medicine",
-   to:"/medicinepage",
-    icon:VaccinesIcon
-  },{
-    name:"Patient",
-    to:"/patientpage",
-    icon:AccountCircleOutlinedIcon
-  }];
+  const listitemdata = [
+    {
+      name:"Medicines",
+      icon:MedicalServicesIcon
+      ,to:"/medicine"
+    },
+    {
+      name:"Patients",
+      icon:AccountCircleIcon,
+      to:"/patient"
+    }
+  ]
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -137,9 +142,8 @@ export default function Layout({children}) {
         </DrawerHeader>
         <Divider />
         <List>
-        
-          {itemicon.map((text,index) => (
-            <ListItem component={NavLink} to={text.to} exact key={text.name} disablePadding sx={{ display: 'block' }}>
+          {listitemdata.map((text) => (
+            <ListItem style={{color:"rgba(0,0,0,0.54)"}} key={text.name} component={NavLink} exact to={text.to} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -154,7 +158,7 @@ export default function Layout({children}) {
                     justifyContent: 'center',
                   }}
                 >
-                  {text.icon}
+                  {<text.icon/>}
                 </ListItemIcon>
                 <ListItemText primary={text.name} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
@@ -164,7 +168,7 @@ export default function Layout({children}) {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        {children}
+        { children }        
       </Box>
     </Box>
   );
