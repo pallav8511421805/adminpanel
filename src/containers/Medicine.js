@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as yup from 'yup';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -10,6 +10,29 @@ import { Form, Formik, useFormik } from 'formik';
 import { DataGrid } from '@mui/x-data-grid';
 
 function Medicine() {
+
+    let [data,setdata] = useState([]);
+    const localdata = JSON.parse(localStorage.getItem("Medicines"));
+    setdata(localdata)
+const columns = [
+  { field: 'name', headerName: 'Name', width: 70 },
+  { field: 'quantity', headerName: 'Quantity', width: 130 },
+  { field: 'price', headerName: 'Price', width: 130 },
+  { field: 'expiry', headerName: 'Expiry', width: 130 },
+];
+
+const rows = [
+  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
+  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
+  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
+  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
+  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
+  { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
+  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
+  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
+  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+];
+
     const handleinsert = (values) => {
         const localdata = JSON.parse(localStorage.getItem("Medicines"));
 
@@ -114,6 +137,15 @@ function Medicine() {
                     </Formik>
                 </Dialog>
             </div>
+    <div style={{ height: 400, width: '80%' ,margin:'25px auto 0'}}>
+      <DataGrid
+        rows={data}
+        columns={columns}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+        // checkboxSelection
+      />
+    </div>
         </>
 
     );
