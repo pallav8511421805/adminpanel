@@ -12,9 +12,9 @@ function Medicine() {
     const handleinsert = (values) => {
         const localstoragedata = JSON.parse(localStorage.getItem("Medicines"));
 
-        if (localstoragedata === null) {
+        if(localstoragedata === null) {
             localStorage.setItem("Medicines", JSON.stringify([values]));
-        } else{
+        }else{
             localStorage.setItem("Medicines", JSON.stringify(localstoragedata));
         }
         console.log(localstoragedata);
@@ -31,13 +31,15 @@ function Medicine() {
         initialValues: {
             name: '',
             quantity: '',
+            price:'',
+            expiry:'',
         },
         validationSchema: schema,
         onSubmit: values => {
-            handleinsert(values)
+            handleinsert(values);
         },
     });
-    let { errors, handleBlur, handleSubmit, handleChange, values, touched } = formik;
+    let { errors, handleBlur, handleSubmit, handleChange, touched } = formik;
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
