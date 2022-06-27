@@ -10,14 +10,14 @@ import { Form, Formik, useFormik } from 'formik';
 
 function Medicine() {
     const handleinsert = (values) => {
-        const localstoragedata = JSON.parse(localStorage.getItem("Medicines"));
+        const localdata = JSON.parse(localStorage.getItem("Medicines"));
 
-        if(localstoragedata === null) {
+        if (localdata === null) {
             localStorage.setItem("Medicines", JSON.stringify([values]));
-        }else{
-            localStorage.setItem("Medicines", JSON.stringify(localstoragedata));
+        } else {
+            localdata.push(values);
+            localStorage.setItem("Medicines", JSON.stringify(localdata));
         }
-        console.log(localstoragedata);
     }
 
     let schema = yup.object().shape({
@@ -31,8 +31,8 @@ function Medicine() {
         initialValues: {
             name: '',
             quantity: '',
-            price:'',
-            expiry:'',
+            price: '',
+            expiry: '',
         },
         validationSchema: schema,
         onSubmit: values => {
