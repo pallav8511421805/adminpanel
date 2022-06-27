@@ -87,6 +87,18 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
+const listitemdata = [
+  {
+    name:"Medicines",
+    icon:MedicalServicesIcon
+    ,to:"/medicine"
+  },
+  {
+    name:"Patients",
+    icon:AccountCircleIcon,
+    to:"/patient"
+  }
+]
 export default function Layout({ children }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -99,18 +111,6 @@ export default function Layout({ children }) {
     setOpen(false);
   };
 
-  const listitemdata = [
-    {
-      name:"Medicines",
-      icon:MedicalServicesIcon
-      ,to:"/medicine"
-    },
-    {
-      name:"Patients",
-      icon:AccountCircleIcon,
-      to:"/patient"
-    }
-  ]
 
   return (
     <Box sx={{ display: 'flex' }}>
