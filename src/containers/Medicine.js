@@ -9,6 +9,9 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { Form, Formik, useFormik } from 'formik';
 
 function Medicine() {
+    handleinsert = (values) => {
+        let localstoragedata = JSON.parse( localStorage.getItem("Medicines") ); 
+}
 
     let schema = yup.object().shape({
         name: yup.string().required("Please enter your medicine name."),
@@ -24,7 +27,7 @@ function Medicine() {
         },
         validationSchema: schema,
         onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
+            handleinsert(values)
         },
     });
     let { errors, handleBlur, handleSubmit, handleChange, values, touched } = formik;
@@ -60,7 +63,7 @@ function Medicine() {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                 />
-                                {errors.name && touched.name ? <p style={{color:"#1976d2"}}>{errors.name}</p> : null}
+                                {errors.name && touched.name ? <p style={{ color: "#1976d2" }}>{errors.name}</p> : null}
                                 <TextField
                                     margin="dense"
                                     name='quantity'
@@ -70,7 +73,7 @@ function Medicine() {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                 />
-                                {errors.quantity && touched.quantity ? <p style={{color:"#1976d2"}}>{errors.quantity}</p> : null}
+                                {errors.quantity && touched.quantity ? <p style={{ color: "#1976d2" }}>{errors.quantity}</p> : null}
                                 <TextField
                                     margin="dense"
                                     name='price'
@@ -80,7 +83,7 @@ function Medicine() {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                 />
-                                {errors.price && touched.price ? <p style={{color:"#1976d2"}}>{errors.price}</p> : null}
+                                {errors.price && touched.price ? <p style={{ color: "#1976d2" }}>{errors.price}</p> : null}
                                 <TextField
                                     margin="dense"
                                     name='expiry'
@@ -90,7 +93,7 @@ function Medicine() {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                 />
-                                {errors.expiry && touched.expiry ? <p style={{color:"#1976d2"}}>{errors.expiry}</p> : null}
+                                {errors.expiry && touched.expiry ? <p style={{ color: "#1976d2" }}>{errors.expiry}</p> : null}
 
                             </DialogContent>
                             <DialogActions>
