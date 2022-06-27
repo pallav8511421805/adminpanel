@@ -9,9 +9,16 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { Form, Formik, useFormik } from 'formik';
 
 function Medicine() {
-    handleinsert = (values) => {
-        let localstoragedata = JSON.parse( localStorage.getItem("Medicines") ); 
-}
+    const handleinsert = (values) => {
+        const localstoragedata = JSON.parse(localStorage.getItem("Medicines"));
+
+        if (localstoragedata === null) {
+            localStorage.setItem("Medicines", JSON.stringify([values]));
+        } else{
+            localStorage.setItem("Medicines", JSON.stringify(localstoragedata));
+        }
+        console.log(localstoragedata);
+    }
 
     let schema = yup.object().shape({
         name: yup.string().required("Please enter your medicine name."),
