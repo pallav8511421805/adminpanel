@@ -10,25 +10,14 @@ import { Form, Formik, useFormik } from 'formik';
 import { DataGrid } from '@mui/x-data-grid';
 
 function Medicine() {
-    const columns = [
-        { field: 'name', headerName: 'Name', width: 70 },
-        { field: 'quantity', headerName: 'Quantity', width: 130 },
-        { field: 'price', headerName: 'Price', width: 130 },
-        { field: 'expiry', headerName: 'Expiry', width: 130 },
-    ];
-
     const [data,setdata] = useState([]);
 
-    const loaddata = () =>{
-        const localdata = JSON.parse(localStorage.getItem("Medicines"));
-        setdata(localdata)
-    }
-    useEffect(()=>{
-        loaddata()
-    },[])
     const handleinsert = (values) => {
+        
         const localdata = JSON.parse(localStorage.getItem("Medicines"));
+        
         const m_id = Math.floor(Math.random() * 100);
+
         const data = {
             id: m_id,
             ...values
@@ -64,8 +53,7 @@ function Medicine() {
             handleinsert(values);
         },
     });
-    let { errors, handleBlur, handleSubmit, handleChange, touched } = formik;
-
+    
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -75,6 +63,27 @@ function Medicine() {
     const handleClose = () => {
         setOpen(false);
     };
+
+    const columns = [
+        { field: 'name', headerName: 'Name', width: 70 },
+        { field: 'quantity', headerName: 'Quantity', width: 130 },
+        { field: 'price', headerName: 'Price', width: 130 },
+        { field: 'expiry', headerName: 'Expiry', width: 130 },
+    ];
+
+    const loaddata = () =>{
+        const localdata = JSON.parse(localStorage.getItem("Medicines"));
+        setdata(localdata)
+    }
+    useEffect(
+    ()=>{
+    loaddata()
+    },
+    [])
+
+    let { errors, handleBlur, handleSubmit, handleChange, touched } = formik;
+    
+    console.log(data)
 
     return (
         <>
