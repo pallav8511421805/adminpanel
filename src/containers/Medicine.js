@@ -36,9 +36,9 @@ function Medicine() {
 
     let schema = yup.object().shape({
         name: yup.string().required("Please enter your medicine name."),
-        quantity: yup.number().required("Please enter your medicine quantity."),
-        price: yup.number().required("Please enter your medicine price."),
-        expiry: yup.number().required("Please enter your medicine expiry year.")
+        quantity: yup.number().positive().integer().required("Please enter your medicine quantity."),
+        price: yup.number().positive().integer().required("Please enter your medicine price."),
+        expiry: yup.number().positive().integer().required("Please enter your medicine expiry year.")
     });
 
     const formik = useFormik({
@@ -82,9 +82,6 @@ function Medicine() {
     [])
 
     let { errors, handleBlur, handleSubmit, handleChange, touched } = formik;
-    
-    console.log(data)
-
     return (
         <>
             <h1>Medicines</h1>
