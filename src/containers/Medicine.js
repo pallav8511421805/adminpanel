@@ -40,9 +40,9 @@ function Medicine() {
             localStorage.setItem("Medicines", JSON.stringify(localdata));
         }
                   
-        loaddata()
         handleClose()
         formik.resetForm()
+        loaddata()
     }
 
     let schema = yup.object().shape({
@@ -146,7 +146,6 @@ function Medicine() {
                     columns={columns}
                     pageSize={5}
                     rowsPerPageOptions={[5]}
-                // checkboxSelection
                 />
             </div>
         </>
