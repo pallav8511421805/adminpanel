@@ -8,19 +8,24 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Form, Formik, useFormik } from 'formik';
 import { DataGrid } from '@mui/x-data-grid';
+import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton';
 
 function Medicine() {
-    const [data,setdata] = useState([]);
+    const [data, setdata] = useState([]);
 
     const handleinsert = (values) => {
-        
+
         const localdata = JSON.parse(localStorage.getItem("Medicines"));
-        
+
         const m_id = Math.floor(Math.random() * 100);
 
         const data = {
             id: m_id,
-            ...values
+            ...values, ...
+            <IconButton>
+                <DeleteIcon />
+            </IconButton>
         }
         if (localdata === null) {
             localStorage.setItem("Medicines", JSON.stringify([data]));
@@ -28,7 +33,7 @@ function Medicine() {
             localdata.push(data);
             localStorage.setItem("Medicines", JSON.stringify(localdata));
         }
-                  
+
         handleClose()
         formik.resetForm()
         loaddata()
@@ -53,7 +58,7 @@ function Medicine() {
             handleinsert(values);
         },
     });
-    
+
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -64,24 +69,37 @@ function Medicine() {
         setOpen(false);
     };
 
+    const handledelete = (params) => {
+
+    }
+
     const columns = [
         { field: 'name', headerName: 'Name', width: 70 },
         { field: 'quantity', headerName: 'Quantity', width: 130 },
         { field: 'price', headerName: 'Price', width: 130 },
         { field: 'expiry', headerName: 'Expiry', width: 130 },
+        {
+            field: 'action', headerName: 'Action', width: 70,
+            //  renderCell: (params) => (
+            //         handledelete(params)
+            //     )    
+
+        },
     ];
 
-    const loaddata = () =>{
+    const loaddata = () => {
         const localdata = JSON.parse(localStorage.getItem("Medicines"));
         setdata(localdata)
     }
     useEffect(
-    ()=>{
-    loaddata()
-    },
-    [])
+        () => {
+            loaddata()
+        },
+        [])
 
     let { errors, handleBlur, handleSubmit, handleChange, touched } = formik;
+
+
     return (
         <>
             <h1>Medicines</h1>
@@ -153,6 +171,9 @@ function Medicine() {
                     pageSize={5}
                     rowsPerPageOptions={[5]}
                 />
+                {/* <IconButton aria-label="delete" size="lg">
+                    <DeleteIcon fontSize="inherit" />
+                </IconButton> */}
             </div>
         </>
 
