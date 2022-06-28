@@ -10,8 +10,6 @@ import { Form, Formik, useFormik } from 'formik';
 import { DataGrid } from '@mui/x-data-grid';
 
 function Medicine() {
-    let [data, setdata] = useState([]);
-
     const columns = [
         { field: 'name', headerName: 'Name', width: 70 },
         { field: 'quantity', headerName: 'Quantity', width: 130 },
@@ -19,27 +17,32 @@ function Medicine() {
         { field: 'expiry', headerName: 'Expiry', width: 130 },
     ];
 
+    const [data,setdata] = useState([]);
+
+    const loaddata = () =>{
+        const localdata = JSON.parse(localStorage.getItem("Medicines"));
+        setdata(localdata)
+    }
     useEffect(()=>{
-
+        loaddata()
     },[])
-
     const handleinsert = (values) => {
         const localdata = JSON.parse(localStorage.getItem("Medicines"));
-        let m_id = Math.floor(Math.random() * 100);
-        data = {
+        const m_id = Math.floor(Math.random() * 100);
+        const data = {
             id: m_id,
             ...values
         }
-
         if (localdata === null) {
-            localStorage.setItem("Medicines", JSON.stringify([values]));
+            localStorage.setItem("Medicines", JSON.stringify([data]));
         } else {
-            localdata.push(values);
+            localdata.push(data);
             localStorage.setItem("Medicines", JSON.stringify(localdata));
         }
-        
-        console.log(data);
-        setdata(localdata)
+                  
+        loaddata()
+        handleClose()
+        formik.resetForm()
     }
 
     let schema = yup.object().shape({
@@ -72,6 +75,7 @@ function Medicine() {
     const handleClose = () => {
         setOpen(false);
     };
+
     return (
         <>
             <h1>Medicines</h1>
