@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as yup from 'yup';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -10,24 +10,22 @@ import { Form, Formik, useFormik } from 'formik';
 import { DataGrid } from '@mui/x-data-grid';
 
 function Medicine() {
-
     let [data, setdata] = useState([]);
-    const localdata = JSON.parse(localStorage.getItem("Medicines"));
-    setdata(localdata)
-    let m_id = Math.floor(Math.random() * 100);
-
-    
 
     const columns = [
-        { field: "_id", hide: true },
         { field: 'name', headerName: 'Name', width: 70 },
         { field: 'quantity', headerName: 'Quantity', width: 130 },
         { field: 'price', headerName: 'Price', width: 130 },
         { field: 'expiry', headerName: 'Expiry', width: 130 },
     ];
 
+    useEffect(()=>{
+
+    },[])
+
     const handleinsert = (values) => {
         const localdata = JSON.parse(localStorage.getItem("Medicines"));
+        let m_id = Math.floor(Math.random() * 100);
         data = {
             id: m_id,
             ...values
@@ -41,6 +39,7 @@ function Medicine() {
         }
         
         console.log(data);
+        setdata(localdata)
     }
 
     let schema = yup.object().shape({
