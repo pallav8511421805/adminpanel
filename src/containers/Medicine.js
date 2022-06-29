@@ -22,10 +22,7 @@ function Medicine() {
 
         const data = {
             id: m_id,
-            ...values, ...
-            <IconButton>
-                <DeleteIcon />
-            </IconButton>
+            ...values
         }
         if (localdata === null) {
             localStorage.setItem("Medicines", JSON.stringify([data]));
@@ -80,9 +77,9 @@ function Medicine() {
         { field: 'expiry', headerName: 'Expiry', width: 130 },
         {
             field: 'action', headerName: 'Action', width: 70,
-            //  renderCell: (params) => (
-            //         handledelete(params)
-            //     )    
+            renderCell: (params) => (
+                handledelete(params)
+            )
 
         },
     ];
@@ -154,8 +151,9 @@ function Medicine() {
                                     onBlur={handleBlur}
                                 />
                                 {errors.expiry && touched.expiry ? <p style={{ color: "#1976d2" }}>{errors.expiry}</p> : null}
-
+                                
                             </DialogContent>
+            
                             <DialogActions>
                                 <Button onClick={handleClose}>Cancel</Button>
                                 <Button type='submit'>Submit</Button>
@@ -171,9 +169,10 @@ function Medicine() {
                     pageSize={5}
                     rowsPerPageOptions={[5]}
                 />
-                {/* <IconButton aria-label="delete" size="lg">
-                    <DeleteIcon fontSize="inherit" />
-                </IconButton> */}
+            <IconButton aria-label="delete" size="lg">
+            <DeleteIcon fontSize="inherit" />
+            </IconButton>
+
             </div>
         </>
 
