@@ -34,7 +34,6 @@ function Medicine() {
         handleClose()
         formik.resetForm()
         loaddata()
-        console.log(localdata)
     }
 
     let schema = yup.object().shape({
@@ -71,8 +70,9 @@ function Medicine() {
 
     const handledelete = (params) => {
         const localdata = JSON.parse(localStorage.getItem("Medicines"));
-        console.log(localdata)
-        const fdata = localdata.filter((ed) => ed.id !== params.id)
+        const fdata = localdata.filter((v)=>v.id!==params.id);
+        // console.log(l.id)
+        // console.log(l.id !== params.id + l.id +","+params.id)
         setdata(fdata)
         loaddata()   
     }
@@ -89,7 +89,6 @@ function Medicine() {
             <DeleteIcon fontSize="inherit" onClick={handledelete(params)}/>
             </IconButton>
             )
-
         },
     ];
 
