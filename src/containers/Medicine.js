@@ -70,11 +70,11 @@ function Medicine() {
 
     const handledelete = (params) => {
         const localdata = JSON.parse(localStorage.getItem("Medicines"));
-        const fdata = localdata.filter((v)=>v.id!==params.id);
-        // console.log(l.id)
-        // console.log(l.id !== params.id + l.id +","+params.id)
-        setdata(fdata)
-        loaddata()   
+        console.log(localdata)
+        // const filterdata = localdata.filter((v)=>v.id !== params.id);
+
+        // setdata(filterdata)
+        // localdata()
     }
 
     const columns = [
@@ -97,11 +97,10 @@ function Medicine() {
         const localdata = JSON.parse(localStorage.getItem("Medicines"));
         setdata(localdata)
     }
-    useEffect(
-        () => {
-            loaddata()
-        },
-        [])
+
+    useEffect(()=>{
+        loaddata()
+    },[])
 
     let { errors, handleBlur, handleSubmit, handleChange, touched } = formik;
 
