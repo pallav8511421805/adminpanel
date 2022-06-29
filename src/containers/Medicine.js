@@ -78,7 +78,9 @@ function Medicine() {
         {
             field: 'action', headerName: 'Action', width: 70,
             renderCell: (params) => (
-                handledelete(params)
+                <IconButton aria-label="delete" size="lg">
+            <DeleteIcon fontSize="inherit" />
+            </IconButton>
             )
 
         },
@@ -104,7 +106,7 @@ function Medicine() {
                 <Button variant="outlined" onClick={handleClickOpen}>
                     Add Medicines
                 </Button>
-                <Dialog open={open} onClose={handleClose}>
+                <Dialog fullWidth open={open} onClose={handleClose}>
                     <DialogTitle>Add Medicines</DialogTitle>
                     <Formik values={formik}>
                         <Form onSubmit={handleSubmit}>
@@ -169,10 +171,6 @@ function Medicine() {
                     pageSize={5}
                     rowsPerPageOptions={[5]}
                 />
-            <IconButton aria-label="delete" size="lg">
-            <DeleteIcon fontSize="inherit" />
-            </IconButton>
-
             </div>
         </>
 
