@@ -34,6 +34,7 @@ function Medicine() {
         handleClose()
         formik.resetForm()
         loaddata()
+        console.log(localdata)
     }
 
     let schema = yup.object().shape({
@@ -56,6 +57,8 @@ function Medicine() {
         },
     });
 
+    
+
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -66,13 +69,13 @@ function Medicine() {
         setOpen(false);
     };
 
-    // const handledelete = (params) => {
-    //     const localdata = JSON.parse(localStorage.getItem("Medicines"));
-    //     // console.log(localdata)
-    //     const fdata = localdata.filter((ed) => ed.id !== params.id)
-    //     setdata(fdata)
-    //     loaddata()   
-    // }
+    const handledelete = (params) => {
+        const localdata = JSON.parse(localStorage.getItem("Medicines"));
+        console.log(localdata)
+        const fdata = localdata.filter((ed) => ed.id !== params.id)
+        setdata(fdata)
+        loaddata()   
+    }
 
     const columns = [
         { field: 'name', headerName: 'Name', width: 70 },
@@ -83,7 +86,7 @@ function Medicine() {
             field: 'action', headerName: 'Action', width: 70,
             renderCell: (params) => (
             <IconButton aria-label="delete" size="lg">
-            {/* <DeleteIcon fontSize="inherit" onClick={handledelete(params)}/> */}
+            <DeleteIcon fontSize="inherit" onClick={handledelete(params)}/>
             </IconButton>
             )
 
