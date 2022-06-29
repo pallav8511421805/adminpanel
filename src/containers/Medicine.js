@@ -14,6 +14,11 @@ import IconButton from '@mui/material/IconButton';
 function Medicine() {
     const [data, setdata] = useState([]);
 
+    const loaddata = () => {
+        const localdata = JSON.parse(localStorage.getItem("Medicines"));
+        setdata(localdata)
+    }
+
     const handleinsert = (values) => {
 
         const localdata = JSON.parse(localStorage.getItem("Medicines"));
@@ -70,11 +75,10 @@ function Medicine() {
 
     const handledelete = (params) => {
         const localdata = JSON.parse(localStorage.getItem("Medicines"));
-        console.log(localdata)
-        // const filterdata = localdata.filter((v)=>v.id !== params.id);
+        const filterdata = localdata.filter((v)=>v.id !== params.id);
 
-        // setdata(filterdata)
-        // localdata()
+        setdata(filterdata)
+        loaddata()
     }
 
     const columns = [
@@ -92,19 +96,11 @@ function Medicine() {
         },
     ];
 
-
-    const loaddata = () => {
-        const localdata = JSON.parse(localStorage.getItem("Medicines"));
-        setdata(localdata)
-    }
+    let { errors, handleBlur, handleSubmit, handleChange, touched } = formik;
 
     useEffect(()=>{
         loaddata()
     },[])
-
-    let { errors, handleBlur, handleSubmit, handleChange, touched } = formik;
-
-
     return (
         <>
             <h1>Medicines</h1>
