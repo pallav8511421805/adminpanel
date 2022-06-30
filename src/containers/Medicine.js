@@ -28,7 +28,10 @@ function Medicine() {
 
     const loaddata = () => {
         const localdata = JSON.parse(localStorage.getItem("Medicines"));
-        setdata(localdata)
+        
+        if(localdata !== null){
+            setdata(localdata)
+        }
     }
 
     const handleinsert = (values) => {
@@ -46,10 +49,6 @@ function Medicine() {
         } else {
             localdata.push(data);
             localStorage.setItem("Medicines", JSON.stringify(localdata));
-        }
-
-        if(localdata !== null){
-            setdata(localdata)
         }
 
         handleClose()
