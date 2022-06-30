@@ -10,9 +10,20 @@ import { Form, Formik, useFormik } from 'formik';
 import { DataGrid } from '@mui/x-data-grid';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
+import EditIcon from '@mui/icons-material/Edit';
 
 function Medicine() {
     const [data, setdata] = useState([]);
+    const [dopen, setdOpen] = React.useState(false);
+    const [did,setdid]= React.useState();
+
+  const handledClickOpen = () => {
+    setdOpen(true);
+  };
+
+  const handledClose = () => {
+    setdOpen(false);
+  };
 
     const loaddata = () => {
         const localdata = JSON.parse(localStorage.getItem("Medicines"));
@@ -73,12 +84,15 @@ function Medicine() {
         setOpen(false);
     };
 
-    const handledelete = (params) => {
-        const localdata = JSON.parse(localStorage.getItem("Medicines"));
-        const filterdata = localdata.filter((v)=>v.id !== params.id);
+    const handleedit = ()=>{
+        // const localdata = JSON.parse(localStorage.getItem("Medicines"));
+    }
 
-        setdata(filterdata)
-        loaddata()
+    const handledelete = (params) => {
+        // const localdata = JSON.parse(localStorage.getItem("Medicines"));
+        // const filterdata = localdata.filter((v)=>v.id !== params.id);
+        // setdata(filterdata)
+        // loaddata()
     }
 
     const columns = [
@@ -87,11 +101,16 @@ function Medicine() {
         { field: 'price', headerName: 'Price', width: 130 },
         { field: 'expiry', headerName: 'Expiry', width: 130 },
         {
-            field: 'action', headerName: 'Action', width: 70,
+            field: 'action', headerName: 'Action', width: 130,
             renderCell: (params) => (
-            <IconButton aria-label="delete" size="lg">
-            <DeleteIcon fontSize="inherit" onClick={handledelete(params)}/>
+                <>
+            <IconButton aria-label="delete" size="lg" style={{color:'red'}}>
+            <DeleteIcon fontSize="inherit" onClick={handledClickOpen} />
             </IconButton>
+            <IconButton aria-label="edit" size='lg' color='primary'>
+            <EditIcon fontSize="inherit" onClick={handleClickOpen}/>
+          </IconButton>
+          </>
             )
         },
     ];
@@ -108,6 +127,22 @@ function Medicine() {
                 <Button variant="outlined" onClick={handleClickOpen}>
                     Add Medicines
                 </Button>
+                <Dialog
+        open={dopen}
+        onClose={handledClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Are you sure to delete?"}
+        </DialogTitle>
+        <DialogActions>
+          <Button onClick={handledClose}>No</Button>
+          <Button onClick={handledelete}>
+            Yes
+          </Button>
+        </DialogActions>
+      </Dialog>
                 <Dialog fullWidth open={open} onClose={handleClose}>
                     <DialogTitle>Add Medicines</DialogTitle>
                     <Formik values={formik}>
