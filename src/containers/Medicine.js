@@ -16,6 +16,7 @@ function Medicine() {
     const [data, setdata] = useState([]);
     const [dopen, setdOpen] = React.useState(false);
     const [did,setdid] = useState(0);
+    const [ update,setupdate] = useState(false);
 
   const handledClickOpen = () => {
     setdOpen(true);
@@ -56,6 +57,23 @@ function Medicine() {
         loaddata()
     }
 
+    const handleupdate = (values)=>{
+
+        const localdata = JSON.parse(localStorage.getItem("Medicines"));
+        const lData = localdata.map((l)=>{
+               if(l.id === values.id){
+                   return values;
+               }else{
+                   return l;
+               }
+           })
+           localStorage.setItem("Medicines", JSON.stringify(lData));
+           loaddata()
+          formik.resetForm();
+          setupdate(false);
+
+    }
+
     let schema = yup.object().shape({
         name: yup.string().required("Please enter your medicine name."),
         quantity: yup.number().positive().integer().required("Please enter your medicine quantity."),
@@ -72,7 +90,11 @@ function Medicine() {
         },
         validationSchema: schema,
         onSubmit: values => {
-            handleinsert(values);
+            if(update){
+                handleupdate(values);
+            } else{
+                handleinsert(values);
+            }
         },
     });
 
@@ -86,13 +108,15 @@ function Medicine() {
         setOpen(false);
     };
 
-    // const handleedit = ()=>{
-    //     // const localdata = JSON.parse(localStorage.getItem("Medicines"));
-    // }
+    const handleedit = (params)=>{
+        handleClickOpen()
+        setupdate(true)
+        formik.setValues(params.row)
+    }
 
     const handledelete = (params) => {
         const localdata = JSON.parse(localStorage.getItem("Medicines"));
-        const filterdata = localdata.filter((v)=> console.log(v.id !== params.id));
+        const filterdata = localdata.filter((v)=>v.id !== did);
         
         localStorage.setItem("Medicines", JSON.stringify(filterdata));
         
@@ -110,18 +134,18 @@ function Medicine() {
             field: 'action', headerName: 'Action', width: 130,
             renderCell: (params) => (
                 <>
-            <IconButton aria-label="delete" size="lg" style={{color:'red'}}>
-            <DeleteIcon fontSize="inherit" onClick={()=>{handledClickOpen();setdid(params.id)}} />
+            <IconButton aria-label="delete" size="lg" style={{color:'red'}} onClick={()=>{handledClickOpen();setdid(params.id)}} >
+            <DeleteIcon fontSize="inherit" />
             </IconButton>
-            {/* <IconButton aria-label="edit" size='lg' color='primary'>
-            <EditIcon fontSize="inherit" onClick={handleClickOpen}/>
-          </IconButton> */}
+            <IconButton aria-label="edit" size='lg' color='primary' onClick={()=>{handleedit(params)}}>
+            <EditIcon fontSize="inherit" />
+          </IconButton>
           </>
             )
         },
     ];
 
-    let { errors, handleBlur, handleSubmit, handleChange, touched } = formik;
+    let { errors, handleBlur, handleSubmit, handleChange, touched ,values} = formik;
 
     useEffect(()=>{
         loaddata()
@@ -144,7 +168,7 @@ function Medicine() {
         </DialogTitle>
         <DialogActions>
           <Button onClick={handledClose}>No</Button>
-          <Button onClick={handledelete}>
+          <Button onClick={handledelete}autoFocus>
             Yes
           </Button>
         </DialogActions>
@@ -162,6 +186,7 @@ function Medicine() {
                                     type="text"
                                     fullWidth
                                     variant="standard"
+                                    value={values.name}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                 />
@@ -174,6 +199,7 @@ function Medicine() {
                                     variant="standard"
                                     onChange={handleChange}
                                     onBlur={handleBlur}
+                                    value={values.quantity}
                                 />
                                 {errors.quantity && touched.quantity ? <p style={{ color: "#1976d2" }}>{errors.quantity}</p> : null}
                                 <TextField
@@ -184,6 +210,7 @@ function Medicine() {
                                     variant="standard"
                                     onChange={handleChange}
                                     onBlur={handleBlur}
+                                    value={values.price}
                                 />
                                 {errors.price && touched.price ? <p style={{ color: "#1976d2" }}>{errors.price}</p> : null}
                                 <TextField
@@ -194,6 +221,7 @@ function Medicine() {
                                     variant="standard"
                                     onChange={handleChange}
                                     onBlur={handleBlur}
+                                    value={values.expiry}
                                 />
                                 {errors.expiry && touched.expiry ? <p style={{ color: "#1976d2" }}>{errors.expiry}</p> : null}
                                 
@@ -201,7 +229,10 @@ function Medicine() {
             
                             <DialogActions>
                                 <Button onClick={handleClose}>Cancel</Button>
-                                <Button type='submit'>Submit</Button>
+                                {
+                                    update?<Button type='submit' onClick={handleClose}>update</Button>:
+                                    <Button type='submit'>Submit</Button>
+                                }
                             </DialogActions>
                         </Form>
                     </Formik>
