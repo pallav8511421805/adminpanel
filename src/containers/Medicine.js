@@ -15,7 +15,7 @@ import EditIcon from '@mui/icons-material/Edit';
 function Medicine() {
     const [data, setdata] = useState([]);
     const [dopen, setdOpen] = React.useState(false);
-    const [did,setdid]= React.useState();
+    const [did,setdid] = useState(0);
 
   const handledClickOpen = () => {
     setdOpen(true);
@@ -47,6 +47,10 @@ function Medicine() {
             localStorage.setItem("Medicines", JSON.stringify(localdata));
         }
 
+        if(localdata !== null){
+            setdata(localdata)
+        }
+
         handleClose()
         formik.resetForm()
         loaddata()
@@ -72,8 +76,6 @@ function Medicine() {
         },
     });
 
-    
-
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -84,15 +86,19 @@ function Medicine() {
         setOpen(false);
     };
 
-    const handleedit = ()=>{
-        // const localdata = JSON.parse(localStorage.getItem("Medicines"));
-    }
+    // const handleedit = ()=>{
+    //     // const localdata = JSON.parse(localStorage.getItem("Medicines"));
+    // }
 
     const handledelete = (params) => {
-        // const localdata = JSON.parse(localStorage.getItem("Medicines"));
-        // const filterdata = localdata.filter((v)=>v.id !== params.id);
-        // setdata(filterdata)
-        // loaddata()
+        const localdata = JSON.parse(localStorage.getItem("Medicines"));
+        const filterdata = localdata.filter((v)=> console.log(v.id !== params.id));
+        
+        localStorage.setItem("Medicines", JSON.stringify(filterdata));
+        
+        handledClose()
+        setdid(0)
+        loaddata()
     }
 
     const columns = [
@@ -105,11 +111,11 @@ function Medicine() {
             renderCell: (params) => (
                 <>
             <IconButton aria-label="delete" size="lg" style={{color:'red'}}>
-            <DeleteIcon fontSize="inherit" onClick={handledClickOpen} />
+            <DeleteIcon fontSize="inherit" onClick={()=>{handledClickOpen();setdid(params.id)}} />
             </IconButton>
-            <IconButton aria-label="edit" size='lg' color='primary'>
+            {/* <IconButton aria-label="edit" size='lg' color='primary'>
             <EditIcon fontSize="inherit" onClick={handleClickOpen}/>
-          </IconButton>
+          </IconButton> */}
           </>
             )
         },
