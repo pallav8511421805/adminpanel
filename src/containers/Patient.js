@@ -4,12 +4,24 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 import DialogTitle from '@mui/material/DialogTitle';
 import * as yup from 'yup';
+import EditIcon from '@mui/icons-material/Edit';
 import { DataGrid } from '@mui/x-data-grid';
 import { useFormik, Form, Formik } from 'formik';
 
 function Patient() {
+    const [dopen, setdOpen] = React.useState(false);
+    const [did,setdid] = useState(0)
+    const handledClickOpen = () => {
+        setdOpen(true);
+    };
+    const handledClose = () => {
+        setdOpen(false);
+    };
+    const [update,setupdate] = useState(false)
     const [open, setOpen] = React.useState(false);
     const [data, setdata] = useState([])
     const handleClickOpen = () => {
@@ -19,6 +31,23 @@ function Patient() {
     const handleClose = () => {
         setOpen(false);
     };
+
+    const handleupdate = (values)=>{
+
+        const localsdata = JSON.parse(localStorage.getItem("Patients"));
+        const locData = localsdata.map((l)=>{
+               if(l.id === values.id){
+                   return values;
+               }else{
+                   return l;
+               }
+           })
+           localStorage.setItem("Patients", JSON.stringify(locData));
+           load_data()
+          formik.resetForm();
+          setupdate(false);
+
+    }
 
     const load_data = () => {
         const localsdata = JSON.parse(localStorage.getItem("Patients"));
@@ -51,11 +80,42 @@ function Patient() {
         handleClose();
     }
 
+   const handledelete = ()=>{
+    const localdata = JSON.parse(localStorage.getItem("Patients"));
+        const filterdata = localdata.filter((v)=>v.id !== did);
+        
+        localStorage.setItem("Patients", JSON.stringify(filterdata));
+        
+        handledClose()
+        setdid(0)
+        load_data()
+   }
+
+   const handleedit = (params)=>{
+    handleClickOpen()
+    setupdate(true)
+    formik.setValues(params.row)
+}
+
+
     const columns = [
         { field: 'name', headerName: 'NAME', width: 70 },
         { field: 'age', headerName: 'AGE', width: 130 },
         { field: 'email', headerName: 'EMAIL', width: 130 },
         { field: 'address', headerName: 'ADDRESS', width: 130 },
+        {
+            field: 'action', headerName: 'ACTION', width: 130,
+            renderCell: (params) => (
+                <>
+                    <IconButton aria-label="delete" size="lg" color='primary' onClick={()=>{handledClickOpen();setdid(params.id)}}>
+                        <DeleteIcon fontSize="inherit" />
+                    </IconButton>
+                    <IconButton aria-label="edit" size='lg' color='primary' onClick={()=>{handleedit(params)}}>
+                        <EditIcon fontSize="inherit"/>
+                    </IconButton>
+                </>
+            )
+        },
     ];
 
     let schema = yup.object().shape({
@@ -74,7 +134,11 @@ function Patient() {
         },
         validationSchema: schema,
         onSubmit: values => {
-            handledata(values);
+            if(update){
+                handleupdate(values);
+            } else{
+                handledata(values);
+            }
         },
     });
 
@@ -99,6 +163,7 @@ function Patient() {
                             <DialogTitle>Patients Details</DialogTitle>
                             <DialogContent>
                                 <TextField
+                                value={values.name}
                                     margin="dense"
                                     name="name"
                                     label="Enter your full name"
@@ -110,6 +175,7 @@ function Patient() {
                                 />
                                 {errors.name && touched.name ? <p style={{ color: "#1976d2" }}>{errors.name}</p> : null}
                                 <TextField
+                                value={values.email}
                                     margin="dense"
                                     name="email"
                                     type="email"
@@ -121,6 +187,7 @@ function Patient() {
                                 />
                                 {errors.email && touched.email ? <p style={{ color: "#1976d2" }}>{errors.email}</p> : null}
                                 <TextField
+                                value={values.age}
                                     margin="dense"
                                     name="age"
                                     label="Enter your age"
@@ -131,6 +198,7 @@ function Patient() {
                                 />
                                 {errors.age && touched.age ? <p style={{ color: "#1976d2" }}>{errors.age}</p> : null}
                                 <TextField
+                                value={values.address}
                                     margin="dense"
                                     name="address"
                                     label="Enter your address"
@@ -145,14 +213,33 @@ function Patient() {
                             </DialogContent>
                             <DialogActions>
                                 <Button onClick={handleClose}>Cancel</Button>
-                                <Button type='submit'>Submit</Button>
+                                {
+                                    update ? <Button type='submit' onClick={handleClose}>Update</Button>:<Button type='submit'>Submit</Button>
+                                }
                             </DialogActions>
                         </Form>
                     </Formik>
                 </Dialog>
 
+                <Dialog
+                    open={dopen}
+                    onClose={handledClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogTitle id="alert-dialog-title">
+                        {"Are you sure to delete?"}
+                    </DialogTitle>
+                    <DialogActions>
+                        <Button onClick={handledClose}>No</Button>
+                        <Button onClick={handledelete} autoFocus>
+                            Yes
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+
             </div>
-            <div style={{ height: 400, width: '80%',margin:"10px auto"}}>
+            <div style={{ height: 400, width: '80%', margin: "10px auto" }}>
                 <DataGrid
                     rows={data}
                     columns={columns}
