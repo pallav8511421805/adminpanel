@@ -142,6 +142,10 @@ function Patient() {
         },
     });
 
+    const handlepatieint = (p_val) =>{
+    console.log(p_val);
+    }
+
     useEffect(() => {
         load_data()
     }, [])
@@ -157,6 +161,17 @@ function Patient() {
                 <Button variant="outlined" onClick={handleClickOpen}>
                     Add patients details
                 </Button>
+                <div style={{ textAlign: "center" }}>
+                    <TextField style={{ width: "80%" }}
+                        margin="dense"
+                        name='Search'
+                        label="Search medicine data"
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                        onChange={(e) => handlepatieint(e.target.value)}
+                    />
+                </div>
                 <Dialog fullWidth open={open} onClose={handleClose}>
                     <Formik values={formik}>
                         <Form onSubmit={handleSubmit}>
