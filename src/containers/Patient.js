@@ -14,14 +14,14 @@ import { useFormik, Form, Formik } from 'formik';
 
 function Patient() {
     const [dopen, setdOpen] = React.useState(false);
-    const [did,setdid] = useState(0)
+    const [did, setdid] = useState(0)
     const handledClickOpen = () => {
         setdOpen(true);
     };
     const handledClose = () => {
         setdOpen(false);
     };
-    const [update,setupdate] = useState(false)
+    const [update, setupdate] = useState(false)
     const [open, setOpen] = React.useState(false);
     const [data, setdata] = useState([])
     const handleClickOpen = () => {
@@ -32,20 +32,20 @@ function Patient() {
         setOpen(false);
     };
 
-    const handleupdate = (values)=>{
+    const handleupdate = (values) => {
 
         const localsdata = JSON.parse(localStorage.getItem("Patients"));
-        const locData = localsdata.map((l)=>{
-               if(l.id === values.id){
-                   return values;
-               }else{
-                   return l;
-               }
-           })
-           localStorage.setItem("Patients", JSON.stringify(locData));
-           load_data()
-          formik.resetForm();
-          setupdate(false);
+        const locData = localsdata.map((l) => {
+            if (l.id === values.id) {
+                return values;
+            } else {
+                return l;
+            }
+        })
+        localStorage.setItem("Patients", JSON.stringify(locData));
+        load_data()
+        formik.resetForm();
+        setupdate(false);
 
     }
 
@@ -80,22 +80,22 @@ function Patient() {
         handleClose();
     }
 
-   const handledelete = ()=>{
-    const localdata = JSON.parse(localStorage.getItem("Patients"));
-        const filterdata = localdata.filter((v)=>v.id !== did);
-        
+    const handledelete = () => {
+        const localdata = JSON.parse(localStorage.getItem("Patients"));
+        const filterdata = localdata.filter((v) => v.id !== did);
+
         localStorage.setItem("Patients", JSON.stringify(filterdata));
-        
+
         handledClose()
         setdid(0)
         load_data()
-   }
+    }
 
-   const handleedit = (params)=>{
-    handleClickOpen()
-    setupdate(true)
-    formik.setValues(params.row)
-}
+    const handleedit = (params) => {
+        handleClickOpen()
+        setupdate(true)
+        formik.setValues(params.row)
+    }
 
 
     const columns = [
@@ -107,11 +107,11 @@ function Patient() {
             field: 'action', headerName: 'ACTION', width: 130,
             renderCell: (params) => (
                 <>
-                    <IconButton aria-label="delete" size="lg" color='primary' onClick={()=>{handledClickOpen();setdid(params.id)}}>
+                    <IconButton aria-label="delete" size="lg" color='primary' onClick={() => { handledClickOpen(); setdid(params.id) }}>
                         <DeleteIcon fontSize="inherit" />
                     </IconButton>
-                    <IconButton aria-label="edit" size='lg' color='primary' onClick={()=>{handleedit(params)}}>
-                        <EditIcon fontSize="inherit"/>
+                    <IconButton aria-label="edit" size='lg' color='primary' onClick={() => { handleedit(params) }}>
+                        <EditIcon fontSize="inherit" />
                     </IconButton>
                 </>
             )
@@ -134,9 +134,9 @@ function Patient() {
         },
         validationSchema: schema,
         onSubmit: values => {
-            if(update){
+            if (update) {
                 handleupdate(values);
-            } else{
+            } else {
                 handledata(values);
             }
         },
@@ -163,7 +163,7 @@ function Patient() {
                             <DialogTitle>Patients Details</DialogTitle>
                             <DialogContent>
                                 <TextField
-                                value={values.name}
+                                    value={values.name}
                                     margin="dense"
                                     name="name"
                                     label="Enter your full name"
@@ -175,7 +175,7 @@ function Patient() {
                                 />
                                 {errors.name && touched.name ? <p style={{ color: "#1976d2" }}>{errors.name}</p> : null}
                                 <TextField
-                                value={values.email}
+                                    value={values.email}
                                     margin="dense"
                                     name="email"
                                     type="email"
@@ -187,7 +187,7 @@ function Patient() {
                                 />
                                 {errors.email && touched.email ? <p style={{ color: "#1976d2" }}>{errors.email}</p> : null}
                                 <TextField
-                                value={values.age}
+                                    value={values.age}
                                     margin="dense"
                                     name="age"
                                     label="Enter your age"
@@ -198,7 +198,7 @@ function Patient() {
                                 />
                                 {errors.age && touched.age ? <p style={{ color: "#1976d2" }}>{errors.age}</p> : null}
                                 <TextField
-                                value={values.address}
+                                    value={values.address}
                                     margin="dense"
                                     name="address"
                                     label="Enter your address"
@@ -214,7 +214,7 @@ function Patient() {
                             <DialogActions>
                                 <Button onClick={handleClose}>Cancel</Button>
                                 {
-                                    update ? <Button type='submit' onClick={handleClose}>Update</Button>:<Button type='submit'>Submit</Button>
+                                    update ? <Button type='submit' onClick={handleClose}>Update</Button> : <Button type='submit'>Submit</Button>
                                 }
                             </DialogActions>
                         </Form>
