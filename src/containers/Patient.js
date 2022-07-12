@@ -15,19 +15,20 @@ import { useFormik, Form, Formik } from 'formik';
 function Patient() {
     const [dopen, setdOpen] = React.useState(false);
     const [did, setdid] = useState(0)
+    const [update, setupdate] = useState(false)
+    const [open, setOpen] = React.useState(false);
+    const [data, setdata] = useState([])
+    const [pdata, setpdata] = useState([])
+
     const handledClickOpen = () => {
         setdOpen(true);
     };
     const handledClose = () => {
         setdOpen(false);
     };
-    const [update, setupdate] = useState(false)
-    const [open, setOpen] = React.useState(false);
-    const [data, setdata] = useState([])
     const handleClickOpen = () => {
         setOpen(true);
     };
-
     const handleClose = () => {
         setOpen(false);
     };
@@ -143,8 +144,16 @@ function Patient() {
     });
 
     const handlepatieint = (p_val) =>{
-    console.log(p_val);
+        const localdata = JSON.parse(localStorage.getItem("Patients"));
+        const fpdata = localdata.filter((p)=>(
+            p.name.toLowerCase().includes(p_val) ||
+            p.age.toString().includes(p_val) ||
+            p.email.toString().includes(p_val) ||
+            p.address.toString().includes(p_val)
+        ))
+        setpdata(fpdata)
     }
+    const pfdata = pdata.length > 0 ? pdata : data;
 
     useEffect(() => {
         load_data()
@@ -159,13 +168,13 @@ function Patient() {
             </div>
             <div>
                 <Button variant="outlined" onClick={handleClickOpen}>
-                    Add patients details
+                    Add patient details
                 </Button>
                 <div style={{ textAlign: "center" }}>
                     <TextField style={{ width: "80%" }}
                         margin="dense"
                         name='Search'
-                        label="Search medicine data"
+                        label="Search patients data"
                         type="text"
                         fullWidth
                         variant="standard"
@@ -256,7 +265,7 @@ function Patient() {
             </div>
             <div style={{ height: 400, width: '80%', margin: "10px auto" }}>
                 <DataGrid
-                    rows={data}
+                    rows={pfdata}
                     columns={columns}
                     pageSize={5}
                     rowsPerPageOptions={[5]}
