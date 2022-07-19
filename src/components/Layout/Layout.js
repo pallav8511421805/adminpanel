@@ -19,6 +19,7 @@ import ListItemText from '@mui/material/ListItemText';
 import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { NavLink } from 'react-router-dom';
+import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
 
 const drawerWidth = 240;
 
@@ -97,6 +98,11 @@ const listitemdata = [
     name:"Patients",
     icon:AccountCircleIcon,
     to:"/patient"
+  },
+  {
+    name:"Counter",
+    icon:HourglassBottomIcon,
+    to:"/counte"
   }
 ]
 export default function Layout({ children }) {
