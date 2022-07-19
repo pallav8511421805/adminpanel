@@ -4,12 +4,12 @@ import { decrement, increment } from '../Redux/actions/actiontype';
 
 function Counterdata(props) {
     const dispatch = useDispatch();
-    const c = useSelector (state => state.counte)
+    const c = useSelector(state => state.counte)
 
     const handledecrement = ()=>{
         dispatch(increment())
     }
-    
+
     const handleincrement = ()=>{
         dispatch(decrement())
     }
