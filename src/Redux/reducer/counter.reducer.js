@@ -5,9 +5,10 @@ const intival = {
 export const counterReducer = (state = { intival }, action) =>{
     switch (action.type) {
       case actiontype.increment : 
-        return { counter: state.counter + 1 }
+        return { 
+          ...state,counter: state.counter + 1 }
       case actiontype.decrement :
-        return { counter: state.counter - 1}
+        return { ...state,counter: state.counter - 1}
       default:
         return state;
     }

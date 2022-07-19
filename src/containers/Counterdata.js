@@ -1,17 +1,17 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { decrement, increment } from '../Redux/actions/actiontype';
+import { Increment,Decrement } from '../Redux/actions/counter.action';
 
 function Counterdata(props) {
     const dispatch = useDispatch();
     const c = useSelector(state => state.counte)
 
     const handledecrement = ()=>{
-        dispatch(increment())
+        dispatch(Increment())
     }
 
     const handleincrement = ()=>{
-        dispatch(decrement())
+        dispatch(Decrement())
     }
 
     return (
