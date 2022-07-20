@@ -4,7 +4,7 @@ import { Increment,Decrement } from '../Redux/actions/counter.action';
 
 function Counterdata(props) {
     const dispatch = useDispatch();
-    let D = useSelector(state => state.counter);
+    const D = useSelector(state => state.counter);
 
     const handledecrement = ()=>{
         dispatch(Decrement())
