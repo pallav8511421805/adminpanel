@@ -3,6 +3,7 @@ import * as actiontype from '../actions/actiontype';
 const intival = { 
   isload: false,
   medicine:[],
+  errors:''
 }
 export const counterReducer = (state = intival, action) =>{
     switch (action.type) {
