@@ -6,8 +6,6 @@ function Counterdata(props) {
     const dispatch = useDispatch();
     const c = useSelector(state => state.counter)
 
-    console.log(c);
-
     const handledecrement = ()=>{
         dispatch(Decrement())
     }
