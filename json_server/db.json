@@ -1,9 +1,31 @@
 {
-  "posts": [
+  "Medicine": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "expiry": "2022",
+      "name": "ABC",
+      "price": "2500",
+      "quantity": "25"
+    },
+    {
+      "id": 2,
+      "expiry": "2022",
+      "name": "XYZ",
+      "price": "2500",
+      "quantity": "25"
+    },
+    {
+      "id": 3,
+      "expiry": "2022",
+      "name": "PQR",
+      "price": "2500",
+      "quantity": "25"
+    },{
+      "id": 4,
+      "expiry": "2022",
+      "name": "IJK",
+      "price": "2500",
+      "quantity": "25"
     }
   ],
   "comments": [
