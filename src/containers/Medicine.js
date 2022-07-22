@@ -11,8 +11,12 @@ import { DataGrid } from '@mui/x-data-grid';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
+import { useDispatch,useSelector } from 'react-redux';
+import * as actiontype from '../Redux/actions/actiontype';
 
 function Medicine() {
+    const dispatch = useDispatch();
+    const md = useSelector(state => state.mediciner)
     const [data, setdata] = useState([]);
     const [dopen, setdOpen] = React.useState(false);
     const [did, setdid] = useState(0);
@@ -160,8 +164,10 @@ function Medicine() {
     let { errors, handleBlur, handleSubmit, handleChange, touched, values } = formik;
 
     useEffect(() => {
-        loaddata()
+        dispatch(actiontype.getmed)
+        // loaddata()
     }, [])
+    
     return (
         <>
             <h1>Medicines</h1>
@@ -263,7 +269,7 @@ function Medicine() {
             </div>
             <div style={{ height: 400, width: '80%', margin: '25px auto 0' }}>
                 <DataGrid
-                    rows={filtdata}
+                    rows={md.medicine}
                     columns={columns}
                     pageSize={5}
                     rowsPerPageOptions={[5]}

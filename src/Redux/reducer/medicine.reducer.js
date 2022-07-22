@@ -5,12 +5,14 @@ const intival = {
   medicine:[],
   errors:''
 }
-export const counterReducer = (state = intival, action) =>{
+export const medReducer = (state = intival, action) =>{
     switch (action.type) {
-      case actiontype.med : 
+      case actiontype.getmed : 
         return { 
           ...state,
-          med: state.med  
+          isload: false,
+          medicine:[],
+          errors:''
         }
       default:
         return state;
