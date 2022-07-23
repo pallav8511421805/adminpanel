@@ -12,7 +12,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import { useDispatch,useSelector } from 'react-redux';
-import * as actiontype from '../Redux/actions/actiontype';
+import { medicinedata } from '../Redux/actions/medicine.action';
 
 function Medicine() {
     const dispatch = useDispatch();
@@ -164,7 +164,7 @@ function Medicine() {
     let { errors, handleBlur, handleSubmit, handleChange, touched, values } = formik;
 
     useEffect(() => {
-        dispatch(actiontype.getmed)
+        dispatch(medicinedata())
         // loaddata()
     }, [])
     

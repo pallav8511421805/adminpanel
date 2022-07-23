@@ -11,7 +11,7 @@ export const medReducer = (state = intival, action) =>{
         return { 
           ...state,
           isload: false,
-          medicine:[],
+          medicine:action.payload,
           errors:''
         }
       default:
