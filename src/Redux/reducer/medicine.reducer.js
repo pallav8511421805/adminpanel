@@ -7,7 +7,7 @@ const intival = {
 }
 export const medReducer = (state = intival, action) =>{
     switch (action.type) {
-      case actiontype.getmed : 
+      case actiontype.getmed: 
         return { 
           ...state,
           isload: false,
