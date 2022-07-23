@@ -16,7 +16,7 @@ import { medicinedata } from '../Redux/actions/medicine.action';
 
 function Medicine() {
     const dispatch = useDispatch();
-    const md = useSelector(state => state.mediciner)
+    const medicine = useSelector(state => state.medicine)
     const [data, setdata] = useState([]);
     const [dopen, setdOpen] = React.useState(false);
     const [did, setdid] = useState(0);
@@ -269,7 +269,7 @@ function Medicine() {
             </div>
             <div style={{ height: 400, width: '80%', margin: '25px auto 0' }}>
                 <DataGrid
-                    rows={md.medicine}
+                    rows={medicine.medicine}
                     columns={columns}
                     pageSize={5}
                     rowsPerPageOptions={[5]}
