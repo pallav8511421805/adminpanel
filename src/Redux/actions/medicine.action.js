@@ -9,13 +9,13 @@ export const medicinedata = () => (dispatch) =>{
           if (response.ok) {
             return response;
           } else {
-            var error = new Error('Error ' + response.status + ': ' + response.statusText);
+            let error = new Error('Error ' + response.status + ': ' + response.statusText);
             error.response = response;
             throw error;
           }
         },
           error => {
-            var errmess = new Error(error.message);
+            let errmess = new Error(error.message);
             throw errmess;
           })
         .then(response => response.json())
