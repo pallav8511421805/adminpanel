@@ -171,7 +171,10 @@ function Medicine() {
     return (
         <>
             <h1>Medicines</h1>
-            <div>
+            {
+                medicine.isload ? <p>Loading...</p> :
+                <>
+                <div>
                 <Button variant="outlined" onClick={handleClickOpen}>
                     Add Medicines
                 </Button>
@@ -275,6 +278,8 @@ function Medicine() {
                     rowsPerPageOptions={[5]}
                 />
             </div>
+                </>
+            }
         </>
 
     );

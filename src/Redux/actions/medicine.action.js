@@ -1,10 +1,12 @@
+import { display } from '@mui/system';
 import { baseurl } from '../../Baseurl/baseurl';
 import * as actiontype from '../actions/actiontype';
 
 export const medicinedata = () => (dispatch) =>{
-
+ dispatch(loaddata())
   try {
-    fetch(baseurl + 'medicine')
+    setTimeout(function () {
+      fetch(baseurl + 'medicine')
       .then(response => {
         if (response.ok) {
           return response;
@@ -21,8 +23,12 @@ export const medicinedata = () => (dispatch) =>{
       .then(response => response.json())
       .then(data => dispatch(({ type: actiontype.GET_MEDICINE, payload: data })))
       .catch(error => console.log(error.message));
+    },2000)
   } catch (error) {
     console.log(error);
   }
-
 }
+
+export const loaddata = () => (dispatch) =>{
+  dispatch({ type: actiontype.Load_MEDICINE})
+} 
