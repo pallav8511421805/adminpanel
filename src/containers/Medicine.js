@@ -175,7 +175,7 @@ function Medicine() {
             <h1>Medicines</h1>
             {
                 medicine.isload ? <div style={{ display: "flex", justifyContent: "center" }}>
-                    <div className='loader'></div>
+                    <div></div>
                     </div> :
                     <>
                         <div>
