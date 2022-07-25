@@ -13,7 +13,7 @@ import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import { useDispatch, useSelector } from 'react-redux';
 import { medicinedata } from '../Redux/actions/medicine.action';
-import { borderLeft } from '@mui/system';
+import 
 
 function Medicine() {
     const dispatch = useDispatch();
@@ -176,9 +176,7 @@ function Medicine() {
             <h1>Medicines</h1>
             {
                 medicine.isload ? <div style={{ display: "flex", justifyContent: "center" }}>
-                    <div style={{
-                        borderLeft: "5px solid #1976d2", borderTop: "5px solid #1976d2", borderBottom: "5px solid #1976d2", width: 50, height: 50, borderRadius: '100%'
-                    }}></div>
+                    <div className='loader'></div>
                     </div> :
                     <>
                         <div>
