@@ -19,7 +19,7 @@ export const medicinedata = () => (dispatch) =>{
           throw errmess;
         })
       .then(response => response.json())
-      .then(medicine => dispatch(({ type: actiontype.GET_MEDICINE, payload: medicine })))
+      .then(data => dispatch(({ type: actiontype.GET_MEDICINE, payload: data })))
       .catch(error => console.log(error.message));
   } catch (error) {
     console.log(error);
