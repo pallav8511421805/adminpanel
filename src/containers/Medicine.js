@@ -172,12 +172,12 @@ function Medicine() {
 
     return (
         <>
-            <h1>Medicines</h1>
             {
                 medicine.isload ? <div style={{ display: "flex", justifyContent: "center" }}>
                     <div style={{fontSize:24,textAlign:"center",color:'#1976d2'}}>LOADING...</div>
                     </div> :
                     <>
+                    <h1>Medicines</h1>
                         <div>
                             <Button variant="outlined" onClick={handleClickOpen}>
                                 Add Medicines
