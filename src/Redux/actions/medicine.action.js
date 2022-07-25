@@ -3,8 +3,9 @@ import { baseurl } from '../../Baseurl/baseurl';
 import * as actiontype from '../actions/actiontype';
 
 export const medicinedata = () => (dispatch) =>{
- dispatch(loaddata())
+
   try {
+    dispatch(loaddata())
     setTimeout(function () {
       fetch(baseurl + 'medicine')
       .then(response => {

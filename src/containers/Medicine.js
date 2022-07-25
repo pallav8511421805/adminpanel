@@ -167,6 +167,8 @@ function Medicine() {
         dispatch(medicinedata())
         // loaddata()
     }, [])
+
+    console.log(medicine.medicine);
     
     return (
         <>
