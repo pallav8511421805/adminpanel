@@ -1,3 +1,5 @@
 export const increment  = 'increment'
 export const decrement  = 'decrement'
 export const GET_MEDICINE = 'GET_MEDICINE'
+export const ERROR_MEDICINE = 'GET_MEDICINE'
+export const Load_MEDICINE = 'GET_MEDICINE'
