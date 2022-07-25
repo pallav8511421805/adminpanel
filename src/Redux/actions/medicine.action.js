@@ -23,10 +23,10 @@ export const medicinedata = () => (dispatch) =>{
         })
       .then(response => response.json())
       .then(data => dispatch(({ type: actiontype.GET_MEDICINE, payload: data })))
-      .catch(error => dispatch(errordata(error)));
+      .catch(error => dispatch(errordata(error.message)));
     },2000)
   } catch (error) {
-    dispatch(errordata(error))
+    dispatch(errordata(error.message))
   }
 }
 
