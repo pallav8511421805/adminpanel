@@ -6,7 +6,6 @@ const intival = {
   errors:''
 }
 export const medReducer = (state = intival, action) =>{
-  console.log(action.payload);
     switch (action.type) {
       case actiontype.GET_MEDICINE: 
         return { 
