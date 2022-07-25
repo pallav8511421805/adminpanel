@@ -176,7 +176,7 @@ function Medicine() {
                 medicine.isload ? <div style={{ display: "flex", justifyContent: "center" }}>
                     <div style={{fontSize:24,textAlign:"center",color:'#1976d2'}}>LOADING...</div>
                     </div> : medicine.errors != '' ? 
-                    <div style={{fontSize:24,textAlign:"center",color:'#1976d2'}}>{medicine.errors}</div> :
+                    <div style={{fontSize:24}}>{medicine.errors}</div> :
                      <>
                      <h1>Medicines</h1>
                          <div>
