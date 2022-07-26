@@ -13,6 +13,7 @@ import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import { useDispatch, useSelector } from 'react-redux';
 import { medicinedata } from '../Redux/actions/medicine.action';
+import { adddata } from '../Redux/actions/medicine.action';
 
 function Medicine() {
     const dispatch = useDispatch();
@@ -41,7 +42,7 @@ function Medicine() {
 
     const handleinsert = (values) => {
 
-        const localdata = JSON.parse(localStorage.getItem("Medicines"));
+        // const localdata = JSON.parse(localStorage.getItem("Medicines"));
 
         const m_id = Math.floor(Math.random() * 100);
 
@@ -49,12 +50,15 @@ function Medicine() {
             id: m_id,
             ...values
         }
-        if (localdata === null) {
-            localStorage.setItem("Medicines", JSON.stringify([data]));
-        } else {
-            localdata.push(data);
-            localStorage.setItem("Medicines", JSON.stringify(localdata));
-        }
+
+        dispatch(adddata(data));
+        
+        // if (localdata === null) {
+        //     localStorage.setItem("Medicines", JSON.stringify([data]));
+        // } else {
+        //     localdata.push(data);
+        //     localStorage.setItem("Medicines", JSON.stringify(localdata));
+        // }
 
         handleClose()
         formik.resetForm()

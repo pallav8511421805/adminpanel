@@ -35,3 +35,39 @@ export const loaddata = () => (dispatch) =>{
 export const errordata = (error) => (dispatch) =>{
   dispatch({ type: actiontype.ERROR_MEDICINE,payload:error})
 } 
+
+export const adddata = (data) => (dispatch) =>{
+
+try{
+  dispatch(loaddata())
+  setTimeout(() => {
+    fetch(baseurl + 'medicine')
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        var error = new Error('Error ' + response.status + ': ' + response.statusText);
+        error.response = response;
+        throw error;
+      }
+    },
+      error => {
+        var errmess = new Error(error.message);
+        throw errmess;
+      })
+    fetch(baseurl + 'medicine', {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+        .then(data => dispatch(({ type: actiontype.GET_MEDICINE, payload: data })))
+        .catch(error => dispatch(errordata(error.message)));
+  }, 2000);
+  
+} catch (error) {
+  dispatch(errordata(error.message))
+}
+}
