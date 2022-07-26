@@ -172,8 +172,6 @@ function Medicine() {
         // loaddata()
     }, [])
 
-    console.log(medicine.medicine);
-
     return (
         <>
             {
