@@ -168,7 +168,11 @@ function Patient() {
     let { errors, handleBlur, handleChange, handleSubmit, values, touched } = formik;
 
     return (
-        <>
+        {
+            data_patients.isload  ?  <div style={{ display: "flex", justifyContent: "center" }}>
+            <div style={{fontSize:24,textAlign:"center",color:'#1976d2'}}>LOADING...</div>
+            </div> :
+            <>
             <div>
                 <h1>Patients</h1>
             </div>
@@ -277,7 +281,8 @@ function Patient() {
                     rowsPerPageOptions={[5]}
                 />
             </div>
-        </>
+            </>
+        }
     );
 }
 
