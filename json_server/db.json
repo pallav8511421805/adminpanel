@@ -22,13 +22,6 @@
       "quantity": "2446314"
     },
     {
-      "id": 68,
-      "name": "pallav",
-      "quantity": "6333",
-      "price": "2500",
-      "expiry": "2021"
-    },
-    {
       "id": 18,
       "name": "1223",
       "quantity": "25",
@@ -37,20 +30,6 @@
     }
   ],
   "Patients": [
-    {
-      "id": 23,
-      "name": "A",
-      "age": "28",
-      "email": "pk@gmail.com",
-      "address": "vdssgfasddvvcvcfd"
-    },
-    {
-      "id": 24,
-      "name": "Agsajv",
-      "age": "28",
-      "email": "pk@gmail.com",
-      "address": "vdssgfasddvvcvcfd"
-    },
     {
       "id": 4,
       "name": "html",
