@@ -13,20 +13,20 @@ export const Patientsreducer = (state = intval, action) => {
                 ...state,
                 isload: false,
                 patientdata: action.payload,
-                errors: ''
+                error: ''
             }
         case actiontype.Load_patient:
             return {
                 ...state,
                 isload: true,
-                errors: ''
+                error: ''
             }
         case actiontype.ERROR_patient:
             return {
                 ...state,
                 isload: false,
                 patientdata: [],
-                errors: action.payload
+                error: action.payload
             }
         default:
             return state;

@@ -173,6 +173,8 @@ function Patient() {
             data_patients.isload ?  <div style={{ display: "flex", justifyContent: "center" }}>
             <div style={{fontSize:24,textAlign:"center",color:'#1976d2'}}>LOADING...</div>
             </div> :
+            data_patients.error != '' ? 
+            <div style={{fontSize:24}}>{medicine.errors}</div> :
             <>
             <div>
                 <h1>Patients</h1>
