@@ -12,7 +12,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { DataGrid } from '@mui/x-data-grid';
 import { useFormik, Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { Adddata, Getdata } from '../Redux/actions/patient.action';
+import { Adddata, Editdata, Getdata } from '../Redux/actions/patient.action';
 
 function Patient() {
     const [dopen, setdOpen] = React.useState(false);
@@ -39,15 +39,17 @@ function Patient() {
 
     const handleupdate = (values) => {
 
-        const localsdata = JSON.parse(localStorage.getItem("Patients"));
-        const locData = localsdata.map((l) => {
-            if (l.id === values.id) {
-                return values;
-            } else {
-                return l;
-            }
-        })
-        localStorage.setItem("Patients", JSON.stringify(locData));
+        // const localsdata = JSON.parse(localStorage.getItem("Patients"));
+        // const locData = localsdata.map((l) => {
+        //     if (l.id === values.id) {
+        //         return values;
+        //     } else {
+        //         return l;
+        //     }
+        // })
+        // localStorage.setItem("Patients", JSON.stringify(locData));
+        dispatch(Editdata(values))
+
         load_data()
         formik.resetForm();
         setupdate(false);

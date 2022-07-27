@@ -22,6 +22,19 @@ export const Patientsreducer = (state = intval, action) => {
                 patientdata: state.patientdata.concat(action.payload),
                 error: ''
             }
+            case actiontype.Edit_patient:
+            return {
+                ...state,
+                isload: false,
+                patientdata: state.patientdata.map((p) => {
+                    if (p.id === action.payload.id) {
+                        return action.payload;
+                    } else {
+                        return p;
+                    }
+                }),
+                error: ''
+            }
         case actiontype.Load_patient:
             return {
                 ...state,

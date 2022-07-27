@@ -62,6 +62,37 @@ export const Adddata = (data) => (dispatch) => {
     }
 }
 
+export const Editdata = (data) => (dispatch) => {
+    try {
+            fetch(baseurl + 'Patients')
+                .then(response => {
+                    if (response.ok) {
+                        return response;
+                    } else {
+                        var error = new Error('Error ' + response.status + ': ' + response.statusText);
+                        error.response = response;
+                        throw error;
+                    }
+                },
+                    error => {
+                        var errmess = new Error(error.message);
+                        throw errmess;
+                    })
+            fetch(baseurl + 'Patients/'+data.id, {
+                method: 'PUT', 
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+                .then(response => response.json())
+                .then(data => dispatch(({ type: actiontype.Edit_patient, payload: data})))
+                .catch(error => dispatch(errordata(error.message)));
+        
+    } catch (error) {
+        dispatch(errordata(error.message))
+    }
+}
 export const loaddata = () => (dispatch) => {
     dispatch({ type: actiontype.Load_patient })
 }
