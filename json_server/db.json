@@ -36,11 +36,13 @@
       "expiry": "20200"
     }
   ],
-  "comments": [
+  "Patients": [
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "address": "vdssgfasddvvcvcfd",
+      "age": "28",
+      "email": "pk@gmail.com",
+      "id": 23,
+      "name": "a"
     }
   ],
   "profile": {

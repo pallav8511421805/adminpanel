@@ -11,6 +11,8 @@ import * as yup from 'yup';
 import EditIcon from '@mui/icons-material/Edit';
 import { DataGrid } from '@mui/x-data-grid';
 import { useFormik, Form, Formik } from 'formik';
+import {useDispatch,useSelector} from 'react-redux';
+import {Getdata} from '../Redux/actions/patient.action';
 
 function Patient() {
     const [dopen, setdOpen] = React.useState(false);
@@ -19,6 +21,8 @@ function Patient() {
     const [open, setOpen] = React.useState(false);
     const [data, setdata] = useState([])
     const [pdata, setpdata] = useState([])
+    const dispatch = useDispatch();
+    const data_patients = useSelector(state => state.patient)
 
     const handledClickOpen = () => {
         setdOpen(true);
@@ -60,7 +64,7 @@ function Patient() {
 
     function handledata(values) {
 
-        const localsdata = JSON.parse(localStorage.getItem("Patients"));
+        // const localsdata = JSON.parse(localStorage.getItem("Patients"));
 
         const M_id = Math.floor(Math.random() * 100);
 
@@ -69,13 +73,14 @@ function Patient() {
             ...values
         }
 
-        if (localsdata === null) {
-            localStorage.setItem("Patients", JSON.stringify([data]));
-        } else {
-            localsdata.push(data);
-            localStorage.setItem("Patients", JSON.stringify(localsdata));
-        }
+        // if (localsdata === null) {
+        //     localStorage.setItem("Patients", JSON.stringify([data]));
+        // } else {
+        //     localsdata.push(data);
+        //     localStorage.setItem("Patients", JSON.stringify(localsdata));
+        // }
 
+        dispatch(Getdata())
         load_data()
         formik.resetForm()
         handleClose();
@@ -265,7 +270,7 @@ function Patient() {
             </div>
             <div style={{ height: 400, width: '80%', margin: "10px auto" }}>
                 <DataGrid
-                    rows={pfdata}
+                    rows={data_patients.patient}
                     columns={columns}
                     pageSize={5}
                     rowsPerPageOptions={[5]}
