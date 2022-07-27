@@ -12,8 +12,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import { useDispatch, useSelector } from 'react-redux';
-import { deletedata, medicinedata } from '../Redux/actions/medicine.action';
-import { adddata } from '../Redux/actions/medicine.action';
+import { deletedata, medicinedata, adddata } from '../Redux/actions/medicine.action';
 
 function Medicine() {
     const dispatch = useDispatch();
