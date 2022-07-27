@@ -168,8 +168,9 @@ function Patient() {
     let { errors, handleBlur, handleChange, handleSubmit, values, touched } = formik;
 
     return (
+        <>
         {
-            data_patients.isload  ?  <div style={{ display: "flex", justifyContent: "center" }}>
+            data_patients.isload ?  <div style={{ display: "flex", justifyContent: "center" }}>
             <div style={{fontSize:24,textAlign:"center",color:'#1976d2'}}>LOADING...</div>
             </div> :
             <>
@@ -283,6 +284,7 @@ function Patient() {
             </div>
             </>
         }
+        </>
     );
 }
 
