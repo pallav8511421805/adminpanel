@@ -22,20 +22,6 @@
       "quantity": "25"
     },
     {
-      "id": 4,
-      "expiry": "2022",
-      "name": "IJK",
-      "price": "2500",
-      "quantity": "25"
-    },
-    {
-      "id": 13,
-      "name": "a",
-      "quantity": "1",
-      "price": "3",
-      "expiry": "3"
-    },
-    {
       "id": 68,
       "name": "pallav",
       "quantity": "6333",

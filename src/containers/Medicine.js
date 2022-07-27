@@ -12,7 +12,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import { useDispatch, useSelector } from 'react-redux';
-import { medicinedata } from '../Redux/actions/medicine.action';
+import { deletedata, medicinedata } from '../Redux/actions/medicine.action';
 import { adddata } from '../Redux/actions/medicine.action';
 
 function Medicine() {
@@ -44,6 +44,13 @@ function Medicine() {
 
         // const localdata = JSON.parse(localStorage.getItem("Medicines"));
 
+                // if (localdata === null) {
+        //     localStorage.setItem("Medicines", JSON.stringify([data]));
+        // } else {
+        //     localdata.push(data);
+        //     localStorage.setItem("Medicines", JSON.stringify(localdata));
+        // }
+
         const m_id = Math.floor(Math.random() * 100);
 
         const data = {
@@ -52,13 +59,6 @@ function Medicine() {
         }
 
         dispatch(adddata(data));
-        
-        // if (localdata === null) {
-        //     localStorage.setItem("Medicines", JSON.stringify([data]));
-        // } else {
-        //     localdata.push(data);
-        //     localStorage.setItem("Medicines", JSON.stringify(localdata));
-        // }
 
         handleClose()
         formik.resetForm()
@@ -123,11 +123,10 @@ function Medicine() {
     }
 
     const handledelete = (params) => {
-        const localdata = JSON.parse(localStorage.getItem("Medicines"));
-        const filterdata = localdata.filter((v) => v.id !== did);
-
-        localStorage.setItem("Medicines", JSON.stringify(filterdata));
-
+        // const localdata = JSON.parse(localStorage.getItem("Medicines"));
+        // const filterdata = localdata.filter((v) => v.id !== did);
+        // localStorage.setItem("Medicines", JSON.stringify(filterdata));
+        dispatch(deletedata(did))
         handledClose()
         setdid(0)
         loaddata()
