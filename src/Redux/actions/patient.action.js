@@ -110,23 +110,22 @@ export const Deletedata = (id) => (dispatch) => {
                         var errmess = new Error(error.message);
                         throw errmess;
                     })
-            fetch(baseurl + 'Patients/'+id, {
-                method: 'DELETE', 
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            })
-                .then(data => dispatch(({ type: actiontype.Edit_patient, payload: data})))
-                .catch(error => dispatch(errordata(error.message)));
+                    fetch(baseurl + 'Patients/' + id, {
+                        method: 'DELETE',
+                      })
+                        .then(data => dispatch(({ type: actiontype.Delete_patient, payload: data})))
+                        .catch(error => dispatch(errordata(error.message)));
+                      
         
     } catch (error) {
         dispatch(errordata(error.message))
     }
 }
+
 export const loaddata = () => (dispatch) => {
     dispatch({ type: actiontype.Load_patient })
 }
+
 export const errordata = (error) => (dispatch) => {
     dispatch({ type: actiontype.ERROR_patient, payload: error })
 }

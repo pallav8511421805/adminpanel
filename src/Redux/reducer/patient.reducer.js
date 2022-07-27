@@ -35,6 +35,13 @@ export const Patientsreducer = (state = intval, action) => {
                 }),
                 error: ''
             }
+            case actiontype.Delete_patient:
+            return {
+                ...state,
+                isload: false,
+                patientdata: state.patientdata.filter((d) => d.id !== action.payload.id),
+                error: ''
+            }
         case actiontype.Load_patient:
             return {
                 ...state,
