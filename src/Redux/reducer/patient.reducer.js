@@ -2,8 +2,8 @@ import * as actiontype from '../actions/actiontype';
 
 const intval = {
     isload: false,
-    error: '',
-    patient: []
+    patientdata:[],
+    error: ''
 }
 export const Patientsreducer = (state = intval, action) => {
     
@@ -12,7 +12,7 @@ export const Patientsreducer = (state = intval, action) => {
             return {
                 ...state,
                 isload: false,
-                patient: action.payload,
+                patientdata: action.payload,
                 errors: ''
             }
         case actiontype.Load_MEDICINE:
@@ -25,7 +25,7 @@ export const Patientsreducer = (state = intval, action) => {
             return {
                 ...state,
                 isload: false,
-                patient: [],
+                patientdata: [],
                 errors: action.payload
             }
         default:

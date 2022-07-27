@@ -276,7 +276,7 @@ function Patient() {
             </div>
             <div style={{ height: 400, width: '80%', margin: "10px auto" }}>
                 <DataGrid
-                    rows={data_patients.patient}
+                    rows={data_patients.patientdata}
                     columns={columns}
                     pageSize={5}
                     rowsPerPageOptions={[5]}
