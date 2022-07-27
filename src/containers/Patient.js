@@ -64,7 +64,7 @@ function Patient() {
 
     function handledata(values) {
 
-        // const localsdata = JSON.parse(localStorage.getItem("Patients"));
+        const localsdata = JSON.parse(localStorage.getItem("Patients"));
 
         const M_id = Math.floor(Math.random() * 100);
 
@@ -73,14 +73,14 @@ function Patient() {
             ...values
         }
 
-        // if (localsdata === null) {
-        //     localStorage.setItem("Patients", JSON.stringify([data]));
-        // } else {
-        //     localsdata.push(data);
-        //     localStorage.setItem("Patients", JSON.stringify(localsdata));
-        // }
+        if (localsdata === null) {
+            localStorage.setItem("Patients", JSON.stringify([data]));
+        } else {
+            localsdata.push(data);
+            localStorage.setItem("Patients", JSON.stringify(localsdata));
+        }
 
-        dispatch(Getdata())
+        
         load_data()
         formik.resetForm()
         handleClose();
@@ -161,7 +161,8 @@ function Patient() {
     const pfdata = pdata.length > 0 ? pdata : data;
 
     useEffect(() => {
-        load_data()
+        dispatch(Getdata())
+        // load_data()
     }, [])
 
     let { errors, handleBlur, handleChange, handleSubmit, values, touched } = formik;
