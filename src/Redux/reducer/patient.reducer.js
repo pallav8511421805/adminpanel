@@ -6,7 +6,7 @@ const intval = {
     error: ''
 }
 export const Patientsreducer = (state = intval, action) => {
-    
+
     switch (action.type) {
         case actiontype.get_patients:
             return {
@@ -15,13 +15,13 @@ export const Patientsreducer = (state = intval, action) => {
                 patientdata: action.payload,
                 errors: ''
             }
-        case actiontype.Load_MEDICINE:
+        case actiontype.Load_patient:
             return {
                 ...state,
                 isload: true,
                 errors: ''
             }
-        case actiontype.ERROR_MEDICINE:
+        case actiontype.ERROR_patient:
             return {
                 ...state,
                 isload: false,

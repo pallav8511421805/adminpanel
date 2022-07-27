@@ -29,8 +29,8 @@ export const Getdata = () => (dispatch) => {
 }
 
 export const loaddata = () => (dispatch) => {
-    dispatch({ type: actiontype.Load_MEDICINE })
+    dispatch({ type: actiontype.Load_patient })
 }
 export const errordata = (error) => (dispatch) => {
-    dispatch({ type: actiontype.ERROR_MEDICINE, payload: error })
+    dispatch({ type: actiontype.ERROR_patient, payload: error })
 }
