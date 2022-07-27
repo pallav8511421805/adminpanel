@@ -11,8 +11,8 @@ import * as yup from 'yup';
 import EditIcon from '@mui/icons-material/Edit';
 import { DataGrid } from '@mui/x-data-grid';
 import { useFormik, Form, Formik } from 'formik';
-import {useDispatch,useSelector} from 'react-redux';
-import {Getdata} from '../Redux/actions/patient.action';
+import { useDispatch, useSelector } from 'react-redux';
+import { Adddata, Getdata } from '../Redux/actions/patient.action';
 
 function Patient() {
     const [dopen, setdOpen] = React.useState(false);
@@ -64,7 +64,7 @@ function Patient() {
 
     function handledata(values) {
 
-        const localsdata = JSON.parse(localStorage.getItem("Patients"));
+        // const localsdata = JSON.parse(localStorage.getItem("Patients"));
 
         const M_id = Math.floor(Math.random() * 100);
 
@@ -73,14 +73,16 @@ function Patient() {
             ...values
         }
 
-        if (localsdata === null) {
-            localStorage.setItem("Patients", JSON.stringify([data]));
-        } else {
-            localsdata.push(data);
-            localStorage.setItem("Patients", JSON.stringify(localsdata));
-        }
+        dispatch(Adddata(data))
 
-        
+        // if (localsdata === null) {
+        //     localStorage.setItem("Patients", JSON.stringify([data]));
+        // } else {
+        //     localsdata.push(data);
+        //     localStorage.setItem("Patients", JSON.stringify(localsdata));
+        // }
+
+
         load_data()
         formik.resetForm()
         handleClose();
@@ -148,9 +150,9 @@ function Patient() {
         },
     });
 
-    const handlepatieint = (p_val) =>{
+    const handlepatieint = (p_val) => {
         const localdata = JSON.parse(localStorage.getItem("Patients"));
-        const fpdata = localdata.filter((p)=>(
+        const fpdata = localdata.filter((p) => (
             p.name.toLowerCase().includes(p_val) ||
             p.age.toString().includes(p_val) ||
             p.email.toString().includes(p_val) ||
@@ -169,123 +171,123 @@ function Patient() {
 
     return (
         <>
-        {
-            data_patients.isload ?  <div style={{ display: "flex", justifyContent: "center" }}>
-            <div style={{fontSize:24,textAlign:"center",color:'#1976d2'}}>LOADING...</div>
-            </div> :
-            data_patients.error != '' ? 
-            <div style={{fontSize:24}}>{data_patients.error}</div> :
-            <>
-            <div>
-                <h1>Patients</h1>
-            </div>
-            <div>
-                <Button variant="outlined" onClick={handleClickOpen}>
-                    Add patient details
-                </Button>
-                <div style={{ textAlign: "center" }}>
-                    <TextField style={{ width: "80%" }}
-                        margin="dense"
-                        name='Search'
-                        label="Search patients data"
-                        type="text"
-                        fullWidth
-                        variant="standard"
-                        onChange={(e) => handlepatieint(e.target.value)}
-                    />
-                </div>
-                <Dialog fullWidth open={open} onClose={handleClose}>
-                    <Formik values={formik}>
-                        <Form onSubmit={handleSubmit}>
-                            <DialogTitle>Patients Details</DialogTitle>
-                            <DialogContent>
-                                <TextField
-                                    value={values.name}
-                                    margin="dense"
-                                    name="name"
-                                    label="Enter your full name"
-                                    type="text"
-                                    fullWidth
-                                    variant="standard"
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                />
-                                {errors.name && touched.name ? <p style={{ color: "#1976d2" }}>{errors.name}</p> : null}
-                                <TextField
-                                    value={values.email}
-                                    margin="dense"
-                                    name="email"
-                                    type="email"
-                                    label="Enter your email"
-                                    fullWidth
-                                    variant="standard"
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                />
-                                {errors.email && touched.email ? <p style={{ color: "#1976d2" }}>{errors.email}</p> : null}
-                                <TextField
-                                    value={values.age}
-                                    margin="dense"
-                                    name="age"
-                                    label="Enter your age"
-                                    fullWidth
-                                    variant="standard"
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                />
-                                {errors.age && touched.age ? <p style={{ color: "#1976d2" }}>{errors.age}</p> : null}
-                                <TextField
-                                    value={values.address}
-                                    margin="dense"
-                                    name="address"
-                                    label="Enter your address"
-                                    type="text"
-                                    fullWidth
-                                    variant="standard"
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                />
-                                {errors.address && touched.address ? <p style={{ color: "#1976d2" }}>{errors.address}</p> : null}
+            {
+                data_patients.isload ? <div style={{ display: "flex", justifyContent: "center" }}>
+                    <div style={{ fontSize: 24, textAlign: "center", color: '#1976d2' }}>LOADING...</div>
+                </div> :
+                    data_patients.error != '' ?
+                        <div style={{ fontSize: 24 }}>{data_patients.error}</div> :
+                        <>
+                            <div>
+                                <h1>Patients</h1>
+                            </div>
+                            <div>
+                                <Button variant="outlined" onClick={handleClickOpen}>
+                                    Add patient details
+                                </Button>
+                                <div style={{ textAlign: "center" }}>
+                                    <TextField style={{ width: "80%" }}
+                                        margin="dense"
+                                        name='Search'
+                                        label="Search patients data"
+                                        type="text"
+                                        fullWidth
+                                        variant="standard"
+                                        onChange={(e) => handlepatieint(e.target.value)}
+                                    />
+                                </div>
+                                <Dialog fullWidth open={open} onClose={handleClose}>
+                                    <Formik values={formik}>
+                                        <Form onSubmit={handleSubmit}>
+                                            <DialogTitle>Patients Details</DialogTitle>
+                                            <DialogContent>
+                                                <TextField
+                                                    value={values.name}
+                                                    margin="dense"
+                                                    name="name"
+                                                    label="Enter your full name"
+                                                    type="text"
+                                                    fullWidth
+                                                    variant="standard"
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                />
+                                                {errors.name && touched.name ? <p style={{ color: "#1976d2" }}>{errors.name}</p> : null}
+                                                <TextField
+                                                    value={values.email}
+                                                    margin="dense"
+                                                    name="email"
+                                                    type="email"
+                                                    label="Enter your email"
+                                                    fullWidth
+                                                    variant="standard"
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                />
+                                                {errors.email && touched.email ? <p style={{ color: "#1976d2" }}>{errors.email}</p> : null}
+                                                <TextField
+                                                    value={values.age}
+                                                    margin="dense"
+                                                    name="age"
+                                                    label="Enter your age"
+                                                    fullWidth
+                                                    variant="standard"
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                />
+                                                {errors.age && touched.age ? <p style={{ color: "#1976d2" }}>{errors.age}</p> : null}
+                                                <TextField
+                                                    value={values.address}
+                                                    margin="dense"
+                                                    name="address"
+                                                    label="Enter your address"
+                                                    type="text"
+                                                    fullWidth
+                                                    variant="standard"
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                />
+                                                {errors.address && touched.address ? <p style={{ color: "#1976d2" }}>{errors.address}</p> : null}
 
-                            </DialogContent>
-                            <DialogActions>
-                                <Button onClick={handleClose}>Cancel</Button>
-                                {
-                                    update ? <Button type='submit' onClick={handleClose}>Update</Button> : <Button type='submit'>Submit</Button>
-                                }
-                            </DialogActions>
-                        </Form>
-                    </Formik>
-                </Dialog>
+                                            </DialogContent>
+                                            <DialogActions>
+                                                <Button onClick={handleClose}>Cancel</Button>
+                                                {
+                                                    update ? <Button type='submit' onClick={handleClose}>Update</Button> : <Button type='submit'>Submit</Button>
+                                                }
+                                            </DialogActions>
+                                        </Form>
+                                    </Formik>
+                                </Dialog>
 
-                <Dialog
-                    open={dopen}
-                    onClose={handledClose}
-                    aria-labelledby="alert-dialog-title"
-                    aria-describedby="alert-dialog-description"
-                >
-                    <DialogTitle id="alert-dialog-title">
-                        {"Are you sure to delete?"}
-                    </DialogTitle>
-                    <DialogActions>
-                        <Button onClick={handledClose}>No</Button>
-                        <Button onClick={handledelete} autoFocus>
-                            Yes
-                        </Button>
-                    </DialogActions>
-                </Dialog>
+                                <Dialog
+                                    open={dopen}
+                                    onClose={handledClose}
+                                    aria-labelledby="alert-dialog-title"
+                                    aria-describedby="alert-dialog-description"
+                                >
+                                    <DialogTitle id="alert-dialog-title">
+                                        {"Are you sure to delete?"}
+                                    </DialogTitle>
+                                    <DialogActions>
+                                        <Button onClick={handledClose}>No</Button>
+                                        <Button onClick={handledelete} autoFocus>
+                                            Yes
+                                        </Button>
+                                    </DialogActions>
+                                </Dialog>
 
-            </div>
-            <div style={{ height: 400, width: '80%', margin: "10px auto" }}>
-                <DataGrid
-                    rows={data_patients.patientdata}
-                    columns={columns}
-                    pageSize={5}
-                    rowsPerPageOptions={[5]}
-                />
-            </div>
-            </>
-        }
+                            </div>
+                            <div style={{ height: 400, width: '80%', margin: "10px auto" }}>
+                                <DataGrid
+                                    rows={data_patients.patientdata}
+                                    columns={columns}
+                                    pageSize={5}
+                                    rowsPerPageOptions={[5]}
+                                />
+                            </div>
+                        </>
+            }
         </>
     );
 }
