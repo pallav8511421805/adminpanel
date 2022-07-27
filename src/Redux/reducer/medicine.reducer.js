@@ -29,6 +29,19 @@ export const medReducer = (state = intival, action) => {
         medicine: state.medicine.filter((l) => l.id !== action.payload),
         errors: ''
       }
+      case actiontype.Edit_MEDICINE:
+      return {
+        ...state,
+        isload: false,
+        medicine: state.medicine.map((m) => {
+              if (m.id === action.payload.id) {
+                  return action.payload;
+              } else {
+                  return m;
+              }
+          }),
+        errors: ''
+      }
     case actiontype.Load_MEDICINE:
       return {
         ...state,

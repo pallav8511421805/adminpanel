@@ -12,7 +12,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import { useDispatch, useSelector } from 'react-redux';
-import { deletedata, medicinedata, adddata } from '../Redux/actions/medicine.action';
+import { deletedata, medicinedata, adddata, editdata } from '../Redux/actions/medicine.action';
 
 function Medicine() {
     const dispatch = useDispatch();
@@ -66,15 +66,16 @@ function Medicine() {
 
     const handleupdate = (values) => {
 
-        const localdata = JSON.parse(localStorage.getItem("Medicines"));
-        const lData = localdata.map((l) => {
-            if (l.id === values.id) {
-                return values;
-            } else {
-                return l;
-            }
-        })
-        localStorage.setItem("Medicines", JSON.stringify(lData));
+        // const localdata = JSON.parse(localStorage.getItem("Medicines"));
+        // const lData = localdata.map((l) => {
+        //     if (l.id === values.id) {
+        //         return values;
+        //     } else {
+        //         return l;
+        //     }
+        // })
+        // localStorage.setItem("Medicines", JSON.stringify(lData));
+        dispatch(editdata(values))
         loaddata()
         formik.resetForm();
         setupdate(false);
