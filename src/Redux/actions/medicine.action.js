@@ -94,7 +94,7 @@ try{
 fetch(baseurl + 'medicine/' + id, {
   method: 'DELETE',
 })
-  .then(data => dispatch(({ type: actiontype.Delete_MEDICINE, payload: id })))
+  .then(data => dispatch(({ type: actiontype.Delete_MEDICINE, payload: data })))
   .catch(error => dispatch(errordata(error.message)));
 
 } catch (error) {

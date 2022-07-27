@@ -12,7 +12,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { DataGrid } from '@mui/x-data-grid';
 import { useFormik, Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { Adddata, Editdata, Getdata } from '../Redux/actions/patient.action';
+import { Adddata, Deletedata, Editdata, Getdata } from '../Redux/actions/patient.action';
 
 function Patient() {
     const [dopen, setdOpen] = React.useState(false);
@@ -91,10 +91,12 @@ function Patient() {
     }
 
     const handledelete = () => {
-        const localdata = JSON.parse(localStorage.getItem("Patients"));
-        const filterdata = localdata.filter((v) => v.id !== did);
+        // const localdata = JSON.parse(localStorage.getItem("Patients"));
+        // const filterdata = localdata.filter((v) => v.id !== did);
 
-        localStorage.setItem("Patients", JSON.stringify(filterdata));
+        // localStorage.setItem("Patients", JSON.stringify(filterdata));
+
+        dispatch(Deletedata(did))
 
         handledClose()
         setdid(0)

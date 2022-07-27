@@ -1,13 +1,16 @@
 export const increment = 'increment'
 export const decrement = 'decrement'
+
 export const GET_MEDICINE = 'GET_MEDICINE'
 export const ERROR_MEDICINE = 'ERROR_MEDICINE'
 export const Load_MEDICINE = 'Load_MEDICINE'
 export const Add_MEDICINE = 'Add_MEDICINE'
 export const Delete_MEDICINE = 'Delete_MEDICINE'
 export const Edit_MEDICINE = 'Edit_MEDICINE'
+
 export const get_patients = 'get_patients'
 export const Load_patient = 'Load_patient'
 export const ERROR_patient = 'ERROR_patient'
 export const Add_patient = 'Add_patient'
 export const Edit_patient = 'Edit_patient'
+export const Delete_patient = 'Delete_patient'

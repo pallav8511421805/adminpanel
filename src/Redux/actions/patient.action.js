@@ -93,6 +93,37 @@ export const Editdata = (data) => (dispatch) => {
         dispatch(errordata(error.message))
     }
 }
+
+export const Deletedata = (id) => (dispatch) => {
+    try {
+            fetch(baseurl + 'Patients')
+                .then(response => {
+                    if (response.ok) {
+                        return response;
+                    } else {
+                        var error = new Error('Error ' + response.status + ': ' + response.statusText);
+                        error.response = response;
+                        throw error;
+                    }
+                },
+                    error => {
+                        var errmess = new Error(error.message);
+                        throw errmess;
+                    })
+            fetch(baseurl + 'Patients/'+id, {
+                method: 'DELETE', 
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+                .then(data => dispatch(({ type: actiontype.Edit_patient, payload: data})))
+                .catch(error => dispatch(errordata(error.message)));
+        
+    } catch (error) {
+        dispatch(errordata(error.message))
+    }
+}
 export const loaddata = () => (dispatch) => {
     dispatch({ type: actiontype.Load_patient })
 }
