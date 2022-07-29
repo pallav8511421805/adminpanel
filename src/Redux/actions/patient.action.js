@@ -1,5 +1,4 @@
 import { baseurl } from "../../Baseurl/baseurl";
-import { getpatientsdata } from "../../comman/apis/patient.requrst";
 import * as actiontype from '../actions/actiontype';
 
 export const Getdata = () => (dispatch) => {
