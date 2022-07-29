@@ -29,15 +29,7 @@
       "expiry": "20200"
     }
   ],
-  "Patients": [
-    {
-      "id": 4,
-      "name": "html",
-      "age": "2222",
-      "email": "pallavkevadiya8@gmail.com",
-      "address": "cvjgbvb"
-    }
-  ],
+  "Patients": [],
   "profile": {
     "name": "typicode"
   }
