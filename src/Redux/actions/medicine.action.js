@@ -7,21 +7,22 @@ export const medicinedata = () => (dispatch) => {
   try {
     dispatch(loaddata())
     setTimeout(function () {
-      fetch(baseurl + 'medicine')
-        .then(response => {
-          if (response.ok) {
-            return response;
-          } else {
-            var error = new Error('Error ' + response.status + ': ' + response.statusText);
-            error.response = response;
-            throw error;
-          }
-        },
-          error => {
-            var errmess = new Error(error.message);
-            throw errmess;
-          })
-        .then(response => response.json())
+      // fetch(baseurl + 'medicine')
+      //   .then(response => {
+      //     if (response.ok) {
+      //       return response;
+      //     } else {
+      //       var error = new Error('Error ' + response.status + ': ' + response.statusText);
+      //       error.response = response;
+      //       throw error;
+      //     }
+      //   },
+      //     error => {
+      //       var errmess = new Error(error.message);
+      //       throw errmess;
+      //     })
+      //   .then(response => response.json())
+      getalldata()
         .then(data => dispatch(({ type: actiontype.GET_MEDICINE, payload: data })))
         .catch(error => dispatch(errordata(error.message)));
     }, 2000)
@@ -42,29 +43,29 @@ export const adddata = (data) => (dispatch) => {
   try {
     dispatch(loaddata())
     setTimeout(() => {
-      getalldata()
-      // fetch(baseurl + 'medicine')
-      //   .then(response => {
-      //     if (response.ok) {
-      //       return response;
-      //     } else {
-      //       var error = new Error('Error ' + response.status + ': ' + response.statusText);
-      //       error.response = response;
-      //       throw error;
-      //     }
-      //   },
-      //     error => {
-      //       var errmess = new Error(error.message);
-      //       throw errmess;
-      //     })
-      // fetch(baseurl + 'medicine', {
-      //   method: 'POST', // or 'PUT'
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify(data),
-      // })
-      //   .then(response => response.json())
+      
+      fetch(baseurl + 'medicine')
+        .then(response => {
+          if (response.ok) {
+            return response;
+          } else {
+            var error = new Error('Error ' + response.status + ': ' + response.statusText);
+            error.response = response;
+            throw error;
+          }
+        },
+          error => {
+            var errmess = new Error(error.message);
+            throw errmess;
+          })
+      fetch(baseurl + 'medicine', {
+        method: 'POST', // or 'PUT'
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+        .then(response => response.json())
         .then(data => dispatch(({ type: actiontype.GET_MEDICINE, payload: data })))
         .catch(error => dispatch(errordata(error.message)));
     }, 2000);
