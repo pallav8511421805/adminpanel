@@ -1,13 +1,6 @@
 {
   "medicine": [
     {
-      "id": 1,
-      "expiry": "2022",
-      "name": "ABC",
-      "price": "2500",
-      "quantity": "25"
-    },
-    {
       "id": 2,
       "expiry": "2022",
       "name": "XYZ",
