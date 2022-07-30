@@ -7,6 +7,9 @@ export const medicinedata = () => (dispatch) => {
   try {
     dispatch(loaddata())
     setTimeout(function () {
+      getalldata()
+        .then(data => dispatch(({ type: actiontype.GET_MEDICINE, payload: data })))
+        .catch(error => dispatch(errordata(error.message)));
       // fetch(baseurl + 'medicine')
       //   .then(response => {
       //     if (response.ok) {
@@ -22,11 +25,6 @@ export const medicinedata = () => (dispatch) => {
       //       throw errmess;
       //     })
       //   .then(response => response.json())
-
-      getalldata()
-
-        .then(data => dispatch(({ type: actiontype.GET_MEDICINE, payload: data })))
-        .catch(error => dispatch(errordata(error.message)));
     }, 2000)
   } catch (error) {
     dispatch(errordata(error.message))
