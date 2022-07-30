@@ -11,7 +11,7 @@ const getdata = (config) => {
 }
  export const sendrequstdata = (path) => {
     return getdata({
-        url: path,
+    url: path,
     method: 'GET',
     })
 }
