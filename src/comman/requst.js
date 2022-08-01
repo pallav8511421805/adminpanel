@@ -15,7 +15,7 @@ const getdata = (config) => {
     method: 'GET',
     })
 }
-export const addrequstdata = (path) => {
+export const addrequstdata = (path,data) => {
     return getdata({
     url: path,
     data:JSON.stringify(data),

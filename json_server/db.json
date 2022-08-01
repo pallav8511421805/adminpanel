@@ -27,6 +27,27 @@
       "quantity": "6333",
       "price": "2500",
       "expiry": "2022"
+    },
+    {
+      "id": 9,
+      "name": "axios",
+      "quantity": "25",
+      "price": "2500",
+      "expiry": "2022"
+    },
+    {
+      "id": 91,
+      "name": "axios2",
+      "quantity": "25",
+      "price": "2500",
+      "expiry": "2022"
+    },
+    {
+      "id": 31,
+      "name": "axis",
+      "quantity": "6333",
+      "price": "25000",
+      "expiry": "20200"
     }
   ],
   "Patients": [],
