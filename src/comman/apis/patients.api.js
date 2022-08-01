@@ -4,6 +4,6 @@ export const getallpatients = () =>{
 return sendrequstdata('Patients')
 }
 
-export const addallpatients = () =>{
+export const addallpatients = (data) =>{
     return addrequstdata('Patients',data)
 }
