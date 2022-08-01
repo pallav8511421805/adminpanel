@@ -50,7 +50,15 @@
       "expiry": "20200"
     }
   ],
-  "Patients": [],
+  "Patients": [
+    {
+      "id": 98,
+      "name": "pallav",
+      "age": "28",
+      "email": "pk@gmail.com",
+      "address": "jsdvxnvvxc vcvvgddbgc"
+    }
+  ],
   "profile": {
     "name": "typicode"
   }
