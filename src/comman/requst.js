@@ -15,3 +15,13 @@ const getdata = (config) => {
     method: 'GET',
     })
 }
+export const addrequstdata = (path) => {
+    return getdata({
+    url: path,
+    data:JSON.stringify(data),
+    method:'POST',
+    headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+}
