@@ -1,5 +1,5 @@
 import { baseurl } from '../../Baseurl/baseurl';
-import { getalldata } from '../../comman/apis/medicine.requrst';
+import { getalldata } from '../../comman/apis/medicine.api';
 import * as actiontype from '../actions/actiontype';
 
 export const medicinedata = () => (dispatch) => {
