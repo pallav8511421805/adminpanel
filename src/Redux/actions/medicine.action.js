@@ -1,5 +1,5 @@
 import { baseurl } from '../../Baseurl/baseurl';
-import { addalldata, Deletealldata, getalldata } from '../../comman/apis/medicine.api';
+import { addalldata, Deletealldata, Editalldata, getalldata } from '../../comman/apis/medicine.api';
 import * as actiontype from '../actions/actiontype';
 
 export const medicinedata = () => (dispatch) => {
@@ -115,6 +115,9 @@ export const editdata = (data) => (dispatch) => {
   try {
     dispatch(loaddata())
     setTimeout(() => {
+      Editalldata(data)
+        .then(data => dispatch(({ type: actiontype.Edit_MEDICINE, payload: data })))
+        .catch(error => dispatch(errordata(error.message)));
       // fetch(baseurl + 'medicine')
       //   .then(response => {
       //     if (response.ok) {
