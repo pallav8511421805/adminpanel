@@ -1,5 +1,5 @@
 import { baseurl } from "../../Baseurl/baseurl";
-import { addallpatients, getallpatients } from "../../comman/apis/patients.api";
+import { addallpatients, Deleteallpatients, getallpatients } from "../../comman/apis/patients.api";
 import * as actiontype from '../actions/actiontype';
 
 export const Getdata = () => (dispatch) => {
@@ -103,25 +103,28 @@ export const Editdata = (data) => (dispatch) => {
 
 export const Deletedata = (id) => (dispatch) => {
     try {
-            fetch(baseurl + 'Patients')
-                .then(response => {
-                    if (response.ok) {
-                        return response;
-                    } else {
-                        var error = new Error('Error ' + response.status + ': ' + response.statusText);
-                        error.response = response;
-                        throw error;
-                    }
-                },
-                    error => {
-                        var errmess = new Error(error.message);
-                        throw errmess;
-                    })
-                    fetch(baseurl + 'Patients/' + id, {
-                        method: 'DELETE',
-                      })
-                        .then(data => dispatch(({ type: actiontype.Delete_patient, payload: data})))
-                        .catch(error => dispatch(errordata(error.message)));
+        Deleteallpatients(id)
+      .then(dispatch(({ type: actiontype.Delete_doctor, payload: id })))
+      .catch(error => dispatch(errordata(error.message)));
+            // fetch(baseurl + 'Patients')
+            //     .then(response => {
+            //         if (response.ok) {
+            //             return response;
+            //         } else {
+            //             var error = new Error('Error ' + response.status + ': ' + response.statusText);
+            //             error.response = response;
+            //             throw error;
+            //         }
+            //     },
+            //         error => {
+            //             var errmess = new Error(error.message);
+            //             throw errmess;
+            //         })
+            //         fetch(baseurl + 'Patients/' + id, {
+            //             method: 'DELETE',
+            //           })
+            //             .then(data => dispatch(({ type: actiontype.Delete_patient, payload: data})))
+            //             .catch(error => dispatch(errordata(error.message)));
                       
         
     } catch (error) {
