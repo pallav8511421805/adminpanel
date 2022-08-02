@@ -171,6 +171,12 @@ function Doctor(props) {
 
     return (
         <>
+        {
+                doctors.isload ?
+                    <div style={{fontSize:24}}>LOADING...</div>
+                    : doctors.errors != '' ? 
+                    <div style={{fontSize:24}}>{doctors.errors}</div> :
+                    <>
                             <div>
                                 <h1>Doctors</h1>
                             </div>
@@ -279,7 +285,10 @@ function Doctor(props) {
                                     rowsPerPageOptions={[5]}
                                 />
                             </div>
-                        </>
+        </>
+}
+        </>
+        
     );
 }
 // Doctors
