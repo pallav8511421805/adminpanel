@@ -1,9 +1,6 @@
 {
   "medicine": [
     {
-      "id": 3
-    },
-    {
       "id": 60,
       "name": "pallav",
       "quantity": "6333",
