@@ -9,29 +9,29 @@ const instance = axios.create({
 const getdata = (config) => {
     return instance.request(config)
 }
- export const sendrequstdata = (path) => {
+export const sendrequstdata = (path) => {
     return getdata({
-    url: path,
-    method: 'GET',
+        url: path,
+        method: 'GET',
     })
 }
-export const addrequstdata = (path,data) => {
+export const addrequstdata = (path, data) => {
     return getdata({
-    url: path,
-    data:JSON.stringify(data),
-    method:'POST',
-    headers: {
-        'Content-Type': 'application/json',
-      },
+        url: path,
+        data: JSON.stringify(data),
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
     })
 }
 
-export const deleterequstdata = (path,id) => {
+export const deleterequstdata = (path, id) => {
     return getdata({
-    url: path+id,
-    method:'DELETE',
-    headers: {
-        'Content-Type': 'application/json',
-      },
+        url: path + id,
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
     })
 }

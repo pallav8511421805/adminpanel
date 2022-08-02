@@ -5,9 +5,9 @@ export const getalldata = () => {
 }
 
 export const addalldata = (data) => {
-   return addrequstdata('medicine',data)
+   return addrequstdata('medicine', data)
 }
 
 export const Deletealldata = (id) => {
-   return deleterequstdata('medicine/',id)
+   return deleterequstdata('medicine/' + id)
 }

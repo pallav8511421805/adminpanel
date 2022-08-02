@@ -46,7 +46,7 @@ export const adddata = (data) => (dispatch) => {
     dispatch(loaddata())
     setTimeout(() => {
       addalldata(data)
-      .then(data => dispatch(({ type: actiontype.GET_MEDICINE, payload: data.data })))
+        .then(data => dispatch(({ type: actiontype.GET_MEDICINE, payload: data.data })))
         .catch(error => dispatch(errordata(error.message)));
       // fetch(baseurl + 'medicine')
       //   .then(response => {
@@ -70,8 +70,8 @@ export const adddata = (data) => (dispatch) => {
       //   body: JSON.stringify(data),
       // })
       //   .then(response => response.json())
-        // .then(data => dispatch(({ type: actiontype.GET_MEDICINE, payload: data })))
-        // .catch(error => dispatch(errordata(error.message)));
+      // .then(data => dispatch(({ type: actiontype.GET_MEDICINE, payload: data })))
+      // .catch(error => dispatch(errordata(error.message)));
     }, 2000);
 
   } catch (error) {
@@ -81,34 +81,34 @@ export const adddata = (data) => (dispatch) => {
 
 export const deletedata = (id) => (dispatch) => {
 
-try{
-dispatch(Deletealldata(id))
-  .then(data => dispatch(({ type: actiontype.Delete_MEDICINE, payload: data })))
-  .catch(error => dispatch(errordata(error.message)));
-//   fetch(baseurl + 'medicine')
-//   .then(response => {
-//     if (response.ok) {
-//       return response;
-//     } else {
-//       var error = new Error('Error ' + response.status + ': ' + response.statusText);
-//       error.response = response;
-//       throw error;
-//     }
-//   },
-//     error => {
-//       var errmess = new Error(error.message);
-//       throw errmess;
-//     })
+  try {
+    Deletealldata(id)
+      .then(data => dispatch(({ type: actiontype.Delete_MEDICINE, payload: data })))
+      .catch(error => dispatch(errordata(error.message)));
+    //   fetch(baseurl + 'medicine')
+    //   .then(response => {
+    //     if (response.ok) {
+    //       return response;
+    //     } else {
+    //       var error = new Error('Error ' + response.status + ': ' + response.statusText);
+    //       error.response = response;
+    //       throw error;
+    //     }
+    //   },
+    //     error => {
+    //       var errmess = new Error(error.message);
+    //       throw errmess;
+    //     })
 
-// fetch(baseurl + 'medicine/' + id, {
-//   method: 'DELETE',
-// })
-//   .then(data => dispatch(({ type: actiontype.Delete_MEDICINE, payload: data })))
-//   .catch(error => dispatch(errordata(error.message)));
+    // fetch(baseurl + 'medicine/' + id, {
+    //   method: 'DELETE',
+    // })
+    //   .then(data => dispatch(({ type: actiontype.Delete_MEDICINE, payload: data })))
+    //   .catch(error => dispatch(errordata(error.message)));
 
-} catch (error) {
-      dispatch(errordata(error.message))
-    }
+  } catch (error) {
+    dispatch(errordata(error.message))
+  }
 }
 
 export const editdata = (data) => (dispatch) => {
@@ -130,7 +130,7 @@ export const editdata = (data) => (dispatch) => {
             var errmess = new Error(error.message);
             throw errmess;
           })
-      fetch(baseurl + 'medicine/'+data.id, {
+      fetch(baseurl + 'medicine/' + data.id, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
