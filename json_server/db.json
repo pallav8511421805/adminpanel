@@ -1,9 +1,9 @@
 {
   "medicine": [
     {
-      "id": 46,
-      "name": "smm1223",
-      "quantity": "6333",
+      "id": 71,
+      "name": "pallav",
+      "quantity": "25",
       "price": "2500",
       "expiry": "2022"
     }
@@ -11,7 +11,7 @@
   "Patients": [
     {
       "id": 98,
-      "name": "pallavd",
+      "name": "pallavaas",
       "age": "28",
       "email": "pk@gmail.com",
       "address": "jsdvxnvvxc vcvvgddbgc"
@@ -19,14 +19,7 @@
   ],
   "doctor": [
     {
-      "id": 68,
-      "name": "1",
-      "age": "16",
-      "email": "pk@gmail.com",
-      "address": "111131"
-    },
-    {
-      "id": 67,
+      "id": 75,
       "name": "smm1223",
       "age": "25",
       "email": "pk@gmail.com",
