@@ -13,6 +13,13 @@
       "quantity": "25",
       "price": "2500",
       "expiry": "2022"
+    },
+    {
+      "id": 72,
+      "name": "smm1223",
+      "quantity": "6333",
+      "price": "2500",
+      "expiry": "2022"
     }
   ],
   "Patients": [

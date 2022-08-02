@@ -48,7 +48,7 @@ export const doctorreducer = (state = intival, action) => {
         isload: true,
         errors: ''
       }
-    case actiontype.Load_doctor:
+    case actiontype.ERROR_doctor:
       return {
         ...state,
         isload: false,

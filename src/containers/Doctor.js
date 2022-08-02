@@ -11,9 +11,13 @@ import * as yup from 'yup';
 import EditIcon from '@mui/icons-material/Edit';
 import { DataGrid } from '@mui/x-data-grid';
 import { useFormik, Form, Formik } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
+import { doctordata } from '../Redux/actions/doctor.action';
 
 function Doctor(props) {
-
+    
+    const dispatch = useDispatch();
+    const doctors = useSelector(state => state.doctor)
     const [dopen, setdOpen] = React.useState(false);
     const [did, setdid] = useState(0)
     const [update, setupdate] = useState(false)
@@ -159,7 +163,8 @@ function Doctor(props) {
     const pfdata = pdata.length > 0 ? pdata : data;
 
     useEffect(() => {
-        load_data()
+        dispatch(doctordata())
+        // load_data()
     }, [])
 
     let { errors, handleBlur, handleChange, handleSubmit, values, touched } = formik;
@@ -268,7 +273,7 @@ function Doctor(props) {
                             </div>
                             <div style={{ height: 400, width: '80%', margin: "10px auto" }}>
                                 <DataGrid
-                                    rows={pfdata}
+                                    rows={doctors.doctor}
                                     columns={columns}
                                     pageSize={5}
                                     rowsPerPageOptions={[5]}
