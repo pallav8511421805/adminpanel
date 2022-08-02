@@ -5,7 +5,7 @@ const intival = {
   doctor: [],
   errors: ''
 }
-export const medReducer = (state = intival, action) => {
+export const doctorreducer = (state = intival, action) => {
 
   switch (action.type) {
     case actiontype.get_doctor:
