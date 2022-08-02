@@ -13,5 +13,5 @@ export const Deletealldata = (id) => {
 }
 
 export const Editalldata = (data) => {
-   return Editrequstdata('medicine/' + data.id)
+   return Editrequstdata('medicine/' + data)
 }
