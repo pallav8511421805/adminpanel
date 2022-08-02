@@ -7,3 +7,7 @@ export const getalldata = () => {
 export const addalldata = (data) => {
    return addrequstdata('medicine',data)
 }
+
+export const Deletealldata = (id) => {
+   return addrequstdata('medicine/',id)
+}
