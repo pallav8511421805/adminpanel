@@ -8,15 +8,7 @@
       "expiry": "2022"
     }
   ],
-  "Patients": [
-    {
-      "id": 98,
-      "name": "pallavaas",
-      "age": "28",
-      "email": "pk@gmail.com",
-      "address": "jsdvxnvvxc vcvvgddbgc"
-    }
-  ],
+  "Patients": [],
   "doctor": [
     {
       "id": 75,

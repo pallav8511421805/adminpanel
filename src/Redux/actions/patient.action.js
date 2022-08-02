@@ -104,7 +104,7 @@ export const Editdata = (data) => (dispatch) => {
 export const Deletedata = (id) => (dispatch) => {
     try {
         Deleteallpatients(id)
-      .then(dispatch(({ type: actiontype.Delete_doctor, payload: id })))
+      .then(dispatch(({ type: actiontype.Delete_patient, payload: id })))
       .catch(error => dispatch(errordata(error.message)));
             // fetch(baseurl + 'Patients')
             //     .then(response => {
