@@ -11,8 +11,12 @@ import { DataGrid } from '@mui/x-data-grid';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
+import { useDispatch, useSelector } from 'react-redux';
+import { deletedata, medicinedata, adddata, editdata } from '../Redux/actions/medicine.action';
 
 function Doctor(props) {
+    const dispatch = useDispatch();
+    const medicine = useSelector(state => state.medicine)
     const [data, setdata] = useState([]);
     const [dopen, setdOpen] = React.useState(false);
     const [did, setdid] = useState(0);
@@ -28,7 +32,7 @@ function Doctor(props) {
     };
 
     const loaddata = () => {
-        const localdata = JSON.parse(localStorage.getItem("Doctor"));
+        const localdata = JSON.parse(localStorage.getItem("Medicines"));
 
         if (localdata !== null) {
             setdata(localdata)
@@ -37,14 +41,14 @@ function Doctor(props) {
 
     const handleinsert = (values) => {
 
-        const localdata = JSON.parse(localStorage.getItem("Doctor"));
+        // const localdata = JSON.parse(localStorage.getItem("Medicines"));
 
-                if (localdata === null) {
-            localStorage.setItem("Doctor", JSON.stringify([data]));
-        } else {
-            localdata.push(data);
-            localStorage.setItem("Doctor", JSON.stringify(localdata));
-        }
+                // if (localdata === null) {
+        //     localStorage.setItem("Medicines", JSON.stringify([data]));
+        // } else {
+        //     localdata.push(data);
+        //     localStorage.setItem("Medicines", JSON.stringify(localdata));
+        // }
 
         const m_id = Math.floor(Math.random() * 100);
 
@@ -53,6 +57,8 @@ function Doctor(props) {
             ...values
         }
 
+        dispatch(adddata(data));
+
         handleClose()
         formik.resetForm()
         loaddata()
@@ -60,16 +66,16 @@ function Doctor(props) {
 
     const handleupdate = (values) => {
 
-        const localdata = JSON.parse(localStorage.getItem("Doctor"));
-        const lData = localdata.map((l) => {
-            if (l.id === values.id) {
-                return values;
-            } else {
-                return l;
-            }
-        })
-        localStorage.setItem("Doctor", JSON.stringify(lData));
-    
+        // const localdata = JSON.parse(localStorage.getItem("Medicines"));
+        // const lData = localdata.map((l) => {
+        //     if (l.id === values.id) {
+        //         return values;
+        //     } else {
+        //         return l;
+        //     }
+        // })
+        // localStorage.setItem("Medicines", JSON.stringify(lData));
+        dispatch(editdata(values))
         loaddata()
         formik.resetForm();
         setupdate(false);
@@ -77,10 +83,10 @@ function Doctor(props) {
     }
 
     let schema = yup.object().shape({
-        name: yup.string().required("Please enter your doctor name."),
-        quantity: yup.number().positive().integer().required("Please enter your doctor quantity."),
-        price: yup.number().positive().integer().required("Please enter your doctor price."),
-        expiry: yup.number().positive().integer().required("Please enter your doctor expiry year.")
+        name: yup.string().required("Please enter your medicine name."),
+        quantity: yup.number().positive().integer().required("Please enter your medicine quantity."),
+        price: yup.number().positive().integer().required("Please enter your medicine price."),
+        expiry: yup.number().positive().integer().required("Please enter your medicine expiry year.")
     });
 
     const formik = useFormik({
@@ -117,10 +123,10 @@ function Doctor(props) {
     }
 
     const handledelete = (params) => {
-        const localdata = JSON.parse(localStorage.getItem("Doctor"));
-        const filterdata = localdata.filter((v) => v.id !== did);
-        localStorage.setItem("Doctor", JSON.stringify(filterdata));
-
+        // const localdata = JSON.parse(localStorage.getItem("Medicines"));
+        // const filterdata = localdata.filter((v) => v.id !== did);
+        // localStorage.setItem("Medicines", JSON.stringify(filterdata));
+        dispatch(deletedata(did))
         handledClose()
         setdid(0)
         loaddata()
@@ -147,7 +153,7 @@ function Doctor(props) {
     ];
 
     const handlesearch = (searchvalue) => {
-        const localdata = JSON.parse(localStorage.getItem("Doctor"));
+        const localdata = JSON.parse(localStorage.getItem("Medicines"));
         const fdata = localdata.filter((l) => (
             l.name.toLowerCase().includes(searchvalue) ||
             l.quantity.toString().includes(searchvalue) ||
@@ -161,27 +167,28 @@ function Doctor(props) {
     let { errors, handleBlur, handleSubmit, handleChange, touched, values } = formik;
 
     useEffect(() => {
-        loaddata()
+        dispatch(medicinedata())
+        // loaddata()
     }, [])
 
     return (
         <>
-            {/* {
-                doctor.isload ? <div style={{ display: "flex", justifyContent: "center" }}>
+            {
+                medicine.isload ? <div style={{ display: "flex", justifyContent: "center" }}>
                     <div style={{fontSize:24,textAlign:"center",color:'#1976d2'}}>LOADING...</div>
-                    </div> : doctor.errors != '' ? 
-                    <div style={{fontSize:24}}>{doctor.errors}</div> :
-                     <> */}
-                     <h1>Doctors</h1>
+                    </div> : medicine.errors != '' ? 
+                    <div style={{fontSize:24}}>{medicine.errors}</div> :
+                     <>
+                     <h1>Medicines</h1>
                          <div>
                              <Button variant="outlined" onClick={handleClickOpen}>
-                                 Add doctor
+                                 Add Medicines
                              </Button>
                              <div style={{ textAlign: "center" }}>
                                  <TextField style={{ width: "80%" }}
                                      margin="dense"
                                      name='Search'
-                                     label="Search doctor data"
+                                     label="Search medicine data"
                                      type="text"
                                      fullWidth
                                      variant="standard"
@@ -205,7 +212,7 @@ function Doctor(props) {
                                  </DialogActions>
                              </Dialog>
                              <Dialog fullWidth open={open} onClose={handleClose}>
-                                 <DialogTitle>Add doctors</DialogTitle>
+                                 <DialogTitle>Add Medicines</DialogTitle>
                                  <Formik values={formik}>
                                      <Form onSubmit={handleSubmit}>
                                          <DialogContent>
@@ -271,7 +278,7 @@ function Doctor(props) {
                          </div>
                          <div style={{ height: 400, width: '80%', margin: '25px auto 0' }}>
                              <DataGrid
-                                 rows={filtdata}
+                                 rows={medicine.medicine}
                                  columns={columns}
                                  pageSize={5}
                                  rowsPerPageOptions={[5]}
@@ -279,8 +286,8 @@ function Doctor(props) {
                          </div>
                      </>
                    
-            // }
-        // </>
+            }
+        </>
 
     );
 }
