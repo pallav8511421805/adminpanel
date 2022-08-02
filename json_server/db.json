@@ -2,8 +2,8 @@
   "medicine": [
     {
       "id": 60,
-      "name": "pallav",
-      "quantity": "6333",
+      "name": "axios1",
+      "quantity": "25",
       "price": "2500",
       "expiry": "2022"
     },

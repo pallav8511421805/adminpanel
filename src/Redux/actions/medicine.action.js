@@ -116,7 +116,7 @@ export const editdata = (data) => (dispatch) => {
     dispatch(loaddata())
     setTimeout(() => {
       Editalldata(data)
-        .then(data => dispatch(({ type: actiontype.Edit_MEDICINE, payload: data })))
+        .then(data => dispatch(({ type: actiontype.Edit_MEDICINE, payload: data.data })))
         .catch(error => dispatch(errordata(error.message)));
       // fetch(baseurl + 'medicine')
       //   .then(response => {
