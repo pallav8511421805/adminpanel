@@ -101,15 +101,16 @@ const listitemdata = [
     to:"/patient"
   },
   {
-    name:"Counter",
-    icon:HourglassBottomIcon,
-    to:"/counte"
-  },
-  {
     name:"Doctor",
     icon:VaccinesIcon,
     to:"/doctor"
+  },
+  {
+    name:"Counter",
+    icon:HourglassBottomIcon,
+    to:"/counte"
   }
+
 ]
 export default function Layout({ children }) {
   const theme = useTheme();
