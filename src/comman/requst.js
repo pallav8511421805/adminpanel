@@ -33,9 +33,9 @@ export const deleterequstdata = (path, id) => {
     })
 }
 
-export const Editrequstdata = (path, data) => {
+export const Editrequstdata = (path, data, id) => {
     return getdata({
-        url: path,
+        url: path + data.id,
         data: JSON.stringify(data),
         method: 'PUT',
         headers: {

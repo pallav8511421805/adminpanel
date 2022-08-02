@@ -1,13 +1,5 @@
 {
-  "medicine": [
-    {
-      "id": 49,
-      "name": "smm1223",
-      "quantity": "25",
-      "price": "2500",
-      "expiry": "2022"
-    }
-  ],
+  "medicine": [],
   "Patients": [
     {
       "id": 98,
@@ -24,6 +16,13 @@
       "age": "16",
       "email": "pk@gmail.com",
       "address": "111131"
+    },
+    {
+      "id": 67,
+      "name": "smm1223",
+      "age": "25",
+      "email": "pk@gmail.com",
+      "address": "jsdvxnvvxc vcvvgddbgc"
     }
   ]
 }

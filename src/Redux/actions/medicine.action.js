@@ -81,29 +81,29 @@ export const adddata = (data) => (dispatch) => {
 
 export const deletedata = (id) => (dispatch) => {
   try {
-    // Deletealldata(id)
-    //   .then(data => dispatch(({ type: actiontype.Delete_MEDICINE, payload: data})))
-    //   .catch(error => dispatch(errordata(error.message)));
-      fetch(baseurl + 'medicine')
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          var error = new Error('Error ' + response.status + ': ' + response.statusText);
-          error.response = response;
-          throw error;
-        }
-      },
-        error => {
-          var errmess = new Error(error.message);
-          throw errmess;
-        })
-
-    fetch(baseurl + 'medicine/' + id, {
-      method: 'DELETE',
-    })
+    Deletealldata(id)
       .then(data => dispatch(({ type: actiontype.Delete_MEDICINE, payload: data })))
       .catch(error => dispatch(errordata(error.message)));
+    //     fetch(baseurl + 'medicine')
+    //     .then(response => {
+    //       if (response.ok) {
+    //         return response;
+    //       } else {
+    //         var error = new Error('Error ' + response.status + ': ' + response.statusText);
+    //         error.response = response;
+    //         throw error;
+    //       }
+    //     },
+    //       error => {
+    //         var errmess = new Error(error.message);
+    //         throw errmess;
+    //       })
+
+    //   fetch(baseurl + 'medicine/' + id, {
+    //     method: 'DELETE',
+    //   })
+    //     .then(data => dispatch(({ type: actiontype.Delete_MEDICINE, payload: data })))
+    //     .catch(error => dispatch(errordata(error.message)));
 
   } catch (error) {
     dispatch(errordata(error.message))
@@ -115,10 +115,10 @@ export const editdata = (data) => (dispatch) => {
   try {
     dispatch(loaddata())
     setTimeout(() => {
+      fetch(baseurl + 'medicine')
       Editalldata(data)
-        .then(data => dispatch(({ type: actiontype.Edit_MEDICINE, payload: data })))
+        .then(data => dispatch(({ type: actiontype.Edit_MEDICINE, payload: data.data })))
         .catch(error => dispatch(errordata(error.message)));
-      // fetch(baseurl + 'medicine')
       //   .then(response => {
       //     if (response.ok) {
       //       return response;
