@@ -24,7 +24,20 @@
       "address": "jsdvxnvvxc vcvvgddbgc"
     }
   ],
-  "doctor": {
-    "name": "typicode"
-  }
+  "doctor": [
+    {
+      "id": 98,
+      "name": "doctor1",
+      "age": "28",
+      "email": "pk@gmail.com",
+      "address": "jsdvxnvvxc vcvvgddbgc"
+    },
+    {
+      "id": 98,
+      "name": "doctor2",
+      "age": "28",
+      "email": "pk@gmail.com",
+      "address": "jsdvxnvvxc vcvvgddbgc"
+    }
+  ]
 }
