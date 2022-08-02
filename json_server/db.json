@@ -1,5 +1,13 @@
 {
-  "medicine": [],
+  "medicine": [
+    {
+      "id": 53,
+      "name": "pallav",
+      "quantity": "6333",
+      "price": "2500",
+      "expiry": "2022"
+    }
+  ],
   "Patients": [
     {
       "id": 98,

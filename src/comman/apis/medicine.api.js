@@ -12,6 +12,6 @@ export const Deletealldata = (id) => {
    return deleterequstdata('medicine/', id)
 }
 
-export const Editalldata = (data, id) => {
+export const Editalldata = (data) => {
    return Editrequstdata('medicine/' + data, id)
 }
