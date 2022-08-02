@@ -1,5 +1,5 @@
 import { baseurl } from '../../Baseurl/baseurl';
-import { addalldata, getalldata } from '../../comman/apis/doctor.api';
+import { addalldata, Deletealldata, getalldata } from '../../comman/apis/doctor.api';
 import * as actiontype from '../actions/actiontype';
 
 export const doctordata = () => (dispatch) => {
@@ -81,26 +81,29 @@ export const adddata = (data) => (dispatch) => {
   
   export const deletedata = (id) => (dispatch) => {
     try {
-        fetch(baseurl + 'doctor')
-        .then(response => {
-          if (response.ok) {
-            return response;
-          } else {
-            var error = new Error('Error ' + response.status + ': ' + response.statusText);
-            error.response = response;
-            throw error;
-          }
-        },
-          error => {
-            var errmess = new Error(error.message);
-            throw errmess;
-          })
+      Deletealldata(id)
+      .then(dispatch(({ type: actiontype.Delete_doctor, payload: id })))
+      .catch(error => dispatch(errordata(error.message)));
+        // fetch(baseurl + 'doctor')
+      //   .then(response => {
+      //     if (response.ok) {
+      //       return response;
+      //     } else {
+      //       var error = new Error('Error ' + response.status + ': ' + response.statusText);
+      //       error.response = response;
+      //       throw error;
+      //     }
+      //   },
+      //     error => {
+      //       var errmess = new Error(error.message);
+      //       throw errmess;
+      //     })
   
-      fetch(baseurl + 'doctor/' + id, {
-        method: 'DELETE',
-      })
-        .then(data => dispatch(({ type: actiontype.Delete_doctor, payload: data })))
-        .catch(error => dispatch(errordata(error.message)));
+      // fetch(baseurl + 'doctor/' + id, {
+      //   method: 'DELETE',
+      // })
+      //   .then(data => dispatch(({ type: actiontype.Delete_doctor, payload: data })))
+      //   .catch(error => dispatch(errordata(error.message)));
   
     } catch (error) {
       dispatch(errordata(error.message))
