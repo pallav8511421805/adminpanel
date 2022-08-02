@@ -30,8 +30,5 @@ export const deleterequstdata = (path, id) => {
     return getdata({
         url: path + id,
         method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-        },
     })
 }

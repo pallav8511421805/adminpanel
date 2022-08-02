@@ -83,7 +83,7 @@ export const deletedata = (id) => (dispatch) => {
 
   try {
     Deletealldata(id)
-      .then(data => dispatch(({ type: actiontype.Delete_MEDICINE, payload: data })))
+      .then(data => dispatch(({ type: actiontype.Delete_MEDICINE, payload: data.id })))
       .catch(error => dispatch(errordata(error.message)));
     //   fetch(baseurl + 'medicine')
     //   .then(response => {
