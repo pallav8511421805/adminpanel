@@ -12,7 +12,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { DataGrid } from '@mui/x-data-grid';
 import { useFormik, Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { doctordata } from '../Redux/actions/doctor.action';
+import { adddata, deletedata, doctordata, editdata } from '../Redux/actions/doctor.action';
 
 function Doctor(props) {
     
@@ -40,15 +40,17 @@ function Doctor(props) {
 
     const handleupdate = (values) => {
 
-        const localsdata = JSON.parse(localStorage.getItem("Doctors"));
-        const locData = localsdata.map((l) => {
-            if (l.id === values.id) {
-                return values;
-            } else {
-                return l;
-            }
-        })
-        localStorage.setItem("Doctors", JSON.stringify(locData));
+        // const localsdata = JSON.parse(localStorage.getItem("Doctors"));
+        // const locData = localsdata.map((l) => {
+        //     if (l.id === values.id) {
+        //         return values;
+        //     } else {
+        //         return l;
+        //     }
+        // })
+        // localStorage.setItem("Doctors", JSON.stringify(locData));
+
+        dispatch(editdata(values))
 
         load_data()
         formik.resetForm();
@@ -66,7 +68,7 @@ function Doctor(props) {
 
     function handledata(values) {
 
-        const localsdata = JSON.parse(localStorage.getItem("Doctors"));
+        // const localsdata = JSON.parse(localStorage.getItem("Doctors"));
 
         const M_id = Math.floor(Math.random() * 100);
 
@@ -75,13 +77,14 @@ function Doctor(props) {
             ...values
         }
 
-        if (localsdata === null) {
-            localStorage.setItem("Doctors", JSON.stringify([data]));
-        } else {
-            localsdata.push(data);
-            localStorage.setItem("Doctors", JSON.stringify(localsdata));
-        }
+        // if (localsdata === null) {
+        //     localStorage.setItem("Doctors", JSON.stringify([data]));
+        // } else {
+        //     localsdata.push(data);
+        //     localStorage.setItem("Doctors", JSON.stringify(localsdata));
+        // }
 
+        dispatch(adddata(data));
 
         load_data()
         formik.resetForm()
@@ -89,11 +92,11 @@ function Doctor(props) {
     }
 
     const handledelete = () => {
-        const localdata = JSON.parse(localStorage.getItem("Doctors"));
-        const filterdata = localdata.filter((v) => v.id !== did);
+        // const localdata = JSON.parse(localStorage.getItem("Doctors"));
+        // const filterdata = localdata.filter((v) => v.id !== did);
 
-        localStorage.setItem("Doctors", JSON.stringify(filterdata));
-
+        // localStorage.setItem("Doctors", JSON.stringify(filterdata));
+        dispatch(deletedata(did))
         handledClose()
         setdid(0)
         load_data()
