@@ -81,29 +81,29 @@ export const adddata = (data) => (dispatch) => {
 
 export const deletedata = (id) => (dispatch) => {
   try {
-    Deletealldata(id)
-      .then(data => dispatch(({ type: actiontype.Delete_MEDICINE, payload: data})))
-      .catch(error => dispatch(errordata(error.message)));
-    //   fetch(baseurl + 'medicine')
-    //   .then(response => {
-    //     if (response.ok) {
-    //       return response;
-    //     } else {
-    //       var error = new Error('Error ' + response.status + ': ' + response.statusText);
-    //       error.response = response;
-    //       throw error;
-    //     }
-    //   },
-    //     error => {
-    //       var errmess = new Error(error.message);
-    //       throw errmess;
-    //     })
-
-    // fetch(baseurl + 'medicine/' + id, {
-    //   method: 'DELETE',
-    // })
-    //   .then(data => dispatch(({ type: actiontype.Delete_MEDICINE, payload: data })))
+    // Deletealldata(id)
+    //   .then(data => dispatch(({ type: actiontype.Delete_MEDICINE, payload: data})))
     //   .catch(error => dispatch(errordata(error.message)));
+      fetch(baseurl + 'medicine')
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          var error = new Error('Error ' + response.status + ': ' + response.statusText);
+          error.response = response;
+          throw error;
+        }
+      },
+        error => {
+          var errmess = new Error(error.message);
+          throw errmess;
+        })
+
+    fetch(baseurl + 'medicine/' + id, {
+      method: 'DELETE',
+    })
+      .then(data => dispatch(({ type: actiontype.Delete_MEDICINE, payload: data })))
+      .catch(error => dispatch(errordata(error.message)));
 
   } catch (error) {
     dispatch(errordata(error.message))
