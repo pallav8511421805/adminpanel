@@ -46,7 +46,7 @@ export const adddata = (data) => (dispatch) => {
     dispatch(loaddata())
     setTimeout(() => {
       addalldata(data)
-        .then(data => dispatch(({ type: actiontype.GET_MEDICINE, payload: data.data })))
+        .then(data => dispatch(({ type: actiontype.Add_MEDICINE, payload: data.data })))
         .catch(error => dispatch(errordata(error.message)));
       // fetch(baseurl + 'medicine')
       //   .then(response => {
