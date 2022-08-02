@@ -1,25 +1,11 @@
 {
   "medicine": [
     {
-      "id": 2,
-      "expiry": "2022",
-      "name": "XYZ",
-      "price": "2500",
-      "quantity": "25"
-    },
-    {
       "id": 3,
       "expiry": "2022",
       "name": "PQR",
       "price": "2500",
       "quantity": "2446314"
-    },
-    {
-      "id": 18,
-      "name": "1223",
-      "quantity": "25",
-      "price": "2500",
-      "expiry": "20200"
     },
     {
       "id": 60,
