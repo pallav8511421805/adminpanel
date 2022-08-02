@@ -1,4 +1,5 @@
 import { baseurl } from '../../Baseurl/baseurl';
+import { addalldata, getalldata } from '../../comman/apis/doctor.api';
 import * as actiontype from '../actions/actiontype';
 
 export const doctordata = () => (dispatch) => {
@@ -6,23 +7,26 @@ export const doctordata = () => (dispatch) => {
   try {
     dispatch(loaddata())
     setTimeout(function () {
-      fetch(baseurl + 'doctor')
-        .then(response => {
-          if (response.ok) {
-            return response;
-          } else {
-            var error = new Error('Error ' + response.status + ': ' + response.statusText);
-            error.response = response;
-            throw error;
-          }
-        },
-          error => {
-            var errmess = new Error(error.message);
-            throw errmess;
-          })
-        .then(response => response.json())
-      .then(data => dispatch(({ type: actiontype.get_doctor, payload: data})))
+      getalldata()
+        .then(data => dispatch(({ type: actiontype.get_doctor, payload: data.data })))
         .catch(error => dispatch(errordata(error.message)));
+      // fetch(baseurl + 'doctor')
+      //   .then(response => {
+      //     if (response.ok) {
+      //       return response;
+      //     } else {
+      //       var error = new Error('Error ' + response.status + ': ' + response.statusText);
+      //       error.response = response;
+      //       throw error;
+      //     }
+      //   },
+      //     error => {
+      //       var errmess = new Error(error.message);
+      //       throw errmess;
+      //     })
+      //   .then(response => response.json())
+      // .then(data => dispatch(({ type: actiontype.get_doctor, payload: data})))
+      //   .catch(error => dispatch(errordata(error.message)));
     }, 2000)
   } catch (error) {
     dispatch(errordata(error.message))
@@ -41,30 +45,33 @@ export const adddata = (data) => (dispatch) => {
     try {
       dispatch(loaddata())
       setTimeout(() => {
-        fetch(baseurl + 'doctor')
-          .then(response => {
-            if (response.ok) {
-              return response;
-            } else {
-              var error = new Error('Error ' + response.status + ': ' + response.statusText);
-              error.response = response;
-              throw error;
-            }
-          },
-            error => {
-              var errmess = new Error(error.message);
-              throw errmess;
-            })
-        fetch(baseurl + 'doctor', {
-          method: 'POST', // or 'PUT'
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        })
-          .then(response => response.json())
-        .then(data => dispatch(({ type: actiontype.Add_doctor, payload: data })))
+        addalldata(data)
+        .then(data => dispatch(({ type: actiontype.Add_doctor, payload: data.data })))
         .catch(error => dispatch(errordata(error.message)));
+        // fetch(baseurl + 'doctor')
+        //   .then(response => {
+        //     if (response.ok) {
+        //       return response;
+        //     } else {
+        //       var error = new Error('Error ' + response.status + ': ' + response.statusText);
+        //       error.response = response;
+        //       throw error;
+        //     }
+        //   },
+        //     error => {
+        //       var errmess = new Error(error.message);
+        //       throw errmess;
+        //     })
+        // fetch(baseurl + 'doctor', {
+        //   method: 'POST', // or 'PUT'
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //   },
+        //   body: JSON.stringify(data),
+        // })
+        //   .then(response => response.json())
+        // .then(data => dispatch(({ type: actiontype.Add_doctor, payload: data })))
+        // .catch(error => dispatch(errordata(error.message)));
       }, 2000);
   
     } catch (error) {
