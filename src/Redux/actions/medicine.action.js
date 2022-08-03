@@ -1,4 +1,4 @@
-import { baseurl } from '../../Baseurl/baseurl';
+// import { baseurl } from '../../Baseurl/baseurl';
 import { addalldata, Deletealldata, Editalldata, getalldata } from '../../comman/apis/medicine.api';
 import * as actiontype from '../actions/actiontype';
 
