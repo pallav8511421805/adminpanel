@@ -1,5 +1,5 @@
 import { baseurl } from "../../Baseurl/baseurl";
-import { addallpatients, Deleteallpatients, getallpatients } from "../../comman/apis/patients.api";
+import { addallpatients, Deleteallpatients, editpatialldata, getallpatients } from "../../comman/apis/patients.api";
 import * as actiontype from '../actions/actiontype';
 
 export const Getdata = () => (dispatch) => {
@@ -7,8 +7,8 @@ export const Getdata = () => (dispatch) => {
         dispatch(loaddata())
         setTimeout(function () {
             getallpatients()
-            .then(data => dispatch(({ type: actiontype.get_patients, payload: data.data })))
-            .catch(error => dispatch(errordata(error.message)));
+                .then(data => dispatch(({ type: actiontype.get_patients, payload: data.data })))
+                .catch(error => dispatch(errordata(error.message)));
             // fetch(baseurl + 'Patients')
             //     .then(response => {
             //         if (response.ok) {
@@ -24,8 +24,8 @@ export const Getdata = () => (dispatch) => {
             //             throw errmess;
             //         })
             //     .then(response => response.json())
-                // .then(data => dispatch(({ type: actiontype.get_patients, payload: data.data })))
-                // .catch(error => dispatch(errordata(error.message)));
+            // .then(data => dispatch(({ type: actiontype.get_patients, payload: data.data })))
+            // .catch(error => dispatch(errordata(error.message)));
         }, 2000)
     } catch (error) {
         dispatch(errordata(error.message))
@@ -37,7 +37,7 @@ export const Adddata = (data) => (dispatch) => {
         dispatch(loaddata())
         setTimeout(function () {
             addallpatients(data)
-                 .then(data => dispatch(({ type: actiontype.Add_patient, payload: data.data })))
+                .then(data => dispatch(({ type: actiontype.Add_patient, payload: data.data })))
                 .catch(error => dispatch(errordata(error.message)));
             // fetch(baseurl + 'Patients')
             //     .then(response => {
@@ -71,31 +71,34 @@ export const Adddata = (data) => (dispatch) => {
 
 export const Editdata = (data) => (dispatch) => {
     try {
-            fetch(baseurl + 'Patients')
-                .then(response => {
-                    if (response.ok) {
-                        return response;
-                    } else {
-                        var error = new Error('Error ' + response.status + ': ' + response.statusText);
-                        error.response = response;
-                        throw error;
-                    }
-                },
-                    error => {
-                        var errmess = new Error(error.message);
-                        throw errmess;
-                    })
-            fetch(baseurl + 'Patients/'+data.id, {
-                method: 'PUT', 
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            })
-                .then(response => response.json())
-                .then(data => dispatch(({ type: actiontype.Edit_patient, payload: data})))
-                .catch(error => dispatch(errordata(error.message)));
-        
+        editpatialldata(data)
+            .then(data => dispatch(({ type: actiontype.Edit_patient, payload: data.data })))
+            .catch(error => dispatch(errordata(error.message)));
+        // fetch(baseurl + 'Patients')
+        //     .then(response => {
+        //         if (response.ok) {
+        //             return response;
+        //         } else {
+        //             var error = new Error('Error ' + response.status + ': ' + response.statusText);
+        //             error.response = response;
+        //             throw error;
+        //         }
+        //     },
+        //         error => {
+        //             var errmess = new Error(error.message);
+        //             throw errmess;
+        //         })
+        // fetch(baseurl + 'Patients/'+data.id, {
+        //     method: 'PUT', 
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify(data),
+        // })
+        //     .then(response => response.json())
+        //     .then(data => dispatch(({ type: actiontype.Edit_patient, payload: data})))
+        //     .catch(error => dispatch(errordata(error.message)));
+
     } catch (error) {
         dispatch(errordata(error.message))
     }
@@ -104,29 +107,29 @@ export const Editdata = (data) => (dispatch) => {
 export const Deletedata = (id) => (dispatch) => {
     try {
         Deleteallpatients(id)
-      .then(dispatch(({ type: actiontype.Delete_patient, payload: id })))
-      .catch(error => dispatch(errordata(error.message)));
-            // fetch(baseurl + 'Patients')
-            //     .then(response => {
-            //         if (response.ok) {
-            //             return response;
-            //         } else {
-            //             var error = new Error('Error ' + response.status + ': ' + response.statusText);
-            //             error.response = response;
-            //             throw error;
-            //         }
-            //     },
-            //         error => {
-            //             var errmess = new Error(error.message);
-            //             throw errmess;
-            //         })
-            //         fetch(baseurl + 'Patients/' + id, {
-            //             method: 'DELETE',
-            //           })
-            //             .then(data => dispatch(({ type: actiontype.Delete_patient, payload: data})))
-            //             .catch(error => dispatch(errordata(error.message)));
-                      
-        
+            .then(dispatch(({ type: actiontype.Delete_patient, payload: id })))
+            .catch(error => dispatch(errordata(error.message)));
+        // fetch(baseurl + 'Patients')
+        //     .then(response => {
+        //         if (response.ok) {
+        //             return response;
+        //         } else {
+        //             var error = new Error('Error ' + response.status + ': ' + response.statusText);
+        //             error.response = response;
+        //             throw error;
+        //         }
+        //     },
+        //         error => {
+        //             var errmess = new Error(error.message);
+        //             throw errmess;
+        //         })
+        //         fetch(baseurl + 'Patients/' + id, {
+        //             method: 'DELETE',
+        //           })
+        //             .then(data => dispatch(({ type: actiontype.Delete_patient, payload: data})))
+        //             .catch(error => dispatch(errordata(error.message)));
+
+
     } catch (error) {
         dispatch(errordata(error.message))
     }
