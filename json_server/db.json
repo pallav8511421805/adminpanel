@@ -17,20 +17,19 @@
   ],
   "Patients": [
     {
-      "id": 63,
-      "name": "sf",
+      "id": 14,
+      "name": "dhjs",
+      "age": "25",
+      "email": "pallav@gmail.com",
+      "address": "xcxcxczx"
+    },
+    {
+      "id": 72,
+      "name": "b",
       "age": "25",
       "email": "pallav@gmail.com",
       "address": "xcxcxczx"
     }
   ],
-  "doctor": [
-    {
-      "id": 75,
-      "name": "smm1223",
-      "age": "25",
-      "email": "pk@gmail.com",
-      "address": "jsdvxnvvxc vcvvgddbgc"
-    }
-  ]
+  "doctor": []
 }
