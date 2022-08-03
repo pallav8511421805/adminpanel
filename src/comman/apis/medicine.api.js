@@ -13,5 +13,5 @@ export const Deletealldata = (id) => {
 }
 
 export const editmedicinedata = (data) => {
-   return updateReuestdata('medicines/', data)
+   return updateReuestdata('medicine/', data)
 }

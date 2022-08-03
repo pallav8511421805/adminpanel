@@ -6,6 +6,13 @@
       "quantity": "25",
       "price": "25000",
       "expiry": "2022"
+    },
+    {
+      "id": 6,
+      "name": "dhjs",
+      "quantity": "25",
+      "price": "555",
+      "expiry": "366"
     }
   ],
   "Patients": [],
