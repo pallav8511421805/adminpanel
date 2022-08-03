@@ -1,13 +1,21 @@
 {
-  "medicine": [],
-  "Patients": [
+  "medicine": [
     {
-      "id": 68,
-      "name": "dhjs",
-      "age": "25",
-      "email": "pallav@gmail.com",
-      "address": "xcxcxczx"
+      "id": 24,
+      "name": "a",
+      "quantity": "1",
+      "price": "2",
+      "expiry": "3"
     },
+    {
+      "id": 96,
+      "name": "b",
+      "quantity": "2",
+      "price": "3",
+      "expiry": "4"
+    }
+  ],
+  "Patients": [
     {
       "id": 63,
       "name": "sf",

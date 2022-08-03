@@ -8,7 +8,7 @@ export const addallpatients = (data) => {
     return addrequstdata('Patients', data)
 }
 
-export const Deleteallpatients = (id) => {
+export const Deletepatients = (id) => {
     return deleterequstdata('Patients/', id)
 }
 
