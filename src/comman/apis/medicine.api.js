@@ -1,4 +1,4 @@
-import { addrequstdata, deleterequstdata, Editrequstdata, sendrequstdata } from "../requst"
+import { addrequstdata, deleterequstdata, sendrequstdata, updateReuestdata } from "../requst"
 
 export const getalldata = () => {
    return sendrequstdata('medicine')
@@ -12,6 +12,6 @@ export const Deletealldata = (id) => {
    return deleterequstdata('medicine/', id)
 }
 
-export const Editalldata = (data,id) => {
-   return Editrequstdata('medicine/' + data,id)
+export const editmedicinedata = (data) => {
+   return updateReuestdata('medicines/', data)
 }

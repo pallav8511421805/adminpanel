@@ -36,9 +36,9 @@ export const deleterequstdata = (path, id) => {
     })
 }
 
-export const Editrequstdata = (path, data) => {
+export const updateReuestdata = (path, data) => {
     return getdata({
-        url: path + data,
+        url: path + data.id,
         method: "PUT",
         data:JSON.stringify(data),
         headers: {
