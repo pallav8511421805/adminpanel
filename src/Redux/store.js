@@ -10,10 +10,10 @@ const persistconfig = {
     whitelist:['counter']
 }
 
-const persistReducer = persistReducer(persistconfig,Rootreducer)
+const persistedReducer = persistReducer(persistconfig,Rootreducer)
 
 export const configstore = () =>{
-    let store = createStore(persistReducer,applyMiddleware(thunk))
+    let store = createStore(persistedReducer,applyMiddleware(thunk))
     let persistor = persistStore(store)
     return {store,persistor};
 }
