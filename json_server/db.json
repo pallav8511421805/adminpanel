@@ -2,17 +2,17 @@
   "medicine": [
     {
       "id": 24,
-      "name": "a",
+      "name": "ad",
       "quantity": "1",
       "price": "2",
       "expiry": "3"
     },
     {
-      "id": 96,
-      "name": "b",
-      "quantity": "2",
-      "price": "3",
-      "expiry": "4"
+      "id": 98,
+      "name": "c",
+      "quantity": "25",
+      "price": "56",
+      "expiry": "366"
     }
   ],
   "Patients": [

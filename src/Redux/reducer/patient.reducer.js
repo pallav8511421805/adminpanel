@@ -39,7 +39,7 @@ export const Patientsreducer = (state = intval, action) => {
             return {
                 ...state,
                 isload: false,
-                patientdata: state.patientdata.filter((d) => d.id !== action.payload.id),
+                patientdata: state.patientdata.filter((d) => d.id !== action.payload),
                 error: ''
             }
         case actiontype.Load_patient:
