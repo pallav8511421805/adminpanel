@@ -22,14 +22,15 @@
       "age": "25",
       "email": "pallav@gmail.com",
       "address": "xcxcxczx"
-    },
+    }
+  ],
+  "doctor": [
     {
-      "id": 72,
-      "name": "b",
+      "id": 46,
+      "name": "d",
       "age": "25",
       "email": "pallav@gmail.com",
       "address": "xcxcxczx"
     }
-  ],
-  "doctor": []
+  ]
 }
