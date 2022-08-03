@@ -1,4 +1,4 @@
-import { addrequstdata, deleterequstdata, sendrequstdata } from "../requst"
+import { addrequstdata, deleterequstdata, sendrequstdata, updateReuestdata } from "../requst"
 
 export const getallpatients = () => {
     return sendrequstdata('Patients')
