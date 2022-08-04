@@ -15,6 +15,35 @@ function PromiseExmple(props) {
     // callback function is called after working some task
     // promise.all resolve all
 
+
+    // 1. syncronize , in order
+
+    // const one = () =>{
+    //     return 'One'
+    // }
+
+    // const two = () =>{
+    //     return 'Two'
+    // }
+
+    // const three = () =>{
+    //     return 'Three'
+    // }
+
+    // const All = () =>{
+    //     const onedata = one()
+    //     const twodata = two()
+    //     const threedata = three()
+
+    //     console.log('1:'+onedata)
+    //     console.log('2:'+twodata)
+    //     console.log('3:'+threedata)
+    // }
+
+    // output : One Two Three
+
+    // 2. asyncronize , not in order
+
     const one = () =>{
         return 'One'
     }
@@ -40,6 +69,8 @@ function PromiseExmple(props) {
         console.log('2:'+twodata)
         console.log('3:'+threedata)
     }
+
+    // output: one two (wait for 2 sec) three (axios with async await)
 
     useEffect(()=>{
         All()
