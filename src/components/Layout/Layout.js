@@ -21,6 +21,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { NavLink } from 'react-router-dom';
 import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
 import VaccinesIcon from '@mui/icons-material/Vaccines';
+import HandshakeIcon from '@mui/icons-material/Handshake';
 
 const drawerWidth = 240;
 
@@ -107,7 +108,7 @@ const listitemdata = [
   },
   {
     name:"Promise",
-    icon:HourglassBottomIcon,
+    icon:HandshakeIcon,
     to:"/promiseex"
   },
   {
