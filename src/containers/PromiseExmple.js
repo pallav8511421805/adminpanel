@@ -31,9 +31,9 @@ function PromiseExmple(props) {
         return 'Three'
     }
 
-    const All = () =>{
+    const All = async () =>{
         const onedata = one()
-        const twodata = two()
+        const twodata = await two()
         const threedata = three()
 
         console.log('1:'+onedata)
