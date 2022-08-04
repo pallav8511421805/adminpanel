@@ -15,15 +15,7 @@
       "expiry": "366"
     }
   ],
-  "Patients": [
-    {
-      "id": 14,
-      "name": "dhjs",
-      "age": "25",
-      "email": "pallav@gmail.com",
-      "address": "xcxcxczx"
-    }
-  ],
+  "Patients": [],
   "doctor": [
     {
       "id": 46,

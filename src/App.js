@@ -6,6 +6,7 @@ import Counterdata from "./containers/Counterdata";
 import Doctor from "./containers/Doctor";
 import Medicine from "./containers/Medicine";
 import Patient from "./containers/Patient";
+import PromiseExmple from "./containers/PromiseExmple";
 import { configstore } from "./Redux/store";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path={"/patient"} exact component={Patient} />
         <Route path={"/counte"} exact component={Counterdata} />
         <Route path={"/doctor"} exact component={Doctor} />
+        <Route path={"/promiseex"} exact component={PromiseExmple} />
       </Layout>
     </Switch>
     </PersistGate>

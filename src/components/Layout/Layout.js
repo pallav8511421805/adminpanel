@@ -106,6 +106,11 @@ const listitemdata = [
     to:"/doctor"
   },
   {
+    name:"Promise",
+    icon:HourglassBottomIcon,
+    to:"/promiseex"
+  },
+  {
     name:"Counter",
     icon:HourglassBottomIcon,
     to:"/counte"
