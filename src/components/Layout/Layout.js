@@ -112,6 +112,11 @@ const listitemdata = [
     to:"/promiseex"
   },
   {
+    name:"Usememo",
+    icon:HandshakeIcon,
+    to:"/usememoexple"
+  },
+  {
     name:"Counter",
     icon:HourglassBottomIcon,
     to:"/counte"

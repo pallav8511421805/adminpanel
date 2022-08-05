@@ -5,6 +5,7 @@ import Layout from "./components/layout/Layout";
 import Counterdata from "./containers/Counterdata";
 import Doctor from "./containers/Doctor";
 import Medicine from "./containers/Medicine";
+import Memoexple from "./containers/Memoexple";
 import Patient from "./containers/Patient";
 import PromiseExmple from "./containers/PromiseExmple";
 import { configstore } from "./Redux/store";
@@ -23,6 +24,8 @@ function App() {
         <Route path={"/counte"} exact component={Counterdata} />
         <Route path={"/doctor"} exact component={Doctor} />
         <Route path={"/promiseex"} exact component={PromiseExmple} />
+        <Route path={"/usememoexple"} exact component={Memoexple} />
+    
       </Layout>
     </Switch>
     </PersistGate>
