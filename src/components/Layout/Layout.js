@@ -22,6 +22,7 @@ import { NavLink } from 'react-router-dom';
 import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
 import VaccinesIcon from '@mui/icons-material/Vaccines';
 import HandshakeIcon from '@mui/icons-material/Handshake';
+import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 
 const drawerWidth = 240;
 
@@ -113,7 +114,7 @@ const listitemdata = [
   },
   {
     name:"Usememo",
-    icon:HandshakeIcon,
+    icon:DescriptionOutlinedIcon,
     to:"/usememoexple"
   },
   {
