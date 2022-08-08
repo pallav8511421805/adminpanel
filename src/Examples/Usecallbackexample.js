@@ -43,7 +43,7 @@ function Usecallbackexample(props) {
         (inc) => {
           return [Number,Number+inc,Number+inc+inc]
         },
-        [getitem],
+        [Number],
       );
     return (
         <>
