@@ -8,6 +8,7 @@ import Medicine from "./containers/Medicine";
 import Patient from "./containers/Patient";
 import Memoexple from "./Examples/Memoexple";
 import PromiseExmple from "./Examples/PromiseExmple";
+import Usecallbackexample from "./Examples/Usecallbackexample";
 import { configstore } from "./Redux/store";
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
         <Route path={"/doctor"} exact component={Doctor} />
         <Route path={"/promiseex"} exact component={PromiseExmple} />
         <Route path={"/usememoexple"} exact component={Memoexple} />
-    
+        <Route path={"/Usecallbackexample"} exact component={Usecallbackexample} />
       </Layout>
     </Switch>
     </PersistGate>

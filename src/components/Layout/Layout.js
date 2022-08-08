@@ -118,11 +118,15 @@ const listitemdata = [
     to:"/usememoexple"
   },
   {
+    name:"Usecallback",
+    icon:HourglassBottomIcon,
+    to:"/Usecallbackexample"
+  },
+  {
     name:"Counter",
     icon:HourglassBottomIcon,
     to:"/counte"
   }
-
 ]
 export default function Layout({ children }) {
   const theme = useTheme();
