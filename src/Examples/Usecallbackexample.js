@@ -3,15 +3,18 @@ import { useState } from 'react';
 
 function Usecallbackexample(props) {
     
-    const [theme,settheme] = useState(false)
+    const [Theme,setTheme] = useState(false)
     const themstyle = {
-        backgroundColor: theme ? '#fff' : '#000',
-        color:theme ? '#000' :'#fff'
+        backgroundColor: Theme ? 'red' : 'pink',
+        color: Theme ? '#fff' :'#000',
+        width:'50px',
+        height:'100px'
     }
-
+    console.log(Theme)
     return (
         <>
-        <button style={themstyle} onClick={()=>{settheme(!true)}}>theme</button>
+        <div style={themstyle}></div>
+        <button onClick={() => setTheme(!Theme)}>theme</button>
         </>
     );
 }
