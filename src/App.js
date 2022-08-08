@@ -5,9 +5,9 @@ import Layout from "./components/layout/Layout";
 import Counterdata from "./containers/Counterdata";
 import Doctor from "./containers/Doctor";
 import Medicine from "./containers/Medicine";
-import Memoexple from "./containers/Memoexple";
 import Patient from "./containers/Patient";
-import PromiseExmple from "./containers/PromiseExmple";
+import Memoexple from "./Examples/Memoexple";
+import PromiseExmple from "./Examples/PromiseExmple";
 import { configstore } from "./Redux/store";
 
 function App() {
