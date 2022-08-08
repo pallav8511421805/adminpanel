@@ -50,7 +50,7 @@ function Usecallbackexample(props) {
                 <input style={themeinput} onChange={(e)=>setNumber(e.target.value)} placeholder='Please Enter any number' />
             </div>
             <div style={themstyle}>
-                <Listitem getitem = {getitem}/>
+                <Listitem getitem={getitem}/>
             </div>
             <button style={themstylebtn} onClick={() => setTheme(!Theme)}>{<textdata.text />}</button>
         </>
