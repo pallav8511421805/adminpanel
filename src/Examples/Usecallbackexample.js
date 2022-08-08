@@ -41,10 +41,11 @@ function Usecallbackexample(props) {
     }
     const getitem = useCallback(
         (inc) => {
-          return [Number,Number+inc,Number+inc+inc]
+          return [Number,Number+inc,Number+inc+5]
         },
         [Number],
       );
+      console.log(Number)
     return (
         <>
             <div>
