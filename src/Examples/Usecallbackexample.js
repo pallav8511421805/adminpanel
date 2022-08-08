@@ -2,10 +2,12 @@ import * as React from 'react';
 import { useState } from 'react';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
+import Listitem from './Listitem';
 
 function Usecallbackexample(props) {
 
     const [Theme, setTheme] = useState(false)
+    const [Number, setNumber] = useState(0)
     const themstyle = {
         backgroundColor: Theme ? '#000' : '#fff',
         width: '150px',
@@ -36,12 +38,19 @@ function Usecallbackexample(props) {
         fontSize:'15px',
         margin:'0 0 10px'
     }
+    const getitem = useCallback(
+        (inc) => {
+          return [Number,Number+inc,Number+inc+inc]
+        },
+        [getitem],
+      );
     return (
         <>
             <div>
-                <input style={themeinput} placeholder='Please Enter any number' />
+                <input style={themeinput} onChange={(e)=>setNumber(e.target.value)} placeholder='Please Enter any number' />
             </div>
             <div style={themstyle}>
+                <Listitem getitem = {getitem}/>
             </div>
             <button style={themstylebtn} onClick={() => setTheme(!Theme)}>{<textdata.text />}</button>
         </>
