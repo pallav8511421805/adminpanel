@@ -33,7 +33,8 @@ function Usecallbackexample(props) {
         borderRight:'none',
         borderTop:'none',
         borderLeft:'none',
-        fontSize:'15px'
+        fontSize:'15px',
+        margin:'0 0 10px'
     }
     return (
         <>
