@@ -11,9 +11,11 @@ function Usecallbackexample(props) {
     const [Number, setNumber] = useState(0)
     const themstyle = {
         backgroundColor: Theme ? '#000' : '#fff',
+        color : Theme ? '#fff' : '#000',
         width: '150px',
         height: '150px',
         borderRadius: '15px',
+        padding:'10px 20px',
         margin: '0 0 10px'
     }
     const themstylebtn = {
@@ -49,7 +51,7 @@ function Usecallbackexample(props) {
     return (
         <>
             <div>
-                <input style={themeinput} onChange={(e)=>setNumber(e.target.value)} placeholder='Please Enter any number' />
+                <input style={themeinput} onChange={(e)=>setNumber(parseInt(e.target.value))} placeholder='Please Enter any number' />
             </div>
             <div style={themstyle}>
                 <Listitem getitem={getitem}/>
