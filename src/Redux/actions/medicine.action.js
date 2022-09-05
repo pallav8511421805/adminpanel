@@ -1,5 +1,6 @@
 import { baseurl } from '../../Baseurl/baseurl'
 import { collection, addDoc } from "firebase/firestore"; 
+import {db} from '../../Firebase'
 import {
   addalldata,
   Deletealldata,
@@ -49,13 +50,10 @@ export const errordata = (error) => (dispatch) => {
 
 export const adddata =async (data) =>  (dispatch) => {
   try {
+    const data = {Mdata:data.data}
     dispatch(loaddata())
     setTimeout(() => {
-      const docRef = await addDoc(collection(db, "users"), {
-        first: "Ada",
-        last: "Lovelace",
-        born: 1815
-      });
+      const docRef = await addDoc(collection(db, "Doctors"), {id:docRef.id,...data});
       console.log("Document written with ID: ", docRef.id);
       // addalldata(data)
       //   .then((data) =>
