@@ -1,6 +1,6 @@
 import { baseurl } from '../../Baseurl/baseurl'
-import { collection, addDoc } from "firebase/firestore"; 
-import {db} from '../../Firebase'
+import { collection, addDoc } from 'firebase/firestore'
+import { db } from '../../Firebase'
 import {
   addalldata,
   Deletealldata,
@@ -48,13 +48,16 @@ export const errordata = (error) => (dispatch) => {
   dispatch({ type: actiontype.ERROR_MEDICINE, payload: error })
 }
 
-export const adddata =async (data) =>  (dispatch) => {
+export const adddata = (data) => (dispatch) => {
   try {
-    const data = {Mdata:data.data}
+    const data = { Mdata: data.data }
     dispatch(loaddata())
-    setTimeout(() => {
-      const docRef = await addDoc(collection(db, "Doctors"), {id:docRef.id,...data});
-      console.log("Document written with ID: ", docRef.id);
+    setTimeout(async () => {
+      const docRef = await addDoc(collection(db, 'Doctors'), {
+        id: docRef.id,
+        ...data,
+      })
+      console.log('Document written with ID: ', docRef.id)
       // addalldata(data)
       //   .then((data) =>
       //     dispatch({ type: actiontype.Add_MEDICINE, payload: data.data }),
