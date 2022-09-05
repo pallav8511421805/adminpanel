@@ -1,15 +1,24 @@
-import { baseurl } from '../../Baseurl/baseurl';
-import { addalldata, Deletealldata,editmedicinedata, getalldata } from '../../comman/apis/medicine.api';
-import * as actiontype from '../actions/actiontype';
+import { baseurl } from '../../Baseurl/baseurl'
+import { collection, addDoc } from 'firebase/firestore'
+
+import {
+  addalldata,
+  Deletealldata,
+  editmedicinedata,
+  getalldata,
+} from '../../comman/apis/medicine.api'
+import * as actiontype from '../actions/actiontype'
+import { db } from '../../Firebase'
 
 export const medicinedata = () => (dispatch) => {
-
   try {
     dispatch(loaddata())
     setTimeout(function () {
       getalldata()
-        .then(data => dispatch(({ type: actiontype.GET_MEDICINE, payload: data.data })))
-        .catch(error => dispatch(errordata(error.message)));
+        .then((data) =>
+          dispatch({ type: actiontype.GET_MEDICINE, payload: data.data }),
+        )
+        .catch((error) => dispatch(errordata(error.message)))
       // fetch(baseurl + 'medicine')
       //   .then(response => {
       //     if (response.ok) {
@@ -31,6 +40,13 @@ export const medicinedata = () => (dispatch) => {
   } catch (error) {
     dispatch(errordata(error.message))
   }
+
+  // try {
+  //   const docRef = await addDoc(collection(db, "doctors"), );
+  //   console.log("Document written with ID: ", docRef.id);
+  // } catch (e) {
+  //   console.error("Error adding document: ", e);
+  // }
 }
 
 export const loaddata = () => (dispatch) => {
@@ -41,13 +57,14 @@ export const errordata = (error) => (dispatch) => {
 }
 
 export const adddata = (data) => (dispatch) => {
-
   try {
     dispatch(loaddata())
     setTimeout(() => {
       addalldata(data)
-        .then(data => dispatch(({ type: actiontype.Add_MEDICINE, payload: data.data })))
-        .catch(error => dispatch(errordata(error.message)));
+        .then((data) =>
+          dispatch({ type: actiontype.Add_MEDICINE, payload: data.data }),
+        )
+        .catch((error) => dispatch(errordata(error.message)))
       // fetch(baseurl + 'medicine')
       //   .then(response => {
       //     if (response.ok) {
@@ -72,8 +89,7 @@ export const adddata = (data) => (dispatch) => {
       //   .then(response => response.json())
       // .then(data => dispatch(({ type: actiontype.GET_MEDICINE, payload: data })))
       // .catch(error => dispatch(errordata(error.message)));
-    }, 2000);
-
+    }, 2000)
   } catch (error) {
     dispatch(errordata(error.message))
   }
@@ -82,8 +98,8 @@ export const adddata = (data) => (dispatch) => {
 export const deletedata = (id) => (dispatch) => {
   try {
     Deletealldata(id)
-      .then(dispatch(({ type: actiontype.Delete_MEDICINE, payload: id })))
-      .catch(error => dispatch(errordata(error.message)));
+      .then(dispatch({ type: actiontype.Delete_MEDICINE, payload: id }))
+      .catch((error) => dispatch(errordata(error.message)))
     //     fetch(baseurl + 'medicine')
     //     .then(response => {
     //       if (response.ok) {
@@ -104,18 +120,18 @@ export const deletedata = (id) => (dispatch) => {
     //   })
     //     .then(data => dispatch(({ type: actiontype.Delete_MEDICINE, payload: data })))
     //     .catch(error => dispatch(errordata(error.message)));
-
   } catch (error) {
     dispatch(errordata(error.message))
   }
 }
 
 export const editdata = (data) => (dispatch) => {
-
   try {
     editmedicinedata(data)
-        .then(data => dispatch(({ type: actiontype.Edit_MEDICINE, payload: data.data })))
-        .catch(error => dispatch(errordata(error.message)));
+      .then((data) =>
+        dispatch({ type: actiontype.Edit_MEDICINE, payload: data.data }),
+      )
+      .catch((error) => dispatch(errordata(error.message)))
     // dispatch(loaddata())
     // setTimeout(() => {
     //   fetch(baseurl + 'medicine')
