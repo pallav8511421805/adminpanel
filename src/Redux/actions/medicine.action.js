@@ -1,4 +1,5 @@
 import { baseurl } from '../../Baseurl/baseurl'
+import { collection, addDoc } from "firebase/firestore"; 
 import {
   addalldata,
   Deletealldata,
@@ -46,15 +47,21 @@ export const errordata = (error) => (dispatch) => {
   dispatch({ type: actiontype.ERROR_MEDICINE, payload: error })
 }
 
-export const adddata = (data) => (dispatch) => {
+export const adddata = async (data) => (dispatch) => {
   try {
     dispatch(loaddata())
     setTimeout(() => {
-      addalldata(data)
-        .then((data) =>
-          dispatch({ type: actiontype.Add_MEDICINE, payload: data.data }),
-        )
-        .catch((error) => dispatch(errordata(error.message)))
+      const docRef = await addDoc(collection(db, "users"), {
+        first: "Ada",
+        last: "Lovelace",
+        born: 1815
+      });
+      console.log("Document written with ID: ", docRef.id);
+      // addalldata(data)
+      //   .then((data) =>
+      //     dispatch({ type: actiontype.Add_MEDICINE, payload: data.data }),
+      //   )
+      //   .catch((error) => dispatch(errordata(error.message)))
       // fetch(baseurl + 'medicine')
       //   .then(response => {
       //     if (response.ok) {
