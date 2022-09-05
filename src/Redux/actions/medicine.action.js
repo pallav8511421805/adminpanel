@@ -1,6 +1,4 @@
 import { baseurl } from '../../Baseurl/baseurl'
-import { collection, addDoc } from 'firebase/firestore'
-
 import {
   addalldata,
   Deletealldata,
@@ -8,25 +6,16 @@ import {
   getalldata,
 } from '../../comman/apis/medicine.api'
 import * as actiontype from '../actions/actiontype'
-import { db } from '../../Firebase'
 
 export const medicinedata = () => (dispatch) => {
   try {
     dispatch(loaddata())
     setTimeout(function () {
-
-      const docRef = await addDoc(collection(db, "users"), {
-        first: "Ada",
-        last: "Lovelace",
-        born: 1815
-      }); 
-  console.log("Document written with ID: ", docRef.id);
-
-      // getalldata()
-      //   .then((data) =>
-      //     dispatch({ type: actiontype.GET_MEDICINE, payload: data.data }),
-      //   )
-      //   .catch((error) => dispatch(errordata(error.message)))
+      getalldata()
+        .then((data) =>
+          dispatch({ type: actiontype.GET_MEDICINE, payload: data.data }),
+        )
+        .catch((error) => dispatch(errordata(error.message)))
       // fetch(baseurl + 'medicine')
       //   .then(response => {
       //     if (response.ok) {
