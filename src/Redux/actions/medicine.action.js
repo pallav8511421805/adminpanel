@@ -47,7 +47,7 @@ export const errordata = (error) => (dispatch) => {
   dispatch({ type: actiontype.ERROR_MEDICINE, payload: error })
 }
 
-export const adddata = async (data) => (dispatch) => {
+export const adddata =async (data) =>  (dispatch) => {
   try {
     dispatch(loaddata())
     setTimeout(() => {
