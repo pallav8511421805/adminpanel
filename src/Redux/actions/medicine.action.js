@@ -14,11 +14,19 @@ export const medicinedata = () => (dispatch) => {
   try {
     dispatch(loaddata())
     setTimeout(function () {
-      getalldata()
-        .then((data) =>
-          dispatch({ type: actiontype.GET_MEDICINE, payload: data.data }),
-        )
-        .catch((error) => dispatch(errordata(error.message)))
+
+      const docRef = await addDoc(collection(db, "users"), {
+        first: "Ada",
+        last: "Lovelace",
+        born: 1815
+      }); 
+  console.log("Document written with ID: ", docRef.id);
+
+      // getalldata()
+      //   .then((data) =>
+      //     dispatch({ type: actiontype.GET_MEDICINE, payload: data.data }),
+      //   )
+      //   .catch((error) => dispatch(errordata(error.message)))
       // fetch(baseurl + 'medicine')
       //   .then(response => {
       //     if (response.ok) {
@@ -40,13 +48,6 @@ export const medicinedata = () => (dispatch) => {
   } catch (error) {
     dispatch(errordata(error.message))
   }
-
-  // try {
-  //   const docRef = await addDoc(collection(db, "doctors"), );
-  //   console.log("Document written with ID: ", docRef.id);
-  // } catch (e) {
-  //   console.error("Error adding document: ", e);
-  // }
 }
 
 export const loaddata = () => (dispatch) => {
