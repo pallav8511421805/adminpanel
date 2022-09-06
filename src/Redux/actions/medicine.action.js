@@ -49,7 +49,6 @@ export const errordata = (error) => (dispatch) => {
 }
 
 export const adddata = (data) => (dispatch) => {
-  console.log(data)
   try {
     dispatch(loaddata())
     setTimeout(async () => {
