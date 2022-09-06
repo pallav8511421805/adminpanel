@@ -58,7 +58,6 @@ export const adddata = (data) => (dispatch) => {
         type: actiontype.Add_MEDICINE,
         payload: { id: docRef.id, ...data },
       })
-      console.log('Document written with ID: ', docRef.id, data.data)
       // addalldata(data)
       //   .then((data) =>
       //     dispatch({ type: actiontype.Add_MEDICINE, payload: data.data }),
