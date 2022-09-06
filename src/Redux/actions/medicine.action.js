@@ -53,11 +53,12 @@ export const adddata = (data) => (dispatch) => {
   try {
     dispatch(loaddata())
     setTimeout(async () => {
-      const docRef = await addDoc(collection(db, 'Doctors'), {
-        id: docRef.id,
-        ...data,
+      const docRef = await addDoc(collection(db, 'Doctors'), data)
+      dispatch({
+        type: actiontype.Add_MEDICINE,
+        payload: { id: docRef.id, ...data },
       })
-      console.log('Document written with ID: ', docRef.id, data)
+      console.log('Document written with ID: ', docRef.id, data.data)
       // addalldata(data)
       //   .then((data) =>
       //     dispatch({ type: actiontype.Add_MEDICINE, payload: data.data }),
