@@ -1,5 +1,5 @@
 import { baseurl } from '../../Baseurl/baseurl'
-import { collection, addDoc, getDocs, doc, deleteDoc } from 'firebase/firestore'
+import { collection, addDoc, getDocs, doc, deleteDoc, } from 'firebase/firestore'
 import { db } from '../../Firebase'
 import {
   addalldata,
@@ -140,6 +140,7 @@ export const editdata = (data) => async (dispatch) => {
       price: data.price,
       expiry: data.expiry,
     })
+    dispatch({ type: actiontype.Edit_MEDICINE, payload: data })
     // editmedicinedata(data)
     //   .then((data) =>
     //     dispatch({ type: actiontype.Edit_MEDICINE, payload: data.data }),
