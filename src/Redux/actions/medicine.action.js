@@ -101,7 +101,6 @@ export const adddata = (data) => (dispatch) => {
 
 export const deletedata = (id) => async (dispatch) => {
   try {
-    console.log('::::::::::;', id)
     await deleteDoc(doc(db, 'Medicines', id))
     dispatch({ type: actiontype.Delete_MEDICINE, payload: id })
     // Deletealldata(id)
