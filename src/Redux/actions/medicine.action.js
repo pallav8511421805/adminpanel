@@ -62,7 +62,7 @@ export const adddata = (data) => (dispatch) => {
       const docRef = await addDoc(collection(db, 'Medicines'), data)
       dispatch({
         type: actiontype.Add_MEDICINE,
-        payload: { id: docRef.id, ...data },
+        payload: { ...data, id: docRef.id },
       })
       // addalldata(data)
       //   .then((data) =>
@@ -131,13 +131,20 @@ export const deletedata = (id) => async (dispatch) => {
   }
 }
 
-export const editdata = (data) => (dispatch) => {
+export const editdata = (data) => async (dispatch) => {
   try {
-    editmedicinedata(data)
-      .then((data) =>
-        dispatch({ type: actiontype.Edit_MEDICINE, payload: data.data }),
-      )
-      .catch((error) => dispatch(errordata(error.message)))
+    const medRef = db.collection('Medicines').doc(data.id)
+    const res = await medRef.update({
+      name: data.name,
+      quantity: data.quantity,
+      price: data.price,
+      expiry: data.expiry,
+    })
+    // editmedicinedata(data)
+    //   .then((data) =>
+    //     dispatch({ type: actiontype.Edit_MEDICINE, payload: data.data }),
+    //   )
+    //   .catch((error) => dispatch(errordata(error.message)))
     // dispatch(loaddata())
     // setTimeout(() => {
     //   fetch(baseurl + 'medicine')
