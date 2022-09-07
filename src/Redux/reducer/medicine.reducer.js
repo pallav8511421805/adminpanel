@@ -1,33 +1,32 @@
-import * as actiontype from '../actions/actiontype';
+import * as actiontype from '../actions/actiontype'
 
 const intival = {
   isload: false,
   medicine: [],
-  errors: ''
+  errors: '',
 }
 export const medReducer = (state = intival, action) => {
-
   switch (action.type) {
     case actiontype.GET_MEDICINE:
       return {
         ...state,
         isload: false,
         medicine: action.payload,
-        errors: ''
+        errors: '',
       }
     case actiontype.Add_MEDICINE:
       return {
         ...state,
         isload: false,
         medicine: state.medicine.concat(action.payload),
-        errors: ''
+        errors: '',
       }
     case actiontype.Delete_MEDICINE:
       return {
         ...state,
         isload: false,
         medicine: state.medicine.filter((l) => l.id !== action.payload),
-        errors: ''
+        errors: '',
       }
     case actiontype.Edit_MEDICINE:
       return {
@@ -35,27 +34,27 @@ export const medReducer = (state = intival, action) => {
         isload: false,
         medicine: state.medicine.map((m) => {
           if (m.id === action.payload.id) {
-            return action.payload;
+            return action.payload
           } else {
-            return m;
+            return m
           }
         }),
-        errors: ''
+        errors: '',
       }
     case actiontype.Load_MEDICINE:
       return {
         ...state,
         isload: true,
-        errors: ''
+        errors: '',
       }
     case actiontype.ERROR_MEDICINE:
       return {
         ...state,
         isload: false,
         medicine: [],
-        errors: action.payload
+        errors: action.payload,
       }
     default:
-      return state;
+      return state
   }
 }

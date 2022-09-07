@@ -1,5 +1,5 @@
 import { baseurl } from '../../Baseurl/baseurl'
-import { collection, addDoc } from 'firebase/firestore'
+import { collection, addDoc, getDocs, doc, deleteDoc } from 'firebase/firestore'
 import { db } from '../../Firebase'
 import {
   addalldata,
@@ -12,12 +12,18 @@ import * as actiontype from '../actions/actiontype'
 export const medicinedata = () => (dispatch) => {
   try {
     dispatch(loaddata())
-    setTimeout(function () {
-      getalldata()
-        .then((data) =>
-          dispatch({ type: actiontype.GET_MEDICINE, payload: data.data }),
-        )
-        .catch((error) => dispatch(errordata(error.message)))
+    setTimeout(async function () {
+      let data = []
+      const querySnapshot = await getDocs(collection(db, 'Medicines'))
+      querySnapshot.forEach((doc) => {
+        data.push({ id: doc.id, ...doc.data() })
+      })
+      dispatch({ type: actiontype.GET_MEDICINE, payload: data })
+      // getalldata()
+      //   .then((data) =>
+      //     dispatch({ type: actiontype.GET_MEDICINE, payload: data.data }),
+      //   )
+      //   .catch((error) => dispatch(errordata(error.message)))
       // fetch(baseurl + 'medicine')
       //   .then(response => {
       //     if (response.ok) {
@@ -52,7 +58,7 @@ export const adddata = (data) => (dispatch) => {
   try {
     dispatch(loaddata())
     setTimeout(async () => {
-      const docRef = await addDoc(collection(db, 'Doctors'), data)
+      const docRef = await addDoc(collection(db, 'Medicines'), data)
       dispatch({
         type: actiontype.Add_MEDICINE,
         payload: { id: docRef.id, ...data },
@@ -92,11 +98,13 @@ export const adddata = (data) => (dispatch) => {
   }
 }
 
-export const deletedata = (id) => (dispatch) => {
+export const deletedata = (id) => async (dispatch) => {
   try {
-    Deletealldata(id)
-      .then(dispatch({ type: actiontype.Delete_MEDICINE, payload: id }))
-      .catch((error) => dispatch(errordata(error.message)))
+    await deleteDoc(doc(db, 'Medicines', id))
+    dispatch({ type: actiontype.Delete_MEDICINE, payload: id })
+    // Deletealldata(id)
+    //   .then(dispatch({ type: actiontype.Delete_MEDICINE, payload: id }))
+    //   .catch((error) => dispatch(errordata(error.message)))
     //     fetch(baseurl + 'medicine')
     //     .then(response => {
     //       if (response.ok) {
