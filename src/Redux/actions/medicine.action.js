@@ -1,5 +1,5 @@
 import { baseurl } from '../../Baseurl/baseurl'
-import { collection, addDoc, getDocs, doc, deleteDoc, } from 'firebase/firestore'
+import { collection, addDoc, getDocs, doc, deleteDoc } from 'firebase/firestore'
 import { db } from '../../Firebase'
 import {
   addalldata,
