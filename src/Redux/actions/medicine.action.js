@@ -16,8 +16,7 @@ export const medicinedata = () => (dispatch) => {
       let data = []
       const querySnapshot = await getDocs(collection(db, 'Medicines'))
       querySnapshot.forEach((doc) => {
-        console.log(doc)
-        data.push({ id: doc.id, ...doc.data() })
+        data.push({ ...doc.data(), id: doc.id })
       })
       dispatch({ type: actiontype.GET_MEDICINE, payload: data })
 
@@ -102,6 +101,7 @@ export const adddata = (data) => (dispatch) => {
 
 export const deletedata = (id) => async (dispatch) => {
   try {
+    console.log('::::::::::;', id)
     await deleteDoc(doc(db, 'Medicines', id))
     dispatch({ type: actiontype.Delete_MEDICINE, payload: id })
     // Deletealldata(id)
