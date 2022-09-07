@@ -17,8 +17,10 @@ export const medicinedata = () => (dispatch) => {
       const querySnapshot = await getDocs(collection(db, 'Medicines'))
       querySnapshot.forEach((doc) => {
         data.push({ id: doc.id, ...doc.data() })
+        console.log({ id: doc.id, ...doc.data() })
       })
       dispatch({ type: actiontype.GET_MEDICINE, payload: data })
+
       // getalldata()
       //   .then((data) =>
       //     dispatch({ type: actiontype.GET_MEDICINE, payload: data.data }),
