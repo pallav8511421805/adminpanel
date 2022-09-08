@@ -1,6 +1,6 @@
 import { baseurl } from '../../Baseurl/baseurl'
 import { collection, addDoc, getDocs, doc, deleteDoc } from 'firebase/firestore'
-import { db } from '../../Firebase'
+import { db, storage } from '../../Firebase'
 import {
   addalldata,
   Deletealldata,
@@ -8,6 +8,7 @@ import {
   getalldata,
 } from '../../comman/apis/medicine.api'
 import * as actiontype from '../actions/actiontype'
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 
 export const medicinedata = () => (dispatch) => {
   try {
@@ -59,11 +60,15 @@ export const adddata = (data) => (dispatch) => {
   try {
     dispatch(loaddata())
     setTimeout(async () => {
-      const docRef = await addDoc(collection(db, 'Medicines'), data)
-      dispatch({
-        type: actiontype.Add_MEDICINE,
-        payload: { ...data, id: docRef.id },
-      })
+      const medRef = ref(storage, 'Medicines/' + data.pname.name)
+      uploadBytes(medRef,data.pname).then(async (snapshot) => {
+        getDownloadURL(ref(storage, 'Medicines/' + data.pname.name))
+        .then( async (url) => {
+        const docRef = await addDoc(collection(db, 'Medicines'), {...data,pname:url})
+        dispatch({type: actiontype.Add_MEDICINE,payload: { ...data, id: docRef.id }})
+        })
+      });
+
       // addalldata(data)
       //   .then((data) =>
       //     dispatch({ type: actiontype.Add_MEDICINE, payload: data.data }),
