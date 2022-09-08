@@ -68,7 +68,6 @@ export const adddata = (data) => (dispatch) => {
         dispatch({type: actiontype.Add_MEDICINE,payload: { ...data, id: docRef.id }})
         })
       });
-
       // addalldata(data)
       //   .then((data) =>
       //     dispatch({ type: actiontype.Add_MEDICINE, payload: data.data }),
