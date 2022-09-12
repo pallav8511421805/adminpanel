@@ -61,13 +61,20 @@ export const adddata = (data) => (dispatch) => {
     dispatch(loaddata())
     setTimeout(async () => {
       const medRef = ref(storage, 'Medicines/' + data.pname.name)
-      uploadBytes(medRef,data.pname).then(async (snapshot) => {
-        getDownloadURL(ref(storage, 'Medicines/' + data.pname.name))
-        .then( async (url) => {
-        const docRef = await addDoc(collection(db, 'Medicines'), {...data,pname:url})
-        dispatch({type: actiontype.Add_MEDICINE,payload: { ...data, id: docRef.id }})
-        })
-      });
+      uploadBytes(medRef, data.pname).then(async (snapshot) => {
+        getDownloadURL(ref(storage, 'Medicines/' + data.pname.name)).then(
+          async (url) => {
+            const docRef = await addDoc(collection(db, 'Medicines'), {
+              ...data,
+              pname: url,
+            })
+            dispatch({
+              type: actiontype.Add_MEDICINE,
+              payload: { ...data, id: docRef.id, pname: url },
+            })
+          },
+        )
+      })
       // addalldata(data)
       //   .then((data) =>
       //     dispatch({ type: actiontype.Add_MEDICINE, payload: data.data }),

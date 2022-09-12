@@ -154,6 +154,14 @@ function Medicine() {
     { field: 'price', headerName: 'Price', width: 130 },
     { field: 'expiry', headerName: 'Expiry', width: 130 },
     {
+      field: 'pname',
+      headerName: 'Profile image',
+      width: 130,
+      renderCell: (params) => {
+      <img src={params.row.pname} width={50} height={50} />
+      },
+    },
+    {
       field: 'action',
       headerName: 'Action',
       width: 130,
