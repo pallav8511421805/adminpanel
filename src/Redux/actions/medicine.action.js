@@ -56,14 +56,14 @@ export const errordata = (error) => (dispatch) => {
   dispatch({ type: actiontype.ERROR_MEDICINE, payload: error })
 }
 
-export const adddata = (data) => (dispatch) => {
+export const adddata = (data) => async (dispatch) => {
   try {
-    dispatch(loaddata())
-    setTimeout(async () => {
-      const filename = Math.floor(Math.random()*100000);
+    // dispatch(loaddata())
+    const filename = Math.floor(Math.random()*100000);
       const medRef = ref(storage, 'Medicines/' + filename)
       uploadBytes(medRef, data.pname).then(async (snapshot) => {
-        getDownloadURL(ref(storage, 'Medicines/' + data.pname.name)).then(
+        getDownloadURL(snapshot.ref)
+        .then(
           async (url) => {
             const docRef = await addDoc(collection(db, 'Medicines'), {
               ...data,
@@ -77,6 +77,8 @@ export const adddata = (data) => (dispatch) => {
           },
         )
       })
+    // setTimeout(async () => {
+      
       // addalldata(data)
       //   .then((data) =>
       //     dispatch({ type: actiontype.Add_MEDICINE, payload: data.data }),
@@ -106,7 +108,7 @@ export const adddata = (data) => (dispatch) => {
       //   .then(response => response.json())
       // .then(data => dispatch(({ type: actiontype.GET_MEDICINE, payload: data })))
       // .catch(error => dispatch(errordata(error.message)));
-    }, 2000)
+    // }, 2000)
   } catch (error) {
     dispatch(errordata(error.message))
   }
