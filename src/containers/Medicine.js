@@ -157,9 +157,11 @@ function Medicine() {
       field: 'pname',
       headerName: 'Profile image',
       width: 130,
-      renderCell: (params) => {
-      <img src={params.row.pname} width={50} height={50} />
-      },
+      renderCell: (params) => (
+      <>
+      <img src={params.row.pname} width={50} height={50}/>
+      </>
+      ),
     },
     {
       field: 'action',
