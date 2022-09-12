@@ -63,7 +63,7 @@ export const adddata = (data) => (dispatch) => {
       const filename = Math.floor(Math.random()*100000);
       const medRef = ref(storage, 'Medicines/' + filename)
       uploadBytes(medRef, data.pname).then(async (snapshot) => {
-        getDownloadURL(ref(storage, 'Medicines/' + data.pname.name))
+        getDownloadURL(snapshot.ref)
         .then(
           async (url) => {
             const docRef = await addDoc(collection(db, 'Medicines'), 
