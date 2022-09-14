@@ -175,7 +175,7 @@ function Medicine() {
             style={{ color: 'red' }}
             onClick={() => {
               handledClickOpen()
-              setdid(params.id)
+              setdid(params.row)
             }}
           >
             <DeleteIcon fontSize="inherit" />

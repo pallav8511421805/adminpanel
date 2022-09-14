@@ -8,7 +8,7 @@ import {
   getalldata,
 } from '../../comman/apis/medicine.api'
 import * as actiontype from '../actions/actiontype'
-import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
+import { deleteObject, getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 
 export const medicinedata = () => (dispatch) => {
   try {
@@ -110,10 +110,18 @@ export const adddata = (data) => (dispatch) => {
   }
 }
 
-export const deletedata = (id) => async (dispatch) => {
+export const deletedata = (data) => async (dispatch) => {
   try {
-    await deleteDoc(doc(db, 'Medicines', id))
-    dispatch({ type: actiontype.Delete_MEDICINE, payload: id })
+    const medRef = ref(storage, 'Medicines/' + data.filename)
+    deleteObject(medRef)
+    .then(async() => {
+      await deleteDoc(doc(db, 'Medicines', data.id))
+      dispatch({ type: actiontype.Delete_MEDICINE, payload: data.id })
+    })
+    .catch((error) => {
+      dispatch(errordata(error.message))
+    });
+    
     // Deletealldata(id)
     //   .then(dispatch({ type: actiontype.Delete_MEDICINE, payload: id }))
     //   .catch((error) => dispatch(errordata(error.message)))
@@ -145,13 +153,38 @@ export const deletedata = (id) => async (dispatch) => {
 export const editdata = (data) => async (dispatch) => {
   try {
     const medRef = db.collection('Medicines').doc(data.id)
-    const res = await medRef.update({
-      name: data.name,
-      quantity: data.quantity,
-      price: data.price,
-      expiry: data.expiry,
+    if(typeof data.pname === 'string'){
+      const res = await medRef.update({
+        name: data.name,
+        quantity: data.quantity,
+        price: data.price,
+        expiry: data.expiry,
+        filename: data.filename,
+        pname: data.pname,
+      })
+      dispatch({ type: actiontype.Edit_MEDICINE, payload: data })
+    } else{
+      const filename1 = Math.floor(Math.random()*100000);
+      const oldimgref = ref(storage, 'Medicines/' + data.filename)
+      const newimgref = ref(storage, 'Medicines/' + filename1)
+      deleteObject(oldimgref)
+    .then(async() => {
+      uploadBytes(newimgref,data.pname).then(async (snapshot) => {
+        getDownloadURL(snapshot.ref)
+        .then(
+          async (url) => {
+            dispatch({
+              type: actiontype.Edit_MEDICINE,
+              payload: { ...data,pname: url,filename:filename1}
+            })
+          },
+        )
+      })
     })
-    dispatch({ type: actiontype.Edit_MEDICINE, payload: data })
+    .catch((error) => {
+      dispatch(errordata(error.message))
+    });
+    }
     // editmedicinedata(data)
     //   .then((data) =>
     //     dispatch({ type: actiontype.Edit_MEDICINE, payload: data.data }),
