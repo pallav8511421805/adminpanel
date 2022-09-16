@@ -1,5 +1,5 @@
 import { baseurl } from '../../Baseurl/baseurl'
-import { collection, addDoc, getDocs, doc, deleteDoc } from 'firebase/firestore'
+import { collection, addDoc, getDocs, doc, deleteDoc, updateDoc } from 'firebase/firestore'
 import { db, storage } from '../../Firebase'
 import {
   addalldata,
@@ -55,12 +55,12 @@ export const loaddata = () => (dispatch) => {
 export const errordata = (error) => (dispatch) => {
   dispatch({ type: actiontype.ERROR_MEDICINE, payload: error })
 }
-
+const filename = Math.floor(Math.random()*100000);
 export const adddata = (data) => (dispatch) => {
   try {
     dispatch(loaddata())
     setTimeout(async () => {
-      const filename = Math.floor(Math.random()*100000);
+      
       const medRef = ref(storage, 'Medicines/' + filename)
       uploadBytes(medRef, data.pname).then(async (snapshot) => {
         getDownloadURL(snapshot.ref)
@@ -152,6 +152,38 @@ export const deletedata = (data) => async (dispatch) => {
 
 export const editdata = (data) => async (dispatch) => {
   try {
+    const medRef = doc(db, "Medicines", data.id);
+    if (typeof data.pname === "string") {
+      await updateDoc(medRef, {
+        name: data.name,
+        price: data.price,
+        quantity: data.quantity,
+        expiry: data.expiry,
+      });
+      dispatch({ type: actiontype.Edit_MEDICINE, payload: data });
+    } else {
+
+      const oldimgRef = ref(storage, "Medicines/" + data.filename);
+      const newimgRef = ref(storage, "Medicines/" + filename);
+
+      deleteObject(oldimgRef)
+      .then(async () => {
+        uploadBytes(newimgRef, data.pname)
+        .then(async (snapshot) => {
+          getDownloadURL(snapshot.ref)
+          .then(async (url) => {
+            await updateDoc(medRef, {
+              name: data.name,
+              price: data.price,
+              quantity: data.quantity,
+              expiry: data.expiry,
+              filename: filename,
+              pname: url,
+            });
+            dispatch({ type: actiontype.Edit_MEDICINE, payload: {...data, filename: filename, pname: url} })
+          })
+        })
+      })}
     // editmedicinedata(data)
     //   .then((data) =>
     //     dispatch({ type: actiontype.Edit_MEDICINE, payload: data.data }),
