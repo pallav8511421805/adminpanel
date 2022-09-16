@@ -55,8 +55,10 @@ export const loaddata = () => (dispatch) => {
 export const errordata = (error) => (dispatch) => {
   dispatch({ type: actiontype.ERROR_MEDICINE, payload: error })
 }
-const filename = Math.floor(Math.random()*100000);
+
+
 export const adddata = (data) => (dispatch) => {
+  const filename = Math.floor(Math.random()*100000);
   try {
     dispatch(loaddata())
     setTimeout(async () => {
@@ -151,6 +153,7 @@ export const deletedata = (data) => async (dispatch) => {
 }
 
 export const editdata = (data) => async (dispatch) => {
+  const filename = Math.floor(Math.random()*100000);
   try {
     const medRef = doc(db, "Medicines", data.id);
     if (typeof data.pname === "string") {
@@ -162,7 +165,6 @@ export const editdata = (data) => async (dispatch) => {
       });
       dispatch({ type: actiontype.Edit_MEDICINE, payload: data });
     } else {
-
       const oldimgRef = ref(storage, "Medicines/" + data.filename);
       const newimgRef = ref(storage, "Medicines/" + filename);
 
