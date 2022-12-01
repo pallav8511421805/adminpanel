@@ -40,7 +40,7 @@ export const updateReuestdata = (path, data) => {
     return getdata({
         url: path + data.id,
         method: "PUT",
-        data:JSON.stringify(data),
+        data: JSON.stringify(data),
         headers: {
             'Content-Type': 'application/json',
         },
